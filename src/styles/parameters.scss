@@ -1,0 +1,16 @@
+$color-blue: #4A90E2;
+
+$color-black: #000000;
+$color-white: #FFFFFF;
+
+$color-grey: #C6CBD6;
+$color-grey-dark: #8C97AD;
+$color-grey-darker: #4C5975;
+
+// Breakpoints
+$breakpoints: (
+  "small": 544px,
+  "medium": 768px,
+  "large": 992px,
+  "xlarge": 1200px,
+);
