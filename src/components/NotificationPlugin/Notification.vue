@@ -76,7 +76,7 @@
 
 </script>
 <style lang="scss" scoped>
-  @import "../../../styles/paper/variables";
+  @import "../../styles/paper/variables";
 
   .fade-enter-active,
   .fade-leave-active {

@@ -3,18 +3,18 @@ import Router from 'vue-router'
 
 import store from '../store'
 
-import DashboardLayout from '../components/Dashboard/Layout/DashboardLayout.vue'
+import DashboardLayout from '../components/Dashboard/DashboardLayout.vue'
 
-import NotFound from '../components/GeneralViews/NotFoundPage.vue'
-import Login from '../components/GeneralViews/Login.vue'
+import NotFound from '../pages/NotFoundPage.vue'
+import Login from '../pages/Login.vue'
 
-import Overview from 'src/components/Dashboard/Views/Overview.vue'
-import Bookmarks from 'src/components/Dashboard/Views/Bookmarks.vue'
-import Notifications from 'src/components/Dashboard/Views/Notifications.vue'
-import Icons from 'src/components/Dashboard/Views/Icons.vue'
-import Maps from 'src/components/Dashboard/Views/Maps.vue'
-import Typography from 'src/components/Dashboard/Views/Typography.vue'
-import TableList from 'src/components/Dashboard/Views/TableList.vue'
+import Overview from 'src/pages/Overview.vue'
+import Bookmarks from 'src/pages/Bookmarks.vue'
+import Notifications from 'src/pages/Notifications.vue'
+import Icons from 'src/pages/Icons.vue'
+import Maps from 'src/pages/Maps.vue'
+import Typography from 'src/pages/Typography.vue'
+import TableList from 'src/pages/TableList.vue'
 
 Vue.use(Router)
 

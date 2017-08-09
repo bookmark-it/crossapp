@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../../../styles/parameters.scss';
+@import '../styles/parameters.scss';
 
 .card-bookmark {
     .image {

@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import BookmarkCard from './Bookmarks/BookmarkCard.vue'
+import BookmarkCard from '../components/BookmarkCard.vue'
 
 export default {
   components: {
@@ -37,8 +37,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../../styles/parameters.scss';
-@import '../../../styles/mixins.scss';
+@import '../styles/parameters.scss';
+@import '../styles/mixins.scss';
 
 .bookmarks-list {
   text-align: center;

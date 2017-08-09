@@ -5,8 +5,8 @@ import VueResource from 'vue-resource'
 
 // Plugins
 import GlobalComponents from './globalComponents'
-import Notifications from './components/UIComponents/NotificationPlugin'
-import SideBar from './components/UIComponents/SidebarPlugin'
+import Notifications from './components/NotificationPlugin'
+import SideBar from './components/SidebarPlugin'
 import App from './App'
 
 // library imports

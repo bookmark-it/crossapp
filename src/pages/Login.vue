@@ -84,7 +84,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../styles/parameters.scss';
+@import '../styles/parameters.scss';
 
 .login-page {
   background-color: $color-grey-darker !important;
