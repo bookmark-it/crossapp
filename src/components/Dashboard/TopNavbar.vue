@@ -75,4 +75,7 @@
 .navbar-nav {
   cursor: pointer;
 }
+.navbar-toggle {
+  float: left;
+}
 </style>

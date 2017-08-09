@@ -8,7 +8,7 @@
     <div class="sidebar-wrapper" id="style-3">
       <div class="logo">
         <a href="#" class="simple-text">
-          <img src="/static/img/logo.svg" alt="" height="40px">
+          <img src="/static/img/logo.svg" alt="" height="36px">
         </a>
       </div>
       <slot>
@@ -16,18 +16,49 @@
       </slot>
       <ul :class="navClasses">
         <!--By default vue-router adds an active class to each route link. This way the links are colored when clicked-->
-        <router-link v-for="(link,index) in sidebarLinks" :to="link.path" tag="li" :ref="link.name">
+        <router-link to="/app/overview" tag="li" ref="Dashboard">
           <a>
-            <i :class="link.icon"></i>
-
-            <p>{{link.name}}
-            </p>
+            <i class="ti-panel"></i>
+            <p>Dashboard</p>
+          </a>
+        </router-link>
+        <router-link to="/app/bookmarks" tag="li" ref="Bookmark List">
+          <a>
+            <i class="ti-bookmark"></i>
+            <p>Bookmark List</p>
+          </a>
+        </router-link>
+        <router-link to="/app/table-list" tag="li" ref="Table List">
+          <a>
+            <i class="ti-view-list-alt"></i>
+            <p>Table List</p>
+          </a>
+        </router-link>
+        <router-link to="/app/typography" tag="li" ref="Typography">
+          <a>
+            <i class="ti-text"></i>
+            <p>Typography</p>
+          </a>
+        </router-link>
+        <router-link to="/app/icons" tag="li" ref="Icons">
+          <a>
+            <i class="ti-pencil-alt2"></i>
+            <p>Icons</p>
+          </a>
+        </router-link>
+        <router-link to="/app/maps" tag="li" ref="Maps">
+          <a>
+            <i class="ti-map"></i>
+            <p>Maps</p>
+          </a>
+        </router-link>
+        <router-link to="/app/notifications" tag="li" ref="Notifications">
+          <a>
+            <i class="ti-bell"></i>
+            <p>Notifications</p>
           </a>
         </router-link>
       </ul>
-      <moving-arrow :move-y="arrowMovePx">
-
-      </moving-arrow>
     </div>
   </div>
 </template>
@@ -58,10 +89,6 @@
           let acceptedValues = ['primary', 'info', 'success', 'warning', 'danger']
           return acceptedValues.indexOf(value) !== -1
         }
-      },
-      sidebarLinks: {
-        type: Array,
-        default: () => []
       }
     },
     components: {
@@ -81,13 +108,6 @@
         } else {
           return 'nav navbar-nav'
         }
-      },
-      /**
-       * Styles to animate the arrow near the current active sidebar link
-       * @returns {{transform: string}}
-       */
-      arrowMovePx () {
-        return this.linkHeight * this.activeLinkIndex
       }
     },
     data () {
@@ -98,25 +118,6 @@
         windowWidth: 0,
         isWindows: false,
         hasAutoHeight: false
-      }
-    },
-    methods: {
-      findActiveLink () {
-        this.sidebarLinks.find((element, index) => {
-          let found = element.path === this.$route.path
-          if (found) {
-            this.activeLinkIndex = index
-          }
-          return found
-        })
-      }
-    },
-    mounted () {
-      this.findActiveLink()
-    },
-    watch: {
-      $route: function (newRoute, oldRoute) {
-        this.findActiveLink()
       }
     }
   }
