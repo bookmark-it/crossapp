@@ -23,9 +23,18 @@
     <div class="row">
 
       <div class="col-xs-12">
+        <div class="card">
+          <div class="content">
+              <h4 class="title" slot="title">Search (si n'eixste pas : l'ajoute)</h4> 
+              <input type="text" name="">
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12">
         <chart-card :chart-data="usersChart.data" :chart-options="usersChart.options">
-          <h4 class="title" slot="title">Users behavior</h4>
-          <span slot="subTitle"> 24 Hours performance</span>
+          <h4 class="title" slot="title">Catégorie de bookmarks</h4>
+          <span slot="subTitle"> Accédez à vos bookmarks par catégorie</span>
           <span slot="footer">
             <i class="ti-reload"></i> Updated 3 minutes ago</span>
           <div slot="legend">
@@ -34,34 +43,7 @@
             <i class="fa fa-circle text-warning"></i> Click Second Time
           </div>
         </chart-card>
-      </div>
-
-      <div class="col-md-6 col-xs-12">
-        <chart-card :chart-data="preferencesChart.data"  chart-type="Pie">
-          <h4 class="title" slot="title">Email Statistics</h4>
-          <span slot="subTitle"> Last campaign performance</span>
-          <span slot="footer">
-            <i class="ti-timer"></i> Campaign set 2 days ago</span>
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Open
-            <i class="fa fa-circle text-danger"></i> Bounce
-            <i class="fa fa-circle text-warning"></i> Unsubscribe
-          </div>
-        </chart-card>
-      </div>
-
-      <div class="col-md-6 col-xs-12">
-        <chart-card :chart-data="activityChart.data" :chart-options="activityChart.options">
-          <h4 class="title" slot="title">2015 Sales</h4>
-          <span slot="subTitle"> All products including Taxes</span>
-          <span slot="footer">
-            <i class="ti-check"></i> Data information certified</span>
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Tesla Model S
-            <i class="fa fa-circle text-warning"></i> BMW 5 Series
-          </div>
-        </chart-card>
-      </div>
+      </div> 
 
     </div>
 
@@ -84,23 +66,23 @@
           {
             type: 'warning',
             icon: 'ti-server',
-            title: 'Capacity',
-            value: '105GB',
-            footerText: 'Updated now',
+            title: 'Bookmarks',
+            value: '575',
+            footerText: '474 bookmarks non catégorisés',
             footerIcon: 'ti-reload'
           },
           {
             type: 'success',
             icon: 'ti-wallet',
-            title: 'Revenue',
-            value: '$1,345',
-            footerText: 'Last day',
+            title: 'Quick launch',
+            value: '7',
+            footerText: 'Open your quick launch tabs',
             footerIcon: 'ti-calendar'
           },
           {
             type: 'danger',
-            icon: 'ti-pulse',
-            title: 'Errors',
+            icon: 'ti-heart',
+            title: 'Favoris',
             value: '23',
             footerText: 'In the last hour',
             footerIcon: 'ti-timer'
@@ -108,8 +90,8 @@
           {
             type: 'info',
             icon: 'ti-twitter-alt',
-            title: 'Followers',
-            value: '+45',
+            title: 'Réseau',
+            value: '45',
             footerText: 'Updated now',
             footerIcon: 'ti-reload'
           }

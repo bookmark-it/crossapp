@@ -5,10 +5,10 @@
 
     <div class="row">
       <div class="col-sm-10">
-              <input class="form-control mr-sm-6" type="text" placeholder="Search">
+          <input v-model="bkitSeachQuery" class="form-control mr-sm-6" type="text" placeholder="Search or create bookmark" >
       </div>
       <div class="col-sm-2">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> 
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> 
       </div>
     </div>
     
@@ -16,7 +16,7 @@
   <div class="col-md-12 bookmarks-list">
     <spinner :loading="loading" :color="'#3091B2'"></spinner>
     <div class="row" v-if="!loading">
-      <div class="col-md-3" v-for="bookmark in bookmarks" :key="bookmark.id">
+      <div class="col-md-3" v-for="bookmark in bookmarksList" :key="bookmark.id">
         <bookmark-card
           :bookmark="bookmark">
         </bookmark-card>
@@ -37,14 +37,35 @@ export default {
   },
   computed: {
     bookmarks() {
-      return this.$store.state.bookmarks.all
+      console.log('J ai enlevé le computed pour pouvoir')
+      // return this.$store.state.bookmarks.all
     },
     loading() {
       return this.$store.state.bookmarks.loading
     }
   },
+  mounted: function () {
+    this.bookmarksList = this.$store.state.bookmarks.all
+  },
+  data () {
+    return {
+      bkitSeachQuery: '',
+      bookmarksList: []
+    }
+  },
   created: function() {
     this.$store.dispatch('fetchBookmarks')
+  },
+  watch: {
+    bkitSeachQuery: function () {
+      var searchQuery = this.bkitSeachQuery
+      var allbkits = this.$store.state.bookmarks.all
+      this.bookmarksList = allbkits.filter(function(item) {
+        return item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.url.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.description.toLowerCase().includes(searchQuery.toLowerCase())
+      })
+    }
   }
 }
 </script>

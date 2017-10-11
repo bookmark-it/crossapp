@@ -38,6 +38,7 @@
     computed: {
       routeName () {
         const {name} = this.$route
+        console.log('yoooooo')
         return this.capitalizeFirstLetter(name)
       }
     },
