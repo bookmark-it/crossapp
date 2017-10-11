@@ -41,8 +41,6 @@ export default {
       bookmarksList: []
     }
   },
-  method: {
-  },
   computed: {
     bookmarks() {
       return this.bkitSeachQuery ? this.$store.state.bookmarks.all.filter((item) => {
@@ -54,9 +52,6 @@ export default {
     loading() {
       return this.$store.state.bookmarks.loading
     }
-  },
-  created: function() {
-    this.$store.dispatch('fetchBookmarks')
   }
 }
 </script>

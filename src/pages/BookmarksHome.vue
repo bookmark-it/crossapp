@@ -28,17 +28,17 @@
               <input v-model="aaa"  debounce="500" class="form-control mr-sm-6" type="text" placeholder="Search or create bookmark" >
           </div>
           <div class="col-sm-2">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> 
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </div>
         </div>
         </div>
     </div>
     </div>
 
-    
+
     <!--Charts-->
     <div class="row">
- 
+
       <div class="col-xs-12">
         <chart-card :chart-data="usersChart.data" :chart-options="usersChart.options">
           <h4 class="title" slot="title">Catégorie de bookmarks</h4>
@@ -51,7 +51,7 @@
             <i class="fa fa-circle text-warning"></i> Click Second Time
           </div>
         </chart-card>
-      </div> 
+      </div>
 
     </div>
 
@@ -65,13 +65,9 @@
       StatsCard,
       ChartCard
     },
-    /**
-     * Chart data used to render stats, charts. Should be replaced with server data
-     */
-    data () {
-      return {
-        aaa: '',
-        statsCards: [
+    computed: {
+      statsCards() {
+        return [
           {
             type: 'warning',
             icon: 'ti-server',
@@ -104,7 +100,15 @@
             footerText: 'Updated now',
             footerIcon: 'ti-reload'
           }
-        ],
+        ]
+      }
+    },
+    /**
+     * Chart data used to render stats, charts. Should be replaced with server data
+     */
+    data () {
+      return {
+        aaa: '',
         usersChart: {
           data: {
             labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'],
