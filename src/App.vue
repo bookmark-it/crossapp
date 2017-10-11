@@ -2,7 +2,7 @@
 <div :class="{'nav-open': $sidebar.showSidebar}">
   <router-view></router-view>
   <!--This sidebar appears only for screens smaller than 992px-->
-  <side-bar type="navbar" :sidebar-links="$sidebar.sidebarLinks">
+  <side-bar type="navbar">
     <ul class="nav navbar-nav">
       <drop-down title="5 Notifications" icon="ti-bell">
         <li><a>Notification 1</a></li>

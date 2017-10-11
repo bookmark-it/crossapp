@@ -8,10 +8,12 @@
       </div>
       <h4 class="title">{{bookmark.title || "None"}}
         <br>
+      </h4>
+      <p class="url-title-container">
         <a :href="bookmark.url" target="_blank">
           <small>{{bookmark.url}}</small>
         </a>
-      </h4>
+      </p>
     </div>
     <p class="description text-center">
       {{bookmark.description}}
@@ -42,6 +44,29 @@ export default {
 }
 </script>
 
+<style scoped> 
+
+.content{
+  height: 181px;
+  max-height: 181px;
+  overflow: hidden;
+}
+
+.title {
+    line-height: 1.5em;
+    height: 3em;       /* height is 2x line-height, so two lines will display */
+    overflow: hidden;  /* prevents extra lines from being visible */
+}
+.url-title-container {
+    font-size: 11px;
+    line-height: 1.5em;
+    height: 3em;       /* height is 2x line-height, so two lines will display */
+    overflow: hidden;  /* prevents extra lines from being visible */
+}
+
+
+
+</style>
 <style lang="scss">
 @import '../styles/parameters.scss';
 

@@ -70,9 +70,19 @@
     }
   }
 </script>
+<style scoped>
+.navbar-bkit-search{
 
+    display:inline-block;
+
+}
+
+</style>
 <style>
 .navbar-nav {
   cursor: pointer;
+}
+.navbar-toggle {
+  float: left;
 }
 </style>

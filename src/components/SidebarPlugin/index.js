@@ -2,43 +2,6 @@ import Sidebar from './SideBar.vue'
 
 const SidebarStore = {
   showSidebar: false,
-  sidebarLinks: [
-    {
-      name: 'Dashboard',
-      icon: 'ti-panel',
-      path: '/app/overview'
-    },
-    {
-      name: 'Bookmark List',
-      icon: 'ti-bookmark',
-      path: '/app/bookmarks'
-    },
-    {
-      name: 'Table List',
-      icon: 'ti-view-list-alt',
-      path: '/app/table-list'
-    },
-    {
-      name: 'Typography',
-      icon: 'ti-text',
-      path: '/app/typography'
-    },
-    {
-      name: 'Icons',
-      icon: 'ti-pencil-alt2',
-      path: '/app/icons'
-    },
-    {
-      name: 'Maps',
-      icon: 'ti-map',
-      path: '/app/maps'
-    },
-    {
-      name: 'Notifications',
-      icon: 'ti-bell',
-      path: '/app/notifications'
-    }
-  ],
   displaySidebar (value) {
     this.showSidebar = value
   }

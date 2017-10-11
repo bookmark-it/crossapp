@@ -1,5 +1,18 @@
 <template>
+
 <div class="row">
+  <div class="col-md-12" style="margin-bottom: 30px;">
+
+    <div class="row">
+      <div class="col-sm-10">
+          <input v-model="bkitSeachQuery" debounce="500" class="form-control mr-sm-6" type="text" placeholder="Search or create bookmark" >
+      </div>
+      <div class="col-sm-2">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </div>
+    </div>
+
+  </div>
   <div class="col-md-12 bookmarks-list">
     <spinner :loading="loading" :color="'#3091B2'"></spinner>
     <div class="row" v-if="!loading">
@@ -22,16 +35,23 @@ export default {
   components: {
     BookmarkCard
   },
+  data () {
+    return {
+      bkitSeachQuery: '',
+      bookmarksList: []
+    }
+  },
   computed: {
     bookmarks() {
-      return this.$store.state.bookmarks.all
+      return this.bkitSeachQuery ? this.$store.state.bookmarks.all.filter((item) => {
+        return item.title.toLowerCase().includes(this.bkitSeachQuery.toLowerCase()) ||
+          item.url.toLowerCase().includes(this.bkitSeachQuery.toLowerCase()) ||
+          item.description.toLowerCase().includes(this.bkitSeachQuery.toLowerCase())
+      }) : this.$store.state.bookmarks.all
     },
     loading() {
       return this.$store.state.bookmarks.loading
     }
-  },
-  created: function() {
-    this.$store.dispatch('fetchBookmarks')
   }
 }
 </script>
