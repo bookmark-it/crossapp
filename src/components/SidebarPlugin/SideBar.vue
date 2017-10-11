@@ -16,7 +16,7 @@
       </slot>
       <ul :class="navClasses">
         <!--By default vue-router adds an active class to each route link. This way the links are colored when clicked-->
-        <router-link to="/app/overview" tag="li" ref="Dashboard">
+        <router-link to="/app/home" tag="li" ref="Dashboard">
           <a>
             <i class="ti-panel"></i>
             <p>Dashboard</p>
@@ -31,31 +31,7 @@
         <router-link to="/app/table-list" tag="li" ref="Table List">
           <a>
             <i class="ti-view-list-alt"></i>
-            <p>Table List</p>
-          </a>
-        </router-link>
-        <router-link to="/app/typography" tag="li" ref="Typography">
-          <a>
-            <i class="ti-text"></i>
-            <p>Typography</p>
-          </a>
-        </router-link>
-        <router-link to="/app/icons" tag="li" ref="Icons">
-          <a>
-            <i class="ti-pencil-alt2"></i>
-            <p>Icons</p>
-          </a>
-        </router-link>
-        <router-link to="/app/maps" tag="li" ref="Maps">
-          <a>
-            <i class="ti-map"></i>
-            <p>Maps</p>
-          </a>
-        </router-link>
-        <router-link to="/app/notifications" tag="li" ref="Notifications">
-          <a>
-            <i class="ti-bell"></i>
-            <p>Notifications</p>
+            <p>Categories</p>
           </a>
         </router-link>
       </ul>

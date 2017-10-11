@@ -8,12 +8,8 @@ import DashboardLayout from '../components/Dashboard/DashboardLayout.vue'
 import NotFound from '../pages/NotFoundPage.vue'
 import Login from '../pages/Login.vue'
 
-import Overview from 'src/pages/Overview.vue'
-import Bookmarks from 'src/pages/Bookmarks.vue'
-import Notifications from 'src/pages/Notifications.vue'
-import Icons from 'src/pages/Icons.vue'
-import Maps from 'src/pages/Maps.vue'
-import Typography from 'src/pages/Typography.vue'
+import BookmarksHome from 'src/pages/BookmarksHome.vue'
+import BookmarksList from 'src/pages/BookmarksList.vue'
 import TableList from 'src/pages/TableList.vue'
 
 Vue.use(Router)
@@ -25,7 +21,7 @@ export default new Router({
     {
       path: '/',
       component: DashboardLayout,
-      redirect: '/app/overview'
+      redirect: '/app/home'
     }, {
       path: '/login',
       component: Login,
@@ -39,7 +35,7 @@ export default new Router({
     }, {
       path: '/app',
       component: DashboardLayout,
-      redirect: '/app/overview',
+      redirect: '/app/home',
       beforeEnter: (to, from, next) => {
         if (!store.state.auth.loggedIn) {
           next('/login')
@@ -49,32 +45,16 @@ export default new Router({
       },
       children: [
         {
-          path: 'overview',
-          name: 'overview',
-          component: Overview
+          path: 'home',
+          name: 'dashboard',
+          component: BookmarksHome
         }, {
           path: 'bookmarks',
           name: 'bookmarks',
-          component: Bookmarks
-        }, {
-          path: 'notifications',
-          name: 'notifications',
-          component: Notifications
-        }, {
-          path: 'icons',
-          name: 'icons',
-          component: Icons
-        }, {
-          path: 'maps',
-          name: 'maps',
-          component: Maps
-        }, {
-          path: 'typography',
-          name: 'typography',
-          component: Typography
+          component: BookmarksList
         }, {
           path: 'table-list',
-          name: 'table-list',
+          name: 'Bookmark Groups',
           component: TableList
         }
       ]

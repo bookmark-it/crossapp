@@ -21,44 +21,34 @@
 
     <!--Charts-->
     <div class="row">
+      <div class="col-xs-12">
+        <div class="card" style="background-color: rgba(0,0,0,0);border: none;box-shadow:none;">
+    <div class="row">
+          <div class="col-sm-10">
+              <input v-model="aaa"  debounce="500" class="form-control mr-sm-6" type="text" placeholder="Search or create bookmark" >
+          </div>
+          <div class="col-sm-2">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!--Charts-->
+    <div class="row">
 
       <div class="col-xs-12">
         <chart-card :chart-data="usersChart.data" :chart-options="usersChart.options">
-          <h4 class="title" slot="title">Users behavior</h4>
-          <span slot="subTitle"> 24 Hours performance</span>
+          <h4 class="title" slot="title">Catégorie de bookmarks</h4>
+          <span slot="subTitle"> Accédez à vos bookmarks par catégorie</span>
           <span slot="footer">
             <i class="ti-reload"></i> Updated 3 minutes ago</span>
           <div slot="legend">
             <i class="fa fa-circle text-info"></i> Open
             <i class="fa fa-circle text-danger"></i> Click
             <i class="fa fa-circle text-warning"></i> Click Second Time
-          </div>
-        </chart-card>
-      </div>
-
-      <div class="col-md-6 col-xs-12">
-        <chart-card :chart-data="preferencesChart.data"  chart-type="Pie">
-          <h4 class="title" slot="title">Email Statistics</h4>
-          <span slot="subTitle"> Last campaign performance</span>
-          <span slot="footer">
-            <i class="ti-timer"></i> Campaign set 2 days ago</span>
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Open
-            <i class="fa fa-circle text-danger"></i> Bounce
-            <i class="fa fa-circle text-warning"></i> Unsubscribe
-          </div>
-        </chart-card>
-      </div>
-
-      <div class="col-md-6 col-xs-12">
-        <chart-card :chart-data="activityChart.data" :chart-options="activityChart.options">
-          <h4 class="title" slot="title">2015 Sales</h4>
-          <span slot="subTitle"> All products including Taxes</span>
-          <span slot="footer">
-            <i class="ti-check"></i> Data information certified</span>
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Tesla Model S
-            <i class="fa fa-circle text-warning"></i> BMW 5 Series
           </div>
         </chart-card>
       </div>
@@ -75,32 +65,29 @@
       StatsCard,
       ChartCard
     },
-    /**
-     * Chart data used to render stats, charts. Should be replaced with server data
-     */
-    data () {
-      return {
-        statsCards: [
+    computed: {
+      statsCards() {
+        return [
           {
             type: 'warning',
             icon: 'ti-server',
-            title: 'Capacity',
-            value: '105GB',
-            footerText: 'Updated now',
+            title: 'Bookmarks',
+            value: this.$store.state.bookmarks.all.length,
+            footerText: this.$store.state.bookmarks.all.length + ' bookmarks non catégorisés',
             footerIcon: 'ti-reload'
           },
           {
             type: 'success',
             icon: 'ti-wallet',
-            title: 'Revenue',
-            value: '$1,345',
-            footerText: 'Last day',
+            title: 'Quick launch',
+            value: '7',
+            footerText: 'Open your quick launch tabs',
             footerIcon: 'ti-calendar'
           },
           {
             type: 'danger',
-            icon: 'ti-pulse',
-            title: 'Errors',
+            icon: 'ti-heart',
+            title: 'Favoris',
             value: '23',
             footerText: 'In the last hour',
             footerIcon: 'ti-timer'
@@ -108,12 +95,20 @@
           {
             type: 'info',
             icon: 'ti-twitter-alt',
-            title: 'Followers',
-            value: '+45',
+            title: 'Réseau',
+            value: '45',
             footerText: 'Updated now',
             footerIcon: 'ti-reload'
           }
-        ],
+        ]
+      }
+    },
+    /**
+     * Chart data used to render stats, charts. Should be replaced with server data
+     */
+    data () {
+      return {
+        aaa: '',
         usersChart: {
           data: {
             labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'],

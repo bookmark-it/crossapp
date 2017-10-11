@@ -36,6 +36,9 @@
           this.$sidebar.displaySidebar(false)
         }
       }
+    },
+    created: function() {
+      this.$store.dispatch('fetchBookmarks')
     }
   }
 
