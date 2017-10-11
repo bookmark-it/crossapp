@@ -8,14 +8,6 @@
         </div>
       </div>
 
-      <div class="col-md-12">
-        <div class="card card-plain">
-          <paper-table type="hover" :title="table1.title" :sub-title="table1.subTitle" :data="table1.data" :columns="table1.columns">
-
-          </paper-table>
-        </div>
-      </div>
-
     </div>
 </template>
 <script>
@@ -64,14 +56,8 @@
     data () {
       return {
         table1: {
-          title: 'Stripped Table',
-          subTitle: 'Here is a subtitle for this table',
-          columns: [...tableColumns],
-          data: [...tableData]
-        },
-        table2: {
-          title: 'Table on Plain Background',
-          subTitle: 'Here is a subtitle for this table',
+          title: 'Bookmark Category administration',
+          subTitle: 'Here are your categories. You can access, edit and share them from here',
           columns: [...tableColumns],
           data: [...tableData]
         }

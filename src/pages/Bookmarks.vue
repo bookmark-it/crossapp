@@ -5,7 +5,7 @@
 
     <div class="row">
       <div class="col-sm-10">
-          <input v-model="bkitSeachQuery" class="form-control mr-sm-6" type="text" placeholder="Search or create bookmark" >
+          <input v-model="bkitSeachQuery"  debounce="500" class="form-control mr-sm-6" type="text" placeholder="Search or create bookmark" >
       </div>
       <div class="col-sm-2">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> 
@@ -16,7 +16,7 @@
   <div class="col-md-12 bookmarks-list">
     <spinner :loading="loading" :color="'#3091B2'"></spinner>
     <div class="row" v-if="!loading">
-      <div class="col-md-3" v-for="bookmark in bookmarksList" :key="bookmark.id">
+      <div class="col-md-3" v-for="bookmark in bookmarks" :key="bookmark.id">
         <bookmark-card
           :bookmark="bookmark">
         </bookmark-card>
@@ -37,8 +37,8 @@ export default {
   },
   computed: {
     bookmarks() {
-      console.log('J ai enlevé le computed pour pouvoir')
-      // return this.$store.state.bookmarks.all
+      console.log('Je lai modifié mais ça pose un problem au load')
+      return this.bookmarksList
     },
     loading() {
       return this.$store.state.bookmarks.loading

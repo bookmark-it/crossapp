@@ -74,7 +74,7 @@ export default new Router({
           component: Typography
         }, {
           path: 'table-list',
-          name: 'table-list',
+          name: 'Bookmark Groups',
           component: TableList
         }
       ]
