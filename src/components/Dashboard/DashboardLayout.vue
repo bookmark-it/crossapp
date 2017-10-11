@@ -15,6 +15,7 @@
 
       <content-footer></content-footer>
     </div>
+    <bookmark-add></bookmark-add>
   </div>
 </template>
 <style lang="scss">
@@ -24,11 +25,14 @@
   import TopNavbar from './TopNavbar.vue'
   import ContentFooter from './ContentFooter.vue'
   import DashboardContent from './Content.vue'
+  import BookmarkAdd from '../BookmarkAdd.vue'
+
   export default {
     components: {
       TopNavbar,
       ContentFooter,
-      DashboardContent
+      DashboardContent,
+      BookmarkAdd
     },
     methods: {
       toggleSidebar () {

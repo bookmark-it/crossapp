@@ -2,6 +2,7 @@ import Vue from 'vue'
 import {sync} from 'vuex-router-sync'
 import vClickOutside from 'v-click-outside'
 import VueResource from 'vue-resource'
+import VModal from 'vue-js-modal'
 
 // Plugins
 import GlobalComponents from './globalComponents'
@@ -31,6 +32,7 @@ Vue.use(GlobalComponents)
 Vue.use(vClickOutside)
 Vue.use(Notifications)
 Vue.use(SideBar)
+Vue.use(VModal)
 
 // global libraries setup
 Object.defineProperty(Vue.prototype, '$Chartist', {
