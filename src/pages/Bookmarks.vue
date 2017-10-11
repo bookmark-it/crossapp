@@ -35,23 +35,26 @@ export default {
   components: {
     BookmarkCard
   },
+  data () {
+    return {
+      bkitSeachQuery: '',
+      bookmarksList: []
+    }
+  },
   computed: {
     bookmarks() {
-      console.log('Je lai modifié mais ça pose un problem au load')
+      console.log('Computed')
+      console.log(this.$store.state.bookmarks.all.length)
       return this.bookmarksList
+      // return this.$store.state.bookmarks.all
     },
     loading() {
       return this.$store.state.bookmarks.loading
     }
   },
   mounted: function () {
+    console.log('Mounted')
     this.bookmarksList = this.$store.state.bookmarks.all
-  },
-  data () {
-    return {
-      bkitSeachQuery: '',
-      bookmarksList: []
-    }
   },
   created: function() {
     this.$store.dispatch('fetchBookmarks')
