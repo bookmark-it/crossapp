@@ -8,7 +8,7 @@ import DashboardLayout from '../components/Dashboard/DashboardLayout.vue'
 import NotFound from '../pages/NotFoundPage.vue'
 import Login from '../pages/Login.vue'
 
-import Overview from 'src/pages/Overview.vue'
+import BookmarksHome from 'src/pages/BookmarksHome.vue'
 import Bookmarks from 'src/pages/Bookmarks.vue'
 import Notifications from 'src/pages/Notifications.vue'
 import Icons from 'src/pages/Icons.vue'
@@ -49,9 +49,9 @@ export default new Router({
       },
       children: [
         {
-          path: 'overview',
-          name: 'overview',
-          component: Overview
+          path: 'home',
+          name: 'dashboard',
+          component: BookmarksHome
         }, {
           path: 'bookmarks',
           name: 'bookmarks',

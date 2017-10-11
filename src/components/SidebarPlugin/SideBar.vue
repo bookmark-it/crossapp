@@ -16,7 +16,7 @@
       </slot>
       <ul :class="navClasses">
         <!--By default vue-router adds an active class to each route link. This way the links are colored when clicked-->
-        <router-link to="/app/overview" tag="li" ref="Dashboard">
+        <router-link to="/app/home" tag="li" ref="Dashboard">
           <a>
             <i class="ti-panel"></i>
             <p>Dashboard</p>

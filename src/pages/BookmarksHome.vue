@@ -76,8 +76,8 @@
             type: 'warning',
             icon: 'ti-server',
             title: 'Bookmarks',
-            value: '575',
-            footerText: '474 bookmarks non catégorisés',
+            value: this.$store.state.bookmarks.all.length,
+            footerText: this.$store.state.bookmarks.all.length + ' bookmarks non catégorisés',
             footerIcon: 'ti-reload'
           },
           {

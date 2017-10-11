@@ -5,7 +5,7 @@
 
     <div class="row">
       <div class="col-sm-10">
-          <input v-model="bkitSeachQuery"  debounce="500" class="form-control mr-sm-6" type="text" placeholder="Search or create bookmark" >
+          <input v-model="bkitSeachQuery" debounce="500" class="form-control mr-sm-6" type="text" placeholder="Search or create bookmark" >
       </div>
       <div class="col-sm-2">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> 
@@ -30,6 +30,7 @@
 
 <script>
 import BookmarkCard from '../components/BookmarkCard.vue'
+import _ from 'lodash'
 
 export default {
   components: {
@@ -40,6 +41,8 @@ export default {
       bkitSeachQuery: '',
       bookmarksList: []
     }
+  },
+  method: {
   },
   computed: {
     bookmarks() {
@@ -57,18 +60,24 @@ export default {
     this.bookmarksList = this.$store.state.bookmarks.all
   },
   created: function() {
+    console.log('Created')
     this.$store.dispatch('fetchBookmarks')
+    console.log(this.$store.state.bookmarks.all)
+    console.log(this.bookmarksList)
   },
   watch: {
-    bkitSeachQuery: function () {
+    bkitSeachQuery: _.debounce(function () {
       var searchQuery = this.bkitSeachQuery
       var allbkits = this.$store.state.bookmarks.all
+      // listen if is valid URL and if not already in bookmarks --> add ?
+      // implement secondary match seach results
+      // implement secondary match seach results
       this.bookmarksList = allbkits.filter(function(item) {
         return item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
           item.url.toLowerCase().includes(searchQuery.toLowerCase()) ||
           item.description.toLowerCase().includes(searchQuery.toLowerCase())
       })
-    }
+    }, 500)
   }
 }
 </script>
