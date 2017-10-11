@@ -68,6 +68,7 @@ export default {
   watch: {
     bkitSeachQuery: _.debounce(function () {
       var searchQuery = this.bkitSeachQuery
+      console.log(this.bkitSeachQuery)
       var allbkits = this.$store.state.bookmarks.all
       // listen if is valid URL and if not already in bookmarks --> add ?
       // implement secondary match seach results

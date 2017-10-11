@@ -10,10 +10,8 @@ import Login from '../pages/Login.vue'
 
 import BookmarksHome from 'src/pages/BookmarksHome.vue'
 import Bookmarks from 'src/pages/Bookmarks.vue'
-import Notifications from 'src/pages/Notifications.vue'
 import Icons from 'src/pages/Icons.vue'
 import Maps from 'src/pages/Maps.vue'
-import Typography from 'src/pages/Typography.vue'
 import TableList from 'src/pages/TableList.vue'
 
 Vue.use(Router)
@@ -57,10 +55,6 @@ export default new Router({
           name: 'bookmarks',
           component: Bookmarks
         }, {
-          path: 'notifications',
-          name: 'notifications',
-          component: Notifications
-        }, {
           path: 'icons',
           name: 'icons',
           component: Icons
@@ -68,10 +62,6 @@ export default new Router({
           path: 'maps',
           name: 'maps',
           component: Maps
-        }, {
-          path: 'typography',
-          name: 'typography',
-          component: Typography
         }, {
           path: 'table-list',
           name: 'Bookmark Groups',
