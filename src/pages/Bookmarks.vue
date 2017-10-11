@@ -1,5 +1,18 @@
 <template>
+
 <div class="row">
+  <div class="col-md-12" style="margin-bottom: 30px;">
+
+    <div class="row">
+      <div class="col-sm-10">
+              <input class="form-control mr-sm-6" type="text" placeholder="Search">
+      </div>
+      <div class="col-sm-2">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> 
+      </div>
+    </div>
+    
+  </div>
   <div class="col-md-12 bookmarks-list">
     <spinner :loading="loading" :color="'#3091B2'"></spinner>
     <div class="row" v-if="!loading">
