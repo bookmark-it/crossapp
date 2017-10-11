@@ -12,6 +12,13 @@
       </div>
       <div class="navbar-right-menu">
         <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a class="" @click="addBookmark">
+              <p>
+                Add a bookmark
+              </p>
+            </a>
+          </li>
            <drop-down title="5 Notifications" icon="ti-bell">
              <li><a href="#">Notification 1</a></li>
              <li><a href="#">Notification 2</a></li>
@@ -62,6 +69,9 @@
       hideSidebar () {
         this.$sidebar.displaySidebar(false)
       },
+      addBookmark () {
+        console.log('Yo dude, want some bookmarks?')
+      },
       logout () {
         this.$store.dispatch('logout', {
           $router: this.$router
@@ -71,12 +81,6 @@
   }
 </script>
 <style scoped>
-.navbar-bkit-search{
-
-    display:inline-block;
-
-}
-
 </style>
 <style>
 .navbar-nav {
