@@ -21,7 +21,7 @@ export default new Router({
     {
       path: '/',
       component: DashboardLayout,
-      redirect: '/app/overview'
+      redirect: '/app/home'
     }, {
       path: '/login',
       component: Login,
@@ -35,7 +35,7 @@ export default new Router({
     }, {
       path: '/app',
       component: DashboardLayout,
-      redirect: '/app/overview',
+      redirect: '/app/home',
       beforeEnter: (to, from, next) => {
         if (!store.state.auth.loggedIn) {
           next('/login')

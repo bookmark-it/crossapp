@@ -8,10 +8,10 @@
           <input v-model="bkitSeachQuery" debounce="500" class="form-control mr-sm-6" type="text" placeholder="Search or create bookmark" >
       </div>
       <div class="col-sm-2">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> 
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </div>
     </div>
-    
+
   </div>
   <div class="col-md-12 bookmarks-list">
     <spinner :loading="loading" :color="'#3091B2'"></spinner>
@@ -30,7 +30,6 @@
 
 <script>
 import BookmarkCard from '../components/BookmarkCard.vue'
-import _ from 'lodash'
 
 export default {
   components: {
@@ -46,39 +45,18 @@ export default {
   },
   computed: {
     bookmarks() {
-      console.log('Computed')
-      console.log(this.$store.state.bookmarks.all.length)
-      return this.bookmarksList
-      // return this.$store.state.bookmarks.all
+      return this.bkitSeachQuery ? this.$store.state.bookmarks.all.filter((item) => {
+        return item.title.toLowerCase().includes(this.bkitSeachQuery.toLowerCase()) ||
+          item.url.toLowerCase().includes(this.bkitSeachQuery.toLowerCase()) ||
+          item.description.toLowerCase().includes(this.bkitSeachQuery.toLowerCase())
+      }) : this.$store.state.bookmarks.all
     },
     loading() {
       return this.$store.state.bookmarks.loading
     }
   },
-  mounted: function () {
-    console.log('Mounted')
-    this.bookmarksList = this.$store.state.bookmarks.all
-  },
   created: function() {
-    console.log('Created')
     this.$store.dispatch('fetchBookmarks')
-    console.log(this.$store.state.bookmarks.all)
-    console.log(this.bookmarksList)
-  },
-  watch: {
-    bkitSeachQuery: _.debounce(function () {
-      var searchQuery = this.bkitSeachQuery
-      console.log(this.bkitSeachQuery)
-      var allbkits = this.$store.state.bookmarks.all
-      // listen if is valid URL and if not already in bookmarks --> add ?
-      // implement secondary match seach results
-      // implement secondary match seach results
-      this.bookmarksList = allbkits.filter(function(item) {
-        return item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          item.url.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          item.description.toLowerCase().includes(searchQuery.toLowerCase())
-      })
-    }, 500)
   }
 }
 </script>
