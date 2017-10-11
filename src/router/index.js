@@ -9,9 +9,7 @@ import NotFound from '../pages/NotFoundPage.vue'
 import Login from '../pages/Login.vue'
 
 import BookmarksHome from 'src/pages/BookmarksHome.vue'
-import Bookmarks from 'src/pages/Bookmarks.vue'
-import Icons from 'src/pages/Icons.vue'
-import Maps from 'src/pages/Maps.vue'
+import BookmarksList from 'src/pages/BookmarksList.vue'
 import TableList from 'src/pages/TableList.vue'
 
 Vue.use(Router)
@@ -53,15 +51,7 @@ export default new Router({
         }, {
           path: 'bookmarks',
           name: 'bookmarks',
-          component: Bookmarks
-        }, {
-          path: 'icons',
-          name: 'icons',
-          component: Icons
-        }, {
-          path: 'maps',
-          name: 'maps',
-          component: Maps
+          component: BookmarksList
         }, {
           path: 'table-list',
           name: 'Bookmark Groups',
