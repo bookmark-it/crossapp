@@ -119,7 +119,12 @@
       registerForBookmarks () {
         console.log(this.registerForm)
         if (this.registerForm.username !== '' && this.registerForm.username !== '') {
-          this.$http.post('auth/register/', this.registerForm)
+          this.$http.post('auth/register/', this.registerForm).then(res => {
+            this.$router.push('/')
+          }, error => {
+            console.log('error')
+            console.log(error)
+          })
         }
       }
     }
