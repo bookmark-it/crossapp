@@ -32,7 +32,6 @@ const actions = {
     })
   },
   addBookmark({commit}, {bookmark}) {
-    console.log(bookmark)
     bookmarks.addNew(bookmark).then(res => {
       res.json().then(result => {
         commit('ADDBOOKMARK', {result})

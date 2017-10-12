@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     addNewBookmark() {
-      console.log(this.newBookmark)
       this.$store.dispatch('addBookmark', {
         bookmark: this.newBookmark
       })

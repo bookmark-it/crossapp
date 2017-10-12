@@ -5,7 +5,6 @@ export default {
     return Vue.http.get('bookmarks')
   },
   addNew(bookmark) {
-    console.log(bookmark)
     return Vue.http.post('bookmarks', bookmark)
   }
 }

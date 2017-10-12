@@ -70,7 +70,6 @@
         this.$sidebar.displaySidebar(false)
       },
       addBookmark () {
-        console.log('Yo dude, want some bookmarks?')
         this.$modal.show('bookmark-add')
       },
       logout () {
