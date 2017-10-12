@@ -17,12 +17,12 @@
   </div>
     
   <div class="content"> 
-      <p class="url-title-container ">
-        <a :href="bookmark.url" target="_blank"><small>{{bookmark.url}}</small></a>
-      </p>
     <p class="description text-left">
       {{bookmark.description || "No description"}}
     </p> 
+    <p class="url-title-container ">
+      <a :href="bookmark.url" target="_blank"><small>{{bookmark.url}}</small></a>
+    </p>
   </div>
 
 
