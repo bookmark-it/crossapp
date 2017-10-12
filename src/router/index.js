@@ -14,6 +14,7 @@ import BookmarksList from 'src/pages/BookmarksList.vue'
 import BookmarksCategories from 'src/pages/BookmarksCategories.vue'
 import BookmarksFolders from 'src/pages/BookmarksFolders.vue'
 import Folder from 'src/components/Folder.vue'
+import Category from 'src/components/Category.vue'
 import BookmarksWebsites from 'src/pages/BookmarksWebsites.vue'
 import BookmarksUserProfile from 'src/pages/BookmarksUserProfile.vue'
 
@@ -71,6 +72,10 @@ export default new Router({
           path: 'categories',
           name: 'categories',
           component: BookmarksCategories
+        }, {
+          path: 'categories/:id',
+          name: 'category',
+          component: Category
         }, {
           path: 'folders',
           name: 'folders',

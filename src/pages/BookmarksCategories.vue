@@ -10,7 +10,10 @@
           </div>
           <div class="col-md-9">
               <h4>{{ category.name }}</h4>
-              <p>{{ category.name }}</p>
+              <router-link :to="{ name: 'category', params: { id: category.id }}" tag="p">
+                <a>Open this category</a> 
+              </router-link>
+
           </div>
           <div class="col-md-1">
             Action 2
