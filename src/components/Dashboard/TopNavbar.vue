@@ -21,7 +21,7 @@
           </li>
            <drop-down v-if="userNotifications.length" :title="userNotificationsTitle" icon="ti-bell">
 
-            <li v-for="notification in userNotifications" :key="notification.id"><a href="#">Notification 1</a></li>
+            <li v-for="notification in userNotifications" :key="notification.id"><a href="#">{{ notification.name}}</a></li>
            </drop-down>
 
           <router-link to="/app/me" tag="li" ref="Bookmark List">
