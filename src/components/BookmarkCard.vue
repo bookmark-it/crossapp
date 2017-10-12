@@ -1,23 +1,27 @@
 <template>
 <div class="card card-bookmark">
-  <div class="image"></div>
-  <div class="content">
-    <div class="author">
-      <div class="avatar border-white">
-        <img :src="bookmark.favicon_url" alt="...">
-      </div>
-      <h4 class="title">{{bookmark.title || "None"}}
-        <br>
-      </h4>
-      <p class="url-title-container">
-        <a :href="bookmark.url" target="_blank">
-          <small>{{bookmark.url}}</small>
-        </a>
+  <div class="image">
+        <div class="col" style="padding: 5px 0px 5px 25px;">
+      <div class="row">
+        <div class="col-xs-2">
+      <div class="row">
+          <img class="bk-favi-image" :src="bookmark.favicon_url" alt="...">
+      </div>  
+        </div>
+        <div class="col-xs-9">
+          <h2 class="title text-left">{{bookmark.title || "No title"}} </h2>
+        </div>
+      </div> 
+  </div>
+  </div>
+    
+  <div class="content"> 
+      <p class="url-title-container ">
+        <a :href="bookmark.url" target="_blank"><small>{{bookmark.url}}</small></a>
       </p>
-    </div>
-    <p class="description text-center">
+    <p class="description text-left">
       {{bookmark.description}}
-    </p>
+    </p> 
   </div>
 </div>
 </template>
@@ -47,24 +51,46 @@ export default {
 <style scoped> 
 
 .content{
-  height: 181px;
-  max-height: 181px;
+  height: 128px;
   overflow: hidden;
+  padding: 7px 15px 15px 15px;
 }
 
 .title {
-    line-height: 1.5em;
-    height: 3em;       /* height is 2x line-height, so two lines will display */
+  font-size: 1.2em;
+  color: white;
+  font-variant: small-caps;
+  font-weight: 900;
+  opacity: 0.85;
+  line-height: 1.5em;
+  height: 3em;       /* height is 2x line-height, so two lines will display */
+  overflow: hidden;  /* prevents extra lines from being visible */
+}
+.description {
+    font-size: 13px;
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.3em;
+    height: 3.9em;       /* height is 2x line-height, so two lines will display */
     overflow: hidden;  /* prevents extra lines from being visible */
+}
+.url-title-container, .url-title-container a, .url-title-container a small {
+  width: 100%;
 }
 .url-title-container {
-    font-size: 11px;
-    line-height: 1.5em;
-    height: 3em;       /* height is 2x line-height, so two lines will display */
+    width: 100%;
+    font-size: 13px;
+    line-height: 1.1em;
+    height: 1em;       /* height is 2x line-height, so two lines will display */
     overflow: hidden;  /* prevents extra lines from being visible */
 }
 
-
+.bk-favi-image{
+  z-index: 1;
+  width: 100%;
+}
+.image{
+}
 
 </style>
 <style lang="scss">
@@ -72,7 +98,7 @@ export default {
 
 .card-bookmark {
     .image {
-        height: 80px;
+        height: 60px;
         background-color: $color-grey-darker;
     }
 
@@ -93,7 +119,6 @@ export default {
     }
 
     .content {
-        min-height: 168px;
     }
 
     .description {
