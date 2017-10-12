@@ -1,15 +1,27 @@
 <template>
     <div class="row">
       <div class="col-md-12">
+
+
+      <div class="col-sm-12 col-md-12 col-lg-12" v-for="category in categories" :key="category.id">
         <div class="card">
-
-
-      <div class="col-sm-6 col-md-4 col-lg-3" v-for="category in categories" :key="category.id">
-        <div class="card" style="height:175px;width:175px;">
-          {{ category.name }}
+          <div class="col-md-1">
+            icon
+          </div>
+          <div class="col-md-9">
+              <h4>{{ category.name }}</h4>
+              <p>{{ category.name }}</p>
+          </div>
+          <div class="col-md-1">
+            Action 2
+          </div>
+          <div class="col-md-1 action-trois">
+            Action 3
+          </div>
         </div>
       </div>
 
+            
         
 
 
@@ -34,6 +46,18 @@
   }
 
 </script>
-<style>
-
+<style scoped>
+  h4{
+    padding: 0;
+    margin: 0;
+  }
+  .action-trois{
+    height: 100;
+  }
+  .action-trois:hover{
+    background-color: orange;
+  }
+  .card {
+    height: 75px;
+  }
 </style>

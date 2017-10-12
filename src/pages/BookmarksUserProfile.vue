@@ -1,9 +1,7 @@
 <template>
     <div class="row">
       
-
-
-
+      
 
 
 
@@ -13,36 +11,23 @@
         <div class="row">
             <div class="col-lg-4 col-md-5">
                 <div class="card card-user">
-                    <div class="image"><img src="static/img/background.jpg" alt="..."></div>
-                    <div class="content">
-                        <div class="author">
-                            <img src="static/img/faces/face-2.jpg" alt="..." class="avatar border-white"> 
-                            <h4 class="title">Chet Faker
-                                <br> <a href="#"><small>@chetfaker</small></a>
-                            </h4>
-                        </div>
-                        <p class="description text-center">
-                            "I like the way you work it
-                            <br> No diggity
-                            <br> I wanna bag it up"
-                        </p>
-                    </div>
+                    <div class="image"></div>
                     <hr>
                     <div class="text-center">
                         <div class="row">
                             <div class="col-md-3 col-md-offset-1">
-                                <h5>12
-                                    <br> <small>Files</small>
+                                <h5>27
+                                    <br> <small>Bookmarks</small>
                                 </h5>
                             </div>
                             <div class="col-md-3">
-                                <h5>2GB
-                                    <br> <small>Used</small>
+                                <h5>3
+                                    <br> <small>Folders</small>
                                 </h5>
                             </div>
-                            <div class="col-md-4">
-                                <h5>24,6$
-                                    <br> <small>Spent</small>
+                            <div class="col-md-3">
+                                <h5>1
+                                    <br> <small>Friends</small>
                                 </h5>
                             </div>
                         </div>
@@ -57,31 +42,11 @@
                             <li>
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <div class="avatar"><img src="static/img/faces/face-0.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive"></div>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        Dj Khaled
-                                        <br> <span class="text-muted"><small>Offline</small></span>
-                                    </div>
-                                    <div class="col-xs-3 text-right"><button class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></button></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <div class="avatar"><img src="static/img/faces/face-1.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive"></div>
+                                        <div class="avatar"><img src="" alt="Circle Image" class="img-circle img-no-padding img-responsive"></div>
                                     </div>
                                     <div class="col-xs-6">
                                         Creative Tim
                                         <br> <span class="text-success"><small>Available</small></span>
-                                    </div>
-                                    <div class="col-xs-3 text-right"><button class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></button></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <div class="avatar"><img src="static/img/faces/face-1.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive"></div>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        Flume
-                                        <br> <span class="text-danger"><small>Busy</small></span>
                                     </div>
                                     <div class="col-xs-3 text-right"><button class="btn btn-sm btn-success btn-icon"><i class="fa fa-envelope"></i></button></div>
                                 </div>
@@ -100,8 +65,8 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group"><label>
-                                        Company
-                                        </label> <input type="text" label="Company" disabled="disabled" placeholder="Paper dashboard" class="form-control border-input">
+                                        Company 
+                                        </label> <input type="text" label="Company" placeholder="Company" class="form-control border-input">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -132,14 +97,6 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group"><label>
-                                        Address
-                                        </label> <input type="text" label="Address" placeholder="Home Address" class="form-control border-input">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group"><label>
                                         City
@@ -155,7 +112,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group"><label>
                                         Postal Code
-                                        </label> <input type="number" label="Postal Code" placeholder="ZIP Code" class="form-control border-input">
+                                        </label> <input type="text" label="Postal Code" placeholder="ZIP Code" class="form-control border-input">
                                     </div>
                                 </div>
                             </div>
@@ -193,7 +150,7 @@
       
 
 
-
+ 
 
       
 
@@ -211,6 +168,14 @@
 <script>
   export default {
     components: {
+    },
+    computed: {
+      userInformation() {
+        return this.$store.state.auth.all
+      },
+      loading() {
+        return this.$store.state.bookmarks.loading
+      }
     },
     data () {
       return {

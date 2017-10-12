@@ -60,6 +60,7 @@
       this.$store.dispatch('fetchCategories')
       this.$store.dispatch('fetchFolders')
       this.$store.dispatch('fetchWebsites')
+      this.$store.dispatch('fetchFriends')
     }
   }
 

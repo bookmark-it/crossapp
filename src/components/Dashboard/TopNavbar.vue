@@ -54,7 +54,7 @@
     },
     created () {
       console.log('Created')
-      this.$store.dispatch('fetchUserInformation')
+      // this.$store.dispatch('fetchUserInformation')
       console.log(this.$store.state.auth.userInformation)
     },
     data () {
@@ -69,7 +69,7 @@
         return this.capitalizeFirstLetter(name)
       },
       userName () {
-        console.log('Computed')
+        console.log('Computeed')
         console.log(this.$store.state.auth.userInformation)
         return this.$store.state.auth.userInformation ? this.$store.state.auth.userInformation[0]
         : { username: 'Undefined' }

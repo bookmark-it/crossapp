@@ -6,6 +6,7 @@ import bookmarks from './modules/bookmarks'
 import categories from './modules/categories'
 import folders from './modules/folders'
 import websites from './modules/websites'
+import friends from './modules/friends'
 
 Vue.use(Vuex)
 
@@ -17,7 +18,8 @@ export default new Vuex.Store({
     bookmarks,
     categories,
     folders,
-    websites
+    websites,
+    friends
   },
   strict: debug
 })

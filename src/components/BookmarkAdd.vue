@@ -23,9 +23,9 @@
             <input v-model="newBookmark.title" class="form-control mr-sm-6" type="text" placeholder="Title">
           </div>
           <div class="col-sm-3">
-            <span data-v-4bb4d314="" style="height: 40px;font-size:25px;padding: 13px 7px"><i class="ti-time"></i></span>
-            <span data-v-4bb4d314="" style="height: 40px;font-size:25px;padding: 13px 7px"><i class="ti-heart"></i></span>
-            <span data-v-4bb4d314="" style="height: 40px;font-size:25px;padding: 13px 7px"><i class="ti-star"></i></span>
+            <span style="height: 40px;font-size:25px;padding: 13px 7px"><i class="ti-time"></i></span>
+            <span style="height: 40px;font-size:25px;padding: 13px 7px"><i class="ti-heart"></i></span>
+            <span style="height: 40px;font-size:25px;padding: 13px 7px"><i class="ti-star"></i></span>
           </div>
         </div>
         <div class="row">
@@ -38,7 +38,23 @@
 
     <div class="row">
       <div class="col-sm-12">
-        <span>Categories, groups and folders</span>
+        <span>Categories, groups and folders:</span>
+      </div> 
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <category-selector></category-selector>
+      </div> 
+      <div class="col-sm-3">
+        <folder-selector></folder-selector>
+      </div> 
+      <div class="col-sm-3">
+        <span>Groups</span>
+      </div> 
+      <div class="col-sm-3">
+        <span>Share</span>
+        <friend-selector></friend-selector>
       </div> 
     </div>
 
@@ -47,7 +63,15 @@
 </template>
 
 <script>
+import CategorySelector from 'components/BookmarkFormsPlugins/CategorySelector.vue'
+import FolderSelector from 'components/BookmarkFormsPlugins/FolderSelector.vue'
+import FriendSelector from 'components/BookmarkFormsPlugins/FriendSelector.vue'
 export default {
+  components: {
+    CategorySelector,
+    FolderSelector,
+    FriendSelector
+  },
   props: {
     display: Boolean
   },

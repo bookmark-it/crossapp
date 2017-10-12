@@ -17,6 +17,7 @@ const mutations = {
     state.error = ''
   },
   FETCHUSERINFORMATION(state, {result}) {
+    console.log('Fetch user information store result')
     console.log(result)
     state.userInformation = result
     // console.log(state.userInformation)
