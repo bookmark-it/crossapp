@@ -10,8 +10,14 @@
 
       <div class="col-sm-3 col-md-3 col-lg-3" v-for="folder in folders" :key="folder.id">
         <div class="card" style="height:175px;width:175px;">
-          {{ folder.name }}
-          {{ folder.name }}
+          <h4>{{ folder.name }}</h4>
+          <router-link :to="{ name: 'folder', params: { id: folder.id }}" tag="p">
+            <p>Open this folder</p> 
+          </router-link>
+
+
+ 
+
         </div>
       </div>
 
@@ -34,6 +40,10 @@
   }
 
 </script>
-<style>
+<style scoped>
+
+h4 {
+  margin:0px;
+}
 
 </style>

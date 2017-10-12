@@ -13,6 +13,7 @@ import BookmarksHome from 'src/pages/BookmarksHome.vue'
 import BookmarksList from 'src/pages/BookmarksList.vue'
 import BookmarksCategories from 'src/pages/BookmarksCategories.vue'
 import BookmarksFolders from 'src/pages/BookmarksFolders.vue'
+import Folder from 'src/components/Folder.vue'
 import BookmarksWebsites from 'src/pages/BookmarksWebsites.vue'
 import BookmarksUserProfile from 'src/pages/BookmarksUserProfile.vue'
 
@@ -32,8 +33,7 @@ export default new Router({
         }
         next()
       }
-    },
-    {
+    }, {
       path: '/',
       component: DashboardLayout,
       redirect: '/app/home'
@@ -75,6 +75,10 @@ export default new Router({
           path: 'folders',
           name: 'folders',
           component: BookmarksFolders
+        }, {
+          name: 'folder',
+          path: 'folders/:id',
+          component: Folder
         }, {
           path: 'websites',
           name: 'websites',
