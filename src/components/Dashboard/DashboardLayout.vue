@@ -7,8 +7,8 @@
 
     </notifications>
     <div class="main-panel">
-      <top-navbar></top-navbar>
-      <bookmark-add></bookmark-add>
+      <top-navbar v-on:toggleAddBookmark="toggleAddBookmark"></top-navbar>
+      <bookmark-add :display="display"></bookmark-add>
 
       <dashboard-content @click.native="toggleSidebar">
       </dashboard-content>
@@ -33,11 +33,19 @@
       DashboardContent,
       BookmarkAdd
     },
+    data() {
+      return {
+        display: false
+      }
+    },
     methods: {
       toggleSidebar () {
         if (this.$sidebar.showSidebar) {
           this.$sidebar.displaySidebar(false)
         }
+      },
+      toggleAddBookmark() {
+        this.display = !this.display
       }
     },
     created: function() {

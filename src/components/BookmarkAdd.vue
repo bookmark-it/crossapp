@@ -15,6 +15,9 @@
 
 <script>
 export default {
+  props: {
+    display: String
+  },
   data() {
     return {
       display: true,

@@ -70,7 +70,7 @@
         this.$sidebar.displaySidebar(false)
       },
       addBookmark () {
-        this.$modal.show('bookmark-add')
+        this.$emit('toggleAddBookmark')
       },
       logout () {
         this.$store.dispatch('logout', {
