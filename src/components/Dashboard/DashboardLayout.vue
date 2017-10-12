@@ -61,6 +61,7 @@
       this.$store.dispatch('fetchFolders')
       this.$store.dispatch('fetchWebsites')
       this.$store.dispatch('fetchFriends')
+      this.$store.dispatch('fetchNotifications')
     }
   }
 

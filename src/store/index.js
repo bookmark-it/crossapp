@@ -7,6 +7,7 @@ import categories from './modules/categories'
 import folders from './modules/folders'
 import websites from './modules/websites'
 import friends from './modules/friends'
+import notifications from './modules/notifications'
 
 Vue.use(Vuex)
 
@@ -19,7 +20,8 @@ export default new Vuex.Store({
     categories,
     folders,
     websites,
-    friends
+    friends,
+    notifications
   },
   strict: debug
 })

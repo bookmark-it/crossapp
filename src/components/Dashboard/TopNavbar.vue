@@ -19,12 +19,9 @@
               </p>
             </a>
           </li>
-           <drop-down title="5 Notifications" icon="ti-bell">
-             <li><a href="#">Notification 1</a></li>
-             <li><a href="#">Notification 2</a></li>
-             <li><a href="#">Notification 3</a></li>
-             <li><a href="#">Notification 4</a></li>
-             <li><a href="#">Another notification</a></li>
+           <drop-down v-if="userNotifications.length" :title="hello" icon="ti-bell">
+
+            <li v-for="notification in userNotifications" :key="notification.id"><a href="#">Notification 1</a></li>
            </drop-down>
 
           <router-link to="/app/me" tag="li" ref="Bookmark List">
@@ -59,6 +56,7 @@
     },
     data () {
       return {
+        hello: this.$store.state.notifications.all.length + ' Notifications',
         userNamee: this.$store.state.auth.userInformation,
         activeNotifications: false
       }
@@ -73,6 +71,9 @@
         console.log(this.$store.state.auth.userInformation)
         return this.$store.state.auth.userInformation ? this.$store.state.auth.userInformation[0]
         : { username: 'Undefined' }
+      },
+      userNotifications () {
+        return this.$store.state.notifications.all
       }
     },
     methods: {
