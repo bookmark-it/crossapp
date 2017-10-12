@@ -16,7 +16,7 @@
   <div class="col-md-12 bookmarks-list">
     <spinner :loading="loading" :color="'#3091B2'"></spinner>
     <div class="row" v-if="!loading">
-      <div class="col-md-3" v-for="bookmark in bookmarks" :key="bookmark.id">
+      <div class="col-sm-6 col-md-4 col-lg-3" v-for="bookmark in bookmarks" :key="bookmark.id">
         <bookmark-card
           :bookmark="bookmark">
         </bookmark-card>

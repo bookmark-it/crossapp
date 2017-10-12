@@ -26,6 +26,13 @@
              <li><a href="#">Notification 4</a></li>
              <li><a href="#">Another notification</a></li>
            </drop-down>
+
+          <router-link to="/app/bookmarks" tag="li" ref="Bookmark List">
+            <a>
+              <i class="ti-user"></i>
+              <p>{{userName.username}}</p>
+            </a>
+          </router-link>
           <li>
             <a class="btn-rotate" @click="logout">
               <i class="ti-power-off"></i>
@@ -42,15 +49,28 @@
 
 <script>
   export default {
+    mount () {
+      // this.$store.dispatch('fetchUserInformation')
+    },
+    created () {
+      this.$store.dispatch('fetchUserInformation')
+    },
+    data () {
+      return {
+        userNamee: this.$store.state.auth.userInformation,
+        activeNotifications: false
+      }
+    },
     computed: {
       routeName () {
         const {name} = this.$route
         return this.capitalizeFirstLetter(name)
-      }
-    },
-    data () {
-      return {
-        activeNotifications: false
+      },
+      userName () {
+        console.log('Computed')
+        console.log(this.$store.state.auth.userInformation)
+        return this.$store.state.auth.userInformation ? this.$store.state.auth.userInformation[0]
+        : { username: 'Undefined' }
       }
     },
     methods: {

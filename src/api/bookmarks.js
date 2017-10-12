@@ -6,5 +6,8 @@ export default {
   },
   addNew(bookmark) {
     return Vue.http.post('bookmarks', bookmark)
+  },
+  deleteBk(bookmark) {
+    return Vue.http.delete('bookmarks/' + bookmark.id)
   }
 }

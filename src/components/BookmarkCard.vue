@@ -1,5 +1,6 @@
 <template>
-<div class="card card-bookmark">
+<div class="card">
+
   <div class="image">
         <div class="col" style="padding: 5px 0px 5px 25px;">
       <div class="row">
@@ -20,8 +21,20 @@
         <a :href="bookmark.url" target="_blank"><small>{{bookmark.url}}</small></a>
       </p>
     <p class="description text-left">
-      {{bookmark.description}}
+      {{bookmark.description || "No description"}}
     </p> 
+  </div>
+
+
+  <div class="footer">
+      <div class="row"> 
+        <div class="col-sm-12"> 
+          <span v-if="bookmarkNeedsSaving" class="ti-save"></span>
+          <span class="ti-share" @click="shareBookmark"></span>
+          <a href="#" class="ti-trash" @click="deleteBookmark"></a>
+        </div> 
+        </div> 
+      </div> 
   </div>
 </div>
 </template>
@@ -33,7 +46,20 @@ export default {
   },
   computed: {
   },
+  data () {
+    return {
+      bookmarkNeedsSaving: false
+    }
+  },
   methods: {
+    shareBookmark () {
+      this.$modal.show('share-bookmark')
+    },
+    deleteBookmark () {
+      this.$store.dispatch('deleteBookmark', {
+        bookmark: this.bookmark
+      })
+    },
     getClasses(index) {
       var remainder = index % 3
       if (remainder === 0) {
@@ -51,7 +77,7 @@ export default {
 <style scoped> 
 
 .content{
-  height: 128px;
+  height: 98px;
   overflow: hidden;
   padding: 7px 15px 15px 15px;
 }
@@ -90,54 +116,16 @@ export default {
   width: 100%;
 }
 .image{
+        height: 60px;
+            background-color: #4C5975;
 }
 
 </style>
+
+
+
+
+
 <style lang="scss">
 @import '../styles/parameters.scss';
-
-.card-bookmark {
-    .image {
-        height: 60px;
-        background-color: $color-grey-darker;
-    }
-
-    .author {
-        margin-top: -60px;
-
-        .avatar {
-            display: inline-block;
-            margin-bottom: 8px;
-            height: 60px;
-            width: 60px;
-
-            img {
-                height: 100%;
-                width: auto;
-            }
-        }
-    }
-
-    .content {
-    }
-
-    .description {
-        margin-top: 18px;
-
-        a {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            vertical-align: middle;
-            &:not(:last-child) {
-                margin-right: 12px;
-            }
-        }
-
-        img {
-            height: 100%;
-            width: auto;
-        }
-    }
-}
 </style>

@@ -15,6 +15,8 @@
 
       <content-footer></content-footer>
     </div>
+    <validate-action></validate-action>
+    <bookmark-share></bookmark-share>
   </div>
 </template>
 <style lang="scss">
@@ -25,13 +27,17 @@
   import ContentFooter from './ContentFooter.vue'
   import DashboardContent from './Content.vue'
   import BookmarkAdd from '../BookmarkAdd.vue'
+  import BookmarkShare from '../BookmarkShare.vue'
+  import validateAction from '../Inputs/validateAction.vue'
 
   export default {
     components: {
       TopNavbar,
       ContentFooter,
       DashboardContent,
-      BookmarkAdd
+      BookmarkAdd,
+      BookmarkShare,
+      validateAction
     },
     data() {
       return {
@@ -49,6 +55,7 @@
       }
     },
     created: function() {
+      // this.$store.dispatch('fetchUserInformation')
       this.$store.dispatch('fetchBookmarks')
     }
   }

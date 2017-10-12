@@ -17,6 +17,11 @@ const mutations = {
     state.all.push(result)
     state.loading = false
   },
+  DELETEBOOKMARK(state, {bookmark}) {
+    let index = state.all.indexOf(bookmark)
+    state.all.splice(index, 1)
+    state.loading = false
+  },
   LOGOUT(state) {
     state = initialState
   }
@@ -35,6 +40,13 @@ const actions = {
     bookmarks.addNew(bookmark).then(res => {
       res.json().then(result => {
         commit('ADDBOOKMARK', {result})
+      })
+    })
+  },
+  deleteBookmark({commit}, {bookmark}) {
+    bookmarks.deleteBk(bookmark).then(res => {
+      res.json().then(result => {
+        commit('DELETEBOOKMARK', {bookmark})
       })
     })
   }

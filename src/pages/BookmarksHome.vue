@@ -38,20 +38,19 @@
 
     <!--Charts-->
     <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div>
+              <div class="header">
+                <h4 class="title">Quick open bookmarks</h4> 
+                <p class="category">Access and open your frequent bookmarks from here</p>
+              </div> 
+              <div class="content">
 
-      <div class="col-xs-12">
-        <chart-card :chart-data="usersChart.data" :chart-options="usersChart.options">
-          <h4 class="title" slot="title">Catégorie de bookmarks</h4>
-          <span slot="subTitle"> Accédez à vos bookmarks par catégorie</span>
-          <span slot="footer">
-            <i class="ti-reload"></i> Updated 3 minutes ago</span>
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Open
-            <i class="fa fa-circle text-danger"></i> Click
-            <i class="fa fa-circle text-warning"></i> Click Second Time
+              </div>
+            </div>
           </div>
-        </chart-card>
-      </div>
+        </div>
 
     </div>
 
