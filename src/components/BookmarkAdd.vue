@@ -50,9 +50,6 @@
         <folder-selector></folder-selector>
       </div> 
       <div class="col-sm-3">
-        <span>Groups</span>
-      </div> 
-      <div class="col-sm-3">
         <span>Share</span>
         <friend-selector></friend-selector>
       </div> 
