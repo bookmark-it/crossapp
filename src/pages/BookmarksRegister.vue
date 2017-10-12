@@ -19,80 +19,60 @@
         
 
 
-        <div class="col-lg-8 col-md-8 col-md-offset-2 col-sm-offset-3">
+        <div class="col-lg-6 col-md-6 col-md-offset-3 col-sm-offset-3">
   <div class="card">
     <div class="header">
-      <h4 class="title">Register</h4>
+      <h3 class="title">Register</h3>
       <router-link to="/login" tag="p" ref="Login">
-        <a>Already have an account ? Click here to log in </a>
+        <a>Already have an account ? Click here to log in </a> <small>Or </small><a href="#">Click here to browse public bookmarks</a>
       </router-link>
     </div>
     <div class="content">
       <form>
+
+
+
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-12">
             <div class="form-group"><label>
-              Company
-              </label> <input type="text" label="Company" placeholder="Bookmark-!t" class="form-control border-input">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group"><label>
-              Username
-              </label> <input type="text" label="Username" placeholder="Username" class="form-control border-input">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group"><label>
-              Username
-              </label> <input type="email" label="Username" placeholder="Email" class="form-control border-input">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group"><label>
-              First Name
-              </label> <input type="text" label="First Name" placeholder="First Name" class="form-control border-input">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group"><label>
-              Last Name
-              </label> <input type="text" label="Last Name" placeholder="Last Name" class="form-control border-input">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="form-group"><label>
-              City
-              </label> <input type="text" label="City" placeholder="City" class="form-control border-input">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group"><label>
-              Country
-              </label> <input type="text" label="Country" placeholder="Country" class="form-control border-input">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group"><label>
-              Postal Code
-              </label> <input type="text" label="Postal Code" placeholder="ZIP Code" class="form-control border-input">
+              Username*
+              </label> <input type="text" v-model="registerForm.username" required="true" label="Username" placeholder="Bookmark-!t" class="required form-control border-input">
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="form-group"><label>About Me</label> <textarea rows="5" placeholder="Here can be your description" class="form-control border-input"></textarea></div>
+            <div class="form-group"><label>
+              Password*
+              </label> <input v-model="registerForm.password" type="password" label="" placeholder="First Name" class="form-control border-input">
+            </div>
           </div>
         </div>
-        <div class="text-center"><button type="submit" class="btn btn-info btn-fill btn-wd">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group"><label>
+              Password confirmation*
+              </label> <input type="password" label="" placeholder="Last Name" class="form-control border-input">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group"><label>
+              Email*
+              </label> <input v-model="registerForm.email" type="email" label="Last Name" placeholder="Last Name" class="form-control border-input">
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center"><button type="" class="btn btn-info btn-fill btn-wd" @click.prevent='registerForBookmarks'>
           Register
           </button>
         </div>
         <div class="clearfix"></div>
+
+
+
       </form>
     </div>
   </div>
@@ -101,66 +81,6 @@
 
         
 
-
-        
-
-
-        
-
-
-        
-
-
-        
-
-
-        
-
-
-
-
-        
-
-
-        
-
-
-        
-
-
-        
-
-
-        
-
-
-        
-
-
-        
-
-
-
-
-        
-
-
-        
-
-
-        
-
-
-        
-
-
-        
-
-
-        
-
-
-        
 
 
         </div>
@@ -184,6 +104,23 @@
     },
     data () {
       return {
+        registerForm: {
+          username: '',
+          password: ''
+          // displayname: '',
+          // email: '',
+          // city: '',
+          // country: '',
+          // postalcode: ''
+        }
+      }
+    },
+    methods: {
+      registerForBookmarks () {
+        console.log(this.registerForm)
+        if (this.registerForm.username !== '' && this.registerForm.username !== '') {
+          this.$http.post('auth/register/', this.registerForm)
+        }
       }
     }
   }
