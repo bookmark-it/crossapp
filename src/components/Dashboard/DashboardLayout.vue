@@ -55,8 +55,11 @@
       }
     },
     created: function() {
-      // this.$store.dispatch('fetchUserInformation')
+      this.$store.dispatch('fetchUserInformation')
       this.$store.dispatch('fetchBookmarks')
+      this.$store.dispatch('fetchCategories')
+      this.$store.dispatch('fetchFolders')
+      this.$store.dispatch('fetchWebsites')
     }
   }
 

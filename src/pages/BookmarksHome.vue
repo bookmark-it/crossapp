@@ -58,11 +58,9 @@
 </template>
 <script>
   import StatsCard from 'components/StatsCard.vue'
-  import ChartCard from 'components/ChartCard.vue'
   export default {
     components: {
-      StatsCard,
-      ChartCard
+      StatsCard
     },
     computed: {
       statsCards() {

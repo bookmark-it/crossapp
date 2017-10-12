@@ -27,7 +27,7 @@
              <li><a href="#">Another notification</a></li>
            </drop-down>
 
-          <router-link to="/app/bookmarks" tag="li" ref="Bookmark List">
+          <router-link to="/app/me" tag="li" ref="Bookmark List">
             <a>
               <i class="ti-user"></i>
               <p>{{userName.username}}</p>

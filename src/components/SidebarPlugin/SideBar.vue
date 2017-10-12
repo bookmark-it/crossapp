@@ -28,19 +28,19 @@
             <p>Bookmark List</p>
           </a>
         </router-link>
-        <router-link to="/app/table-list" tag="li" ref="Table List">
+        <router-link to="/app/categories" tag="li" ref="Categories">
           <a>
             <i class="ti-view-list-alt"></i>
             <p>Categories</p>
           </a>
         </router-link>
-        <router-link to="/app/table-list" tag="li" ref="Table List">
+        <router-link to="/app/folders" tag="li" ref="Table List">
           <a>
             <i class="ti-folder"></i>
             <p>Folders</p>
           </a>
         </router-link>
-        <router-link to="/app/table-list" tag="li" ref="Table List">
+        <router-link to="/app/websites" tag="li" ref="Table List">
           <a>
             <i class="ti-anchor"></i>
             <p>Websites</p>
