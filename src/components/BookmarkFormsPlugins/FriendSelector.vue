@@ -3,6 +3,7 @@
 
         <span>Friend:</span>
         <select>
+          <option></option>
           <option v-for="friend in Friends" :key="friend.id">{{ friend.id }}</option>
         </select>
 

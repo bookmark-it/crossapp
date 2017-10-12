@@ -3,6 +3,7 @@
 
         <span>Folder:</span>
         <select>
+          <option></option>
           <option v-for="folder in Folders" :key="folder.id">{{ folder.name }}</option>
         </select>
 

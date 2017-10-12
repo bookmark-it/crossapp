@@ -3,6 +3,7 @@
 
         <span>Category:</span>
         <select>
+          <option></option>
           <option v-for="category in Categories" :key="category.id">{{ category.name }}</option>
         </select>
 

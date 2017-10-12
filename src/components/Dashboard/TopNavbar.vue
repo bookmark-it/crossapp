@@ -19,7 +19,7 @@
               </p>
             </a>
           </li>
-           <drop-down v-if="userNotifications.length" :title="hello" icon="ti-bell">
+           <drop-down v-if="userNotifications.length" :title="userNotificationsTitle" icon="ti-bell">
 
             <li v-for="notification in userNotifications" :key="notification.id"><a href="#">Notification 1</a></li>
            </drop-down>
@@ -56,7 +56,6 @@
     },
     data () {
       return {
-        hello: this.$store.state.notifications.all.length + ' Notifications',
         userNamee: this.$store.state.auth.userInformation,
         activeNotifications: false
       }
@@ -71,6 +70,9 @@
         console.log(this.$store.state.auth.userInformation)
         return this.$store.state.auth.userInformation ? this.$store.state.auth.userInformation[0]
         : { username: 'Undefined' }
+      },
+      userNotificationsTitle () {
+        return (this.$store.state.notifications.all.length + ' Notifications')
       },
       userNotifications () {
         return this.$store.state.notifications.all
