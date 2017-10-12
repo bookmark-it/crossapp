@@ -34,6 +34,18 @@
             <p>Categories</p>
           </a>
         </router-link>
+        <router-link to="/app/table-list" tag="li" ref="Table List">
+          <a>
+            <i class="ti-folder"></i>
+            <p>Folders</p>
+          </a>
+        </router-link>
+        <router-link to="/app/table-list" tag="li" ref="Table List">
+          <a>
+            <i class="ti-anchor"></i>
+            <p>Websites</p>
+          </a>
+        </router-link>
       </ul>
     </div>
   </div>

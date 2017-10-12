@@ -17,10 +17,9 @@ const mutations = {
     state.error = ''
   },
   FETCHUSERINFORMATION(state, {result}) {
-    state.userInformation = result
     console.log(result)
-    console.log(state.userInformation)
-    state.loading = false
+    state.userInformation = result
+    // console.log(state.userInformation)
   },
   LOGOUT(state) {
     state.loggedIn = false

@@ -53,7 +53,9 @@
       // this.$store.dispatch('fetchUserInformation')
     },
     created () {
+      console.log('Created')
       this.$store.dispatch('fetchUserInformation')
+      console.log(this.$store.state.auth.userInformation)
     },
     data () {
       return {
