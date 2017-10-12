@@ -1,6 +1,6 @@
 <template>
-<form novalidate @submit.stop.prevent="addNewBookmark" autocomplete="on">
-  <div class="card" v-if="display">
+<div class="card" v-if="display">
+  <form novalidate @submit.stop.prevent="addNewBookmark" autocomplete="on">
     <div class="row">
       <div class="col-sm-10">
         <input v-model="newBookmark.url" debounce="500" class="form-control mr-sm-6" type="text" placeholder="Enter bookmark url">
@@ -9,8 +9,8 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add</button>
       </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>
 </template>
 
 <script>
