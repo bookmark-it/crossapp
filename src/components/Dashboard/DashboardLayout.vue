@@ -8,14 +8,13 @@
     </notifications>
     <div class="main-panel">
       <top-navbar></top-navbar>
+      <bookmark-add></bookmark-add>
 
       <dashboard-content @click.native="toggleSidebar">
-
       </dashboard-content>
 
       <content-footer></content-footer>
     </div>
-    <bookmark-add></bookmark-add>
   </div>
 </template>
 <style lang="scss">

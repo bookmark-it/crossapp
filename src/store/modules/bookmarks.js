@@ -13,6 +13,10 @@ const mutations = {
     state.all = results
     state.loading = false
   },
+  ADDBOOKMARK(state, {result}) {
+    state.all.push(result)
+    state.loading = false
+  },
   LOGOUT(state) {
     state = initialState
   }
@@ -24,6 +28,14 @@ const actions = {
     bookmarks.fetchAll().then(res => {
       res.json().then(results => {
         commit('FETCHBOOKMARKS', {results})
+      })
+    })
+  },
+  addBookmark({commit}, {bookmark}) {
+    console.log(bookmark)
+    bookmarks.addNew(bookmark).then(res => {
+      res.json().then(result => {
+        commit('ADDBOOKMARK', {result})
       })
     })
   }
