@@ -1,5 +1,5 @@
 <template>
-<form novalidate @submit.stop.prevent="submit" autocomplete="on">
+<form novalidate @submit.stop.prevent="addNewBookmark" autocomplete="on">
   <div class="card" v-if="display">
     <div class="row">
       <div class="col-sm-10">
@@ -27,7 +27,7 @@ export default {
     }
   },
   methods: {
-    submit() {
+    addNewBookmark() {
       console.log(this.newBookmark)
       this.$store.dispatch('addBookmark', {
         bookmark: this.newBookmark
