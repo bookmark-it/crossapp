@@ -7,6 +7,7 @@ import DashboardLayout from '../components/Dashboard/DashboardLayout.vue'
 
 import NotFound from '../pages/NotFoundPage.vue'
 import Login from '../pages/Login.vue'
+import BookmarksRegister from 'src/pages/BookmarksRegister.vue'
 
 import BookmarksHome from 'src/pages/BookmarksHome.vue'
 import BookmarksList from 'src/pages/BookmarksList.vue'
@@ -21,6 +22,17 @@ export default new Router({
   linkActiveClass: 'active',
   mode: 'history',
   routes: [
+    {
+      path: '/register',
+      component: BookmarksRegister,
+      beforeEnter: (to, from, next) => {
+        if (store.state.auth.loggedIn) {
+          next('/')
+          return
+        }
+        next()
+      }
+    },
     {
       path: '/',
       component: DashboardLayout,
