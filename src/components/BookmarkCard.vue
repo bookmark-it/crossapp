@@ -53,6 +53,7 @@ export default {
   },
   methods: {
     shareBookmark () {
+      this.$emit('shareBookmark', this.bookmark)
       this.$modal.show('share-bookmark')
     },
     deleteBookmark () {

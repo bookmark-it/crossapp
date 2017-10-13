@@ -10,13 +10,13 @@
       <top-navbar v-on:toggleAddBookmark="toggleAddBookmark"></top-navbar>
       <bookmark-add :display="display"></bookmark-add>
 
-      <dashboard-content @click.native="toggleSidebar">
+      <dashboard-content @click.native="toggleSidebar" @shareBookmark='shareBookmark'>
       </dashboard-content>
 
       <content-footer></content-footer>
     </div>
     <validate-action></validate-action>
-    <bookmark-share></bookmark-share>
+    <bookmark-share  ref="bkshare" v-bind:selectedBookmark="sharingBookmark"></bookmark-share>
   </div>
 </template>
 <style lang="scss">
@@ -41,8 +41,16 @@
     },
     data() {
       return {
-        display: false
+        display: false,
+        sharingBookmark: {
+          'title': 'No bookmark to share',
+          'url': 'No URL to share'
+        }
       }
+    },
+    watch: {
+    },
+    computed: {
     },
     methods: {
       toggleSidebar () {
@@ -52,6 +60,9 @@
       },
       toggleAddBookmark() {
         this.display = !this.display
+      },
+      shareBookmark (bookmark) {
+        this.sharingBookmark = bookmark
       }
     },
     created: function() {

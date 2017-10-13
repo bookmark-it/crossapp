@@ -18,7 +18,7 @@
     <div class="row" v-if="!loading">
       <div class="col-sm-6 col-md-4 col-lg-3" v-for="bookmark in bookmarks" :key="bookmark.id">
         <bookmark-card
-          :bookmark="bookmark">
+          :bookmark="bookmark" @shareBookmark=shareBookmark>
         </bookmark-card>
       </div>
     </div>
@@ -34,6 +34,11 @@ import BookmarkCard from '../components/BookmarkCard.vue'
 export default {
   components: {
     BookmarkCard
+  },
+  methods: {
+    shareBookmark (bookmark) {
+      this.$emit('shareBookmark', bookmark)
+    }
   },
   data () {
     return {

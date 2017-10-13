@@ -37,7 +37,7 @@ export default new Router({
     }, {
       path: '/',
       component: DashboardLayout,
-      redirect: '/app/home'
+      redirect: '/app/bookmarks'
     }, {
       path: '/login',
       component: Login,

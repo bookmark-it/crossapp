@@ -3,13 +3,19 @@
     <div class="container-fluid">
         <transition name="fade" mode="out-in">
           <!-- your content here -->
-          <router-view></router-view>
+          <router-view @shareBookmark='shareBookmark'></router-view>
         </transition>
     </div>
   </div>
 </template>
 <script>
-  export default {}
+  export default {
+    methods: {
+      shareBookmark (bookmark) {
+        this.$emit('shareBookmark', bookmark)
+      }
+    }
+  }
 </script>
 <style>
   .fade-enter-active,
