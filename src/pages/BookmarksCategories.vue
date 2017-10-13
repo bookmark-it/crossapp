@@ -16,7 +16,7 @@
           </div>
           
           <div class="col-xs-5 col-sm-6 col-md-5 col-lg-5">
-            <input v-model="bkitSeachQuery" debounce="500" class="category-search-unit form-control mr-sm-6" type="text" placeholder="Search in this category" >
+            <input debounce="500" class="category-search-unit form-control mr-sm-6" type="text" placeholder="Search in this category" >
           </div>
           <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 category-end-icon-unit">
           </div>

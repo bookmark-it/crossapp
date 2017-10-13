@@ -1,6 +1,7 @@
 <template>
 
-<div class='col-sm-12 col-md-7 col-lg-8 user-friends-page'> 
+<div class='col-md-7 col-lg-8'> 
+  <div class="card user-friends-page">
 
 
   <div class="row">
@@ -73,6 +74,7 @@
 
 
 </div>
+</div>
 </template>
 
 <script>
@@ -101,13 +103,7 @@ h4, label, p {
 }
 
 .user-friends-page{
-  height: 75%;
-  z-index: 1000;
-  right:0;
   background-color: #35495E;
-  position: absolute;
-  border-radius: 5px 0px 0px 5px;
-  overflow: scroll;
 
 }
 

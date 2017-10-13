@@ -2,11 +2,6 @@
     <div class="row">
       
       
-  <transition name="slide-fade">
-    <see-friends v-if="show" @close=closeContactPage>
-    </see-friends>  
-  </transition>
-
 
 
       <div class="content">
@@ -38,7 +33,7 @@
                     <div class="text-center">
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
-                                <button class='btn btn-primary' style="width:100%;margin-bottom: 7px;" @click="show = !show">See friends</button>
+                                <button class='btn btn-primary' v-bind:class="{ active: showContacts }" style="width:100%;margin-bottom: 7px;" @click="showContacts = !showContacts">See friends</button>
                             </div>
                         </div>
                     </div> 
@@ -52,7 +47,7 @@
                     <div class="text-center">
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
-                                <button class='btn btn-primary' style="width:100%;margin-bottom: 7px;">Import Bookmarks</button>
+                                <button class='btn btn-primary' style="width:100%;margin-bottom: 7px;" @click="showUpload= !showUpload">Import Bookmarks</button>
                             </div>
                         </div>
                     </div> 
@@ -89,7 +84,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 col-md-7">
+
+
+
+
+
+    <bookmarks-upload v-if="ShowUpload" @close=closeUploadPage>
+    </bookmarks-upload>   
+
+
+
+
+    
+            <div v-if="!showContacts" class="col-lg-8 col-md-7">
                 <div class="card">
                     <div class="header">
                         <h4 class="title">Edit Profile</h4>
@@ -164,6 +171,17 @@
                     </div>
                 </div>
             </div>
+
+
+  <transition name="slide-fade">
+    <see-friends v-if="showContacts" @close=closeContactPage>
+    </see-friends>  
+  </transition>
+
+ 
+
+
+
         </div>
     </div>
 </div>
@@ -201,13 +219,18 @@
 </template>
 <script>
   import seeFriends from './BookmarkUserFriends.vue'
+  import BookmarksUpload from '../components/BookmarksUpload.vue'
   export default {
     components: {
-      seeFriends
+      seeFriends,
+      BookmarksUpload
     },
     methods: {
       closeContactPage () {
-        this.show = false
+        this.showContacts = false
+      },
+      closeUploadPage () {
+        this.ShowUpload = false
       }
     },
     computed: {
@@ -220,7 +243,8 @@
     },
     data () {
       return {
-        show: false,
+        ShowUpload: true,
+        showContacts: false,
         table1: {
           title: 'Bookmark Category administration',
           subTitle: 'Here are your categories. You can access, edit and share them from here'
@@ -235,14 +259,14 @@
 /* Les animations d'entrée (« enter ») et de sortie (« leave »)  */
 /* peuvent utiliser différentes fonctions de durée et de temps.  */
 .slide-fade-enter-active {
-  transition: all .3s ease;
+  transition: all .01s ease;
 }
 .slide-fade-leave-active {
-  transition: all .3s cubic-bezier(0.2, 0.5, 0.8, 1.0);
+  transition: all .01s cubic-bezier(0.2, 0.5, 0.8, 1.0);
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateX(400px);
+  transform: translateX(100%);
   opacity: 0;
 }
 
