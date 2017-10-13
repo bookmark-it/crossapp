@@ -3,9 +3,7 @@
 
 <div class="row"> 
   <div class="col-sm-12"> 
-    <div class="card">
-      <h1>Display category bookmarks here</h1>
-    </div> 
+      <h1>Bookmarks in current category:</h1>
   </div> 
 
       <div class="col-sm-6 col-md-4 col-lg-3" v-for="bookmark in categoryBookmarks" :key="bookmark.id">
@@ -69,6 +67,7 @@
   
 h1 {
   margin:0;
+  padding-bottom: 20px;
 }
 
 
