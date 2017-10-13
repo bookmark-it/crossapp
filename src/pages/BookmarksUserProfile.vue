@@ -2,7 +2,10 @@
     <div class="row">
       
       
-
+  <transition name="slide-fade">
+    <see-friends v-if="show" @close=closeContactPage>
+    </see-friends>  
+  </transition>
 
 
 
@@ -32,6 +35,13 @@
                             </div>
                         </div>
                     </div>
+                    <div class="text-center">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <button class='btn btn-primary' style="width:100%;margin-bottom: 7px;" @click="show = !show">See friends</button>
+                            </div>
+                        </div>
+                    </div> 
                     <div class="text-center">
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
@@ -190,8 +200,15 @@
     </div>
 </template>
 <script>
+  import seeFriends from './BookmarkUserFriends.vue'
   export default {
     components: {
+      seeFriends
+    },
+    methods: {
+      closeContactPage () {
+        this.show = false
+      }
     },
     computed: {
       userInformation() {
@@ -203,6 +220,7 @@
     },
     data () {
       return {
+        show: false,
         table1: {
           title: 'Bookmark Category administration',
           subTitle: 'Here are your categories. You can access, edit and share them from here'
@@ -212,6 +230,24 @@
   }
 
 </script>
-<style>
+<style scoped>
+
+/* Les animations d'entrée (« enter ») et de sortie (« leave »)  */
+/* peuvent utiliser différentes fonctions de durée et de temps.  */
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .3s cubic-bezier(0.2, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(400px);
+  opacity: 0;
+}
+
+
+
+
 
 </style>
