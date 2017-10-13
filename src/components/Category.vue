@@ -3,7 +3,7 @@
 
 <div class="row"> 
   <div class="col-sm-12"> 
-      <h1>Bookmarks in current category:</h1>
+      <h1>{{ category.name}}</h1>
   </div> 
 
       <div class="col-sm-6 col-md-4 col-lg-3" v-for="bookmark in categoryBookmarks" :key="bookmark.id">
@@ -40,8 +40,15 @@
       }
     },
     created: function () {
+      this.$http.get('categories/' + this.$route.params.id).then(res => {
+        res.json().then(result => {
+          console.log(result)
+          this.category = result
+        })
+      })
       this.$http.get('search/?categories=' + this.$route.params.id).then(res => {
         res.json().then(result => {
+          console.log('Created category view page')
           console.log(result)
           this.categoryBookmarks = result.hits
         })

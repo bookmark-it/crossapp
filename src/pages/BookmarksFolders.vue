@@ -3,13 +3,14 @@
 
 
       <div class="col-sm-4 col-md-3 col-lg-3">
-        <div class="fa-here-plz" style="">
-          ++ Create a new folder ++
+        <div class="fa-here-plz" style="height:175px;width:130px;">
+          
+            <h4><a>++ Create a new folder ++</a></h4> 
         </div>
       </div>
 
       <div class="col-sm-3 col-md-3 col-lg-3 " v-for="folder in folders" :key="folder.id">
-        <div class="fa-here-plz" style="height:175px;width:175px;">
+        <div class="fa-here-plz" style="height:175px;width:130px;">
           <router-link :to="{ name: 'folder', params: { id: folder.id }}" tag="p">
             <h4><a>{{ folder.name }}</a></h4> 
           </router-link>
@@ -46,7 +47,7 @@ a:hover{
 }
 h4, p, a {
   margin:0px; 
-  z-index: 12;
+  z-index: 1;
   color:black;
   position: relative;
 }
@@ -59,8 +60,8 @@ h4, p, a {
     position: absolute;
     font-size: 150px;
     color: lightblue;
-    top: 0px;
+    top: -68px;
     left: 0;
-    z-index: 1;
+    z-index: -1;
 }
 </style>

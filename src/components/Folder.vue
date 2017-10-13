@@ -19,6 +19,19 @@
  
 
 
+<div class="row"> 
+  <div class="col-sm-12"> 
+      <h1>Sub folders : </h1>
+  </div> 
+</div>
+<div class="row"> 
+  <div class="col-sm-6 col-md-4 col-lg-3" v-for="folder in folderDirectFolders" :key="folder.id">
+    <li>{{ folder }} </li>
+  </div>
+</div> 
+ 
+
+
 
 <div class="row"> 
   <div class="col-sm-6"> 
@@ -100,6 +113,7 @@
       this.$http.get('folders/' + this.$route.params.id).then(res => {
         res.json().then(result => {
           this.folder = result
+          console.log(this.folder)
         })
       })
     },

@@ -32,7 +32,31 @@
                             </div>
                         </div>
                     </div>
+                    <div class="text-center">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <button class='btn btn-primary' style="width:100%;margin-bottom: 7px;">Refresh Bookmarks</button>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="text-center">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <button class='btn btn-primary' style="width:100%;margin-bottom: 7px;">Import Bookmarks</button>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="text-center">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <button class='btn btn-primary' style="width:100%;margin-bottom: 7px;">Export Bookmarks</button>
+                            </div>
+                        </div>
+                    </div> 
+
                 </div>
+
+
                 <div class="card">
                     <div class="header">
                         <h4 class="title">Team members</h4>

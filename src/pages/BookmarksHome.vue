@@ -40,7 +40,6 @@
     <div class="row">
         <div class="col-md-12">
           <div class="card">
-            <div>
               <div class="header">
                 <h4 class="title">Quick open bookmarks</h4> 
                 <p class="category">Access and open your frequent bookmarks from here</p>
@@ -48,7 +47,7 @@
               <div class="content">
 
               </div>
-            </div>
+        
           </div>
         </div>
 
@@ -66,35 +65,19 @@
       statsCards() {
         return [
           {
-            type: 'warning',
+            type: 'info',
             icon: 'ti-server',
             title: 'Bookmarks',
             value: this.$store.state.bookmarks.all.length,
-            footerText: this.$store.state.bookmarks.all.length + ' bookmarks non catégorisés',
-            footerIcon: 'ti-reload'
+            footerText: this.$store.state.bookmarks.all.length + ' saved bookmarks',
+            footerIcon: 'ti-bookmark'
           },
           {
-            type: 'success',
-            icon: 'ti-wallet',
-            title: 'Quick launch',
-            value: '7',
-            footerText: 'Open your quick launch tabs',
-            footerIcon: 'ti-calendar'
-          },
-          {
-            type: 'danger',
-            icon: 'ti-heart',
-            title: 'Favoris',
-            value: '23',
-            footerText: 'In the last hour',
-            footerIcon: 'ti-timer'
-          },
-          {
-            type: 'info',
-            icon: 'ti-twitter-alt',
-            title: 'Réseau',
-            value: '45',
-            footerText: 'Updated now',
+            type: 'warning',
+            icon: 'ti-bell',
+            title: 'Notifications',
+            value: this.$store.state.notifications.all.length,
+            footerText: 'Notifications synchronized',
             footerIcon: 'ti-reload'
           }
         ]
