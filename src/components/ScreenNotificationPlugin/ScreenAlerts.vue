@@ -1,18 +1,18 @@
 <template>
   <div class="notifications">
     <transition-group name="list">
-      <notification v-for="(notification,index) in notifications" :key="notification" :message="notification.message" :icon="notification.icon" :type="notification.type" :vertical-align="notification.verticalAlign" :horizontal-align="notification.horizontalAlign" @on-close="removeNotification(index)">
+      <screen-alert v-for="(notification,index) in notifications" :key="notification" :message="notification.message" :icon="notification.icon" :type="notification.type" :vertical-align="notification.verticalAlign" :horizontal-align="notification.horizontalAlign" @on-close="removeNotification(index)">
   
-      </notification>
+      </screen-alert>
     </transition-group>
   
   </div>
 </template>
 <script>
-  import Notification from './Notification.vue'
+  import ScreenAlert from './ScreenAlert.vue'
   export default {
     components: {
-      Notification
+      ScreenAlert
     },
     data () {
       return {
