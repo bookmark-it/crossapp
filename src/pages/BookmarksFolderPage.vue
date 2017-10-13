@@ -24,6 +24,7 @@
       <h1>Sub folders : </h1>
   </div> 
 </div>
+
 <div class="row"> 
   <div class="col-sm-6 col-md-4 col-lg-3" v-for="folder in folderDirectFolders" :key="folder.id">
     <li>{{ folder }} </li>
@@ -34,54 +35,22 @@
 
 
 <div class="row"> 
-  <div class="col-sm-6"> 
-    <div class="card" style="padding: 15px;">
-      <h1>{{ folder.name }}</h1>
-        <p>Folder creation date : </p>
-        <p>Number of subfolders : </p>
-        <p>Number of bookmarks : </p>
-    </div> 
-  </div> 
-  <div class="col-sm-6"> 
+  <div class="col-sm-4"> 
     <div class="card">
-      <h1>Folder access type</h1>
-      <p>Number of people that have access to this folder </p>
-      <p>Number of people that have access to this folder and/or all its sub folders</p>
-      <p>Folder linked users</p>
-    </div> 
-  </div> 
-</div> 
-
-<div class="row"> 
-  <div class="col-sm-12"> 
-    <div class="card">
-      <h1>Display folder bookmarks here</h1>
-      <h1>and sub folders</h1>
-    </div> 
-  </div> 
-</div> 
-
-
-
-<div class="row"> 
-  <div class="col-sm-6"> 
-    <div class="card">
-      <h1>Folder sources:</h1>  
-    </div> 
-  </div> 
-  <div class="col-sm-6"> 
-    <div class="card">
-      <h1>Folder ... :</h1>  
-    </div> 
-  </div> 
-</div> 
-
-<div class="row"> 
-  <div class="col-sm-12"> 
-    <div class="card">
-      <h1>Browse folder bookmarks by category:</h1> 
+      <h1>Folder général information</h1> 
       
-      <p><small>{{ folder }}</small></p>
+    </div> 
+  </div>  
+  <div class="col-sm-4"> 
+    <div class="card">
+      <h1>Folder activity information</h1> 
+      
+    </div> 
+  </div> 
+  <div class="col-sm-4"> 
+    <div class="card">
+      <h1>Folder user group information</h1> 
+      
     </div> 
   </div> 
 </div> 
@@ -94,7 +63,7 @@
  
 </template>
 <script>
-  import BookmarkCard from './BookmarkCard.vue'
+  import BookmarkCard from '../components/BookmarkCard.vue'
   export default{
     components: {
       BookmarkCard

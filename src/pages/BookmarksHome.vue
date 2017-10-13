@@ -65,6 +65,14 @@
       statsCards() {
         return [
           {
+            type: 'danger',
+            icon: 'ti-heart',
+            title: 'New bookmark',
+            value: '+',
+            footerText: 'Enter url here',
+            footerIcon: 'ti-reload'
+          },
+          {
             type: 'info',
             icon: 'ti-server',
             title: 'Bookmarks',

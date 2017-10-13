@@ -3,9 +3,6 @@
     <side-bar type="sidebar" :sidebar-links="$sidebar.sidebarLinks">
 
     </side-bar>
-    <notifications>
-
-    </notifications>
     <div class="main-panel">
       <top-navbar v-on:toggleAddBookmark="toggleAddBookmark"></top-navbar>
       <bookmark-add :display="display"></bookmark-add>

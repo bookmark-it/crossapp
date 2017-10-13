@@ -19,7 +19,7 @@
         
 
 
-        <div class="col-lg-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+        <div class="col-lg-6 col-md-6 col-sm-8 col-lg-offset-3 col-md-offset-3 col-sm-offset-2">
   <div class="card">
     <div class="header">
       <h3 class="title">Register</h3>
@@ -36,7 +36,7 @@
           <div class="col-md-12">
             <div class="form-group"><label>
               Username*
-              </label> <input type="text" v-model="registerForm.username" required="true" label="Username" placeholder="Bookmark-!t" class="required form-control border-input">
+              </label> <input type="text" v-model="registerForm.username" required="true" label="Username" placeholder="Enter a username" class="required form-control border-input">
             </div>
           </div>
         </div>
@@ -44,7 +44,7 @@
           <div class="col-md-12">
             <div class="form-group"><label>
               Password*
-              </label> <input v-model="registerForm.password" type="password" label="" placeholder="First Name" class="form-control border-input">
+              </label> <input v-model="registerForm.password" type="password" label="Password" placeholder="Enter a password" class="form-control border-input">
             </div>
           </div>
         </div>
@@ -52,7 +52,7 @@
           <div class="col-md-12">
             <div class="form-group"><label>
               Password confirmation*
-              </label> <input type="password" label="" placeholder="Last Name" class="form-control border-input">
+              </label> <input type="password" label="" placeholder="Re-type password" class="form-control border-input">
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@
           <div class="col-md-12">
             <div class="form-group"><label>
               Email*
-              </label> <input v-model="registerForm.email" type="email" label="Last Name" placeholder="Last Name" class="form-control border-input">
+              </label> <input v-model="registerForm.email" type="email" label="Email" placeholder="Enter your email" class="form-control border-input">
             </div>
           </div>
         </div>

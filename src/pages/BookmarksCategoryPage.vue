@@ -23,7 +23,7 @@
  
 </template>
 <script>
-  import BookmarkCard from './BookmarkCard.vue'
+  import BookmarkCard from '../components/BookmarkCard.vue'
   export default{
     components: {
       BookmarkCard
