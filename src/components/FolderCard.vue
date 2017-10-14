@@ -25,9 +25,10 @@ export default {
 .folder-main-container {
     display:inline-block;
     position:relative;
+    float: left;
     height:115px;
     width:130px;
-    margin:15px;
+    margin:20px 10px 20px 25px;
 }
 
 a{

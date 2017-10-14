@@ -28,6 +28,7 @@
 
 <div class="row"> 
   <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+
     <div class="row" style="max-height: 436px;overflow: scroll;">
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" v-for="bookmark in folderDirectBookmarks" :key="bookmark.id">
         <bookmark-card
@@ -40,35 +41,30 @@
     <div class="card">
       <h3>General information</h3> 
       <div class="row text-center">       
-        <div class="col-xs-12 col-sm-6 col-md-5">
-          <button class="btn btn-success">Public</button>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <button class="btn btn-success">Go Public ! </button>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-5">
-          <button class="btn btn-info">Shared</button>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <button class="btn btn-info">Sharing options</button>
         </div>
       </div>
+      <div class="row" style="padding-top: 37.5px;">
+        <div class="folder-main-container" v-for="folder in folderDirectFolders" :key="folder.id">
+          <folder-card
+            :folder="folder">
+          </folder-card>
+        </div>
+      </div>  
+
     </div> 
+
+
+
+
   </div> 
 </div> 
        
 
-          
-
-<div class="row"> 
-  <div class="col-sm-12"> 
-      <h1>Sub folders : </h1>
-  </div> 
-</div>
-
-
-
-<div class="row" style="padding-top: 37.5px;">
-  <div class="folder-main-container" v-for="folder in folderDirectFolders" :key="folder.id">
-    <folder-card
-      :folder="folder">
-    </folder-card>
-  </div>
-</div>  
 
 
 
@@ -98,11 +94,15 @@ import FolderCard from '../components/FolderCard.vue'
       this.$http.get('folders/' + this.$route.params.id).then(res => {
         res.json().then(result => {
           this.folder = result
-          console.log(this.folder)
+          // console.log(this.folder)
         })
       })
     },
     computed: {
+      changeRouteDetect () {
+        console.log(this.$route.params.id)
+        console.log('yooo')
+      },
       folderDirectBookmarks () {
         return this.folder.bookmarks
       },
@@ -112,6 +112,17 @@ import FolderCard from '../components/FolderCard.vue'
       folderCreationDate () {
         var d = new Date(this.folder.added_datetime)
         return d.getUTCDay().toString() + '/' + d.getUTCMonth().toString() + '/' + d.getUTCFullYear().toString()
+      }
+    },
+    watch: {
+      '$route' () {
+        console.log(this.$route.params.id)
+        this.folder = Object
+        this.$http.get('folders/' + this.$route.params.id).then(res => {
+          res.json().then(result => {
+            this.folder = result
+          })
+        })
       }
     },
     methods: {
