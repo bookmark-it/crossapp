@@ -14,7 +14,7 @@
                     <div class="text-center">
                         <div class="row">
                             <div class="col-md-3 col-md-offset-1">
-                                <h5>27
+                                <h5>{{ numberOfBookmarks }}
                                     <br> <small>Bookmarks</small>
                                 </h5>
                             </div>
@@ -24,8 +24,9 @@
                                 </h5>
                             </div>
                             <div class="col-md-3">
-                                <h5>1
+                                <h5> {{ numberOfFriends }}
                                     <br> <small>Friends</small>
+                                    
                                 </h5>
                             </div>
                         </div>
@@ -47,7 +48,7 @@
                     <div class="text-center">
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
-                                <button class='btn btn-primary' style="width:100%;margin-bottom: 7px;" @click="showUpload= !showUpload">Import Bookmarks</button>
+                                <button class='btn btn-primary' style="width:100%;margin-bottom: 7px;" @click="showUpload = !showUpload">Import Bookmarks</button>
                             </div>
                         </div>
                     </div> 
@@ -55,6 +56,13 @@
                         <div class="row">
                             <div class="col-md-10 col-md-offset-1">
                                 <button class='btn btn-primary' style="width:100%;margin-bottom: 7px;">Export Bookmarks</button>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="text-center">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <button class='btn btn-primary' style="width:100%;margin-bottom: 7px;">Account settings</button>
                             </div>
                         </div>
                     </div> 
@@ -89,14 +97,11 @@
 
 
 
-    <bookmarks-upload v-if="ShowUpload" @close=closeUploadPage>
-    </bookmarks-upload>   
-
 
 
 
     
-            <div v-if="!showContacts" class="col-lg-8 col-md-7">
+            <div v-if="!showMainPage" class="col-lg-8 col-md-7">
                 <div class="card">
                     <div class="header">
                         <h4 class="title">Edit Profile</h4>
@@ -104,21 +109,15 @@
                     <div class="content">
                         <form>
                             <div class="row">
-                                <div class="col-md-5">
-                                    <div class="form-group"><label>
-                                        Company 
-                                        </label> <input type="text" label="Company" placeholder="Company" class="form-control border-input">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group"><label>
                                         Username
                                         </label> <input type="text" label="Username" placeholder="Username" class="form-control border-input">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-8">
                                     <div class="form-group"><label>
-                                        Username
+                                        Email address
                                         </label> <input type="email" label="Username" placeholder="Email" class="form-control border-input">
                                     </div>
                                 </div>
@@ -133,6 +132,20 @@
                                 <div class="col-md-6">
                                     <div class="form-group"><label>
                                         Last Name
+                                        </label> <input type="text" label="Last Name" placeholder="Last Name" class="form-control border-input">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group"><label>
+                                        Company
+                                        </label> <input type="text" label="First Name" placeholder="First Name" class="form-control border-input">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group"><label>
+                                        Company code
                                         </label> <input type="text" label="Last Name" placeholder="Last Name" class="form-control border-input">
                                     </div>
                                 </div>
@@ -179,6 +192,11 @@
   </transition>
 
  
+
+  <transition name="slide-fade">
+    <bookmarks-upload v-if="showUpload" @close=closeUploadPage>
+    </bookmarks-upload>  
+  </transition> 
 
 
 
@@ -230,25 +248,27 @@
         this.showContacts = false
       },
       closeUploadPage () {
-        this.ShowUpload = false
+        this.showUpload = false
       }
     },
     computed: {
-      userInformation() {
-        return this.$store.state.auth.all
+      numberOfFriends () {
+        return this.$store.state.friends.all.length
       },
-      loading() {
-        return this.$store.state.bookmarks.loading
+      numberOfBookmarks () {
+        return this.$store.state.bookmarks.all.length
+      },
+      userInformation() {
+        // return this.$store.state.auth.all
+      },
+      showMainPage() {
+        return this.showUpload || this.showContacts
       }
     },
     data () {
       return {
-        ShowUpload: true,
-        showContacts: false,
-        table1: {
-          title: 'Bookmark Category administration',
-          subTitle: 'Here are your categories. You can access, edit and share them from here'
-        }
+        showUpload: false,
+        showContacts: false
       }
     }
   }

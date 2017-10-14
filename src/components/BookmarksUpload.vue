@@ -64,7 +64,36 @@
   </div>
 
 
+  <div class="row">
+      <div class="col-sm-8">
 
+
+
+          <li v-for="folder in uploadedFoldersResults">
+            {{ folder }}
+          </li>
+
+
+
+      </div>
+  </div>
+
+
+
+
+  <div class="row">
+      <div class="col-sm-8">
+
+
+
+          <li v-for="bookmark in uploadedBookmarksResults">
+            {{ bookmark }}
+          </li>
+
+
+
+      </div>
+  </div>
 
 
 
@@ -89,6 +118,8 @@
     data() {
       return {
         uploadedFiles: [],
+        uploadedBookmarksResults: [],
+        uploadedFoldersResults: [],
         uploadError: null,
         currentStatus: null,
         uploadFieldName: 'bookmarkFiles'
@@ -122,9 +153,15 @@
         console.log(formData)
         this.$http.post('me/upload/', formData)
         .then(x => {
+          console.log('x')
           console.log(x)
+          console.log('x.data')
+          console.log(x.data)
+          this.uploadedBookmarksResults = x.data.imported_bookmarks
+          this.uploadedFoldersResults = x.data.imported_folders
+
           this.uploadedFiles = [].concat(x)
-          this.currentStatus = STATUS_SUCCESS
+          this.currentStatus = STATUS_INITIAL
         })
         .catch(err => {
           this.uploadError = err.response

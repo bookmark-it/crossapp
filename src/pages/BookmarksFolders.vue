@@ -1,25 +1,26 @@
 <template>
-    <div class="row"> 
+    <div> 
 
+<div class="row">
 
-      <div class="col-sm-4 col-md-3 col-lg-3">
-        <div class="fa-here-plz" style="height:175px;width:130px;">
-          
-            <h4><a>++ Create a new folder ++</a></h4> 
+      <div class="folder-main-container">
+        <div class="fa-here-plz">
+          <a>++ New folder ++</a>
         </div>
       </div>
 
-      <div class="col-sm-3 col-md-3 col-lg-3 " v-for="folder in folders" :key="folder.id">
-        <div class="fa-here-plz" style="height:175px;width:130px;">
+      </div>
+
+<div class="row">
+  
+      <div class="folder-main-container" v-for="folder in folders" :key="folder.id">
+        <div class="fa-here-plz">
           <router-link :to="{ name: 'folder', params: { id: folder.id }}" tag="p">
-            <h4><a>{{ folder.name }}</a></h4> 
+            <a>{{ folder.name }}</a>
           </router-link>
-
-
- 
-
         </div>
       </div>
+</div>
 
          
     </div> 
@@ -42,6 +43,22 @@
 </script>
 <style scoped>
 
+
+.folder-main-container {
+    display:inline-block;
+    position:relative;
+    height:115px;
+    width:130px;
+    margin:15px;
+}
+
+a{
+    height: 100%;
+    padding:15px 10px 10px 15px;
+    position: absolute;
+    font-size: 22px
+}
+
 a:hover{
   color:orange;
 }
@@ -49,7 +66,6 @@ h4, p, a {
   margin:0px; 
   z-index: 1;
   color:black;
-  position: relative;
 }
 .fa-here-plz:after {
     content: "\f07b";
