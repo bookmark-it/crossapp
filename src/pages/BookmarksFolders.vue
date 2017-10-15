@@ -17,21 +17,66 @@
     </div>  
 
 
+
+    <div class="row">
+        <p>(You can double click on an item to turn it into a folder.)</p>
+        <!-- the demo root element -->
+        <ul>
+          <folder-tree-view
+            class="item"
+            :model="treeData">
+          </folder-tree-view>
+        </ul>
+    </div>  
+
+
   </div> 
 </template>
 <script>
 import FolderCard from '../components/FolderCard.vue'
+import FolderTreeView from '../components/FolderTreeView.vue'
 export default {
   components: {
-    FolderCard
+    FolderCard,
+    FolderTreeView
   },
   computed: {
     folders() {
       return this.$store.state.folders.all
     }
   },
+  methods: {
+  },
   data () {
     return {
+      treeData: {
+        name: 'My Tree',
+        children: [
+          { name: 'Level 1 file' },
+          { name: 'Level 1 folder' },
+          {
+            name: 'Level 2 folder',
+            children: [
+              {
+                name: 'Level 3 folder',
+                children: [
+                  { name: 'Level 4 file 1' },
+                  { name: 'Level 4 file 2' }
+                ]
+              },
+              { name: 'Level 3 folder 3' },
+              { name: 'Level 3 folder 4' },
+              {
+                name: 'Level 4 folder 1',
+                children: [
+                  { name: 'Level 5 file 1' },
+                  { name: 'Level 5 file 2' }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     }
   }
 }

@@ -29,10 +29,23 @@
   <div class="footer">
       <div class="row"> 
         <div class="col-sm-12"> 
-          <span v-if="bookmarkNeedsSaving" class="ti-save"></span>
           <span class="fa fa-fire" :class="{ 'bk-to-read': bookmark.toread }" @click="toggleToreadState"></span>
           <span class="fa fa-star" :class="{ 'bk-is-favorite': bookmark.favorite }" @click="toggleFavoriteState"></span>
           <span class="fa fa-at bk-share" @click="shareBookmark"></span>
+          <span class="fa fa-refresh bk-refresh" :class="{'fa-spin': refreshingBookmark}" @click="refreshBookmark"></span>
+          <span class="fa fa-tags" @click="editingTags = !editingTags"></span>      
+          <div class="dropdown" :class="{open:editingTags}" >
+            <ul class="dropdown-menu" style="padding:5px 5px;">
+              <li>
+                <input class="form-control" type="text" name="" style="margin:0px;padding:2px 4px;height:30px;">
+              </li>
+              <li>               
+                <button class="btn btn-info" v-for="word in bookmark.keywords" :key="word" style="margin:2px;padding:1px 4px;">
+                  {{ word.name }} x
+                </button>
+              </li>
+            </ul>
+          </div>
           <span class="fa" :class="liveDocumentIconClass" @click="sortBookmark" v-on:mouseleave="closeFolderIconClass" v-on:mouseover="openFolderIconClass"></span>
           <span class="fa fa-trash-o bk-delete" @click="deleteBookmark"></span>
         </div> 
@@ -58,7 +71,8 @@ export default {
   },
   data () {
     return {
-      bookmarkNeedsSaving: false,
+      editingTags: false,
+      refreshingBookmark: false,
       liveDocumentIconClass: 'fa-folder'
     }
   },
@@ -76,6 +90,13 @@ export default {
     toggleFavoriteState (event) {
       this.$store.dispatch('toggleFavoriteBookmark', {
         bookmark: this.bookmark
+      })
+    },
+    refreshBookmark () {
+      this.refreshingBookmark = true
+      this.$http.get('bookmarks/' + this.bookmark.id).then(response => {
+        this.refreshingBookmark = false
+        console.log(response.body)
       })
     },
     shareBookmark () {
@@ -106,7 +127,20 @@ export default {
 </script>
 
 <style scoped> 
-
+.card{
+  z-index: 10;
+}
+.dropdown{
+}
+.dropdown-menu{
+  z-index:1;
+  display: block;
+  z-index: 9999;
+  margin-top: 0px;
+  position: absolute;
+  top:0;
+  right:0;
+}
 .content{
   height: 98px;
   overflow: hidden;
@@ -167,6 +201,13 @@ export default {
 }
 .bk-share:hover {
   color:green; 
+}
+
+.fa-spin {
+  color:#0084DE; 
+}
+.bk-refresh:hover {
+  color:#0084DE; 
 }
 </style>
 
