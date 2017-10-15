@@ -1,22 +1,6 @@
 <template>
   <div>
 
-    <!--Charts-->
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="card" style="background-color: rgba(0,0,0,0);border: none;box-shadow:none;">
-    <div class="row">
-          <div class="col-sm-10">
-              <input v-model="aaa"  debounce="500" class="form-control mr-sm-6" type="text" placeholder="Search or create bookmark" >
-          </div>
-          <div class="col-sm-2">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </div>
-        </div>
-        </div>
-    </div>
-    </div>
-
     <!--Stats cards-->
     <div class="row">
       <div class="col-lg-3 col-sm-6" v-for="stats in statsCards">
@@ -41,7 +25,7 @@
         <div class="col-md-12">
           <div class="card">
               <div class="header">
-                <h4 class="title">Quick open bookmarks</h4> 
+                <h4 class="title">Recent actions and quick open tabs</h4> 
                 <p class="category">Access and open your frequent bookmarks from here</p>
               </div> 
               <div class="content">

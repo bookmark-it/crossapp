@@ -48,6 +48,7 @@
   import MovingArrow from './MovingArrow.vue'
   export default {
     props: {
+      // blue css background color :  #35495E;
       type: {
         type: String,
         default: 'sidebar',
@@ -82,6 +83,7 @@
           return 'sidebar'
         } else {
           return 'collapse navbar-collapse off-canvas-sidebar'
+          // return ' '
         }
       },
       navClasses () {

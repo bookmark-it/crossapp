@@ -1,52 +1,58 @@
 <template>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" :class="{toggled: $sidebar.showSidebar}" @click="toggleSidebar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar bar1"></span>
-          <span class="icon-bar bar2"></span>
-          <span class="icon-bar bar3"></span>
-        </button>
-        <a class="navbar-brand">{{routeName}}</a>
-      </div>
+
+
+      <ul class="nav navbar-header">
+        <li>        
+          <button type="button" class="navbar-toggle" :class="{toggled: $sidebar.showSidebar}" @click="toggleSidebar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar bar1"></span>
+            <span class="icon-bar bar2"></span>
+            <span class="icon-bar bar3"></span>
+          </button>
+        </li>
+        <li>
+          <a class="navbar-brand">{{routeName}}</a>
+        </li>
+      </ul>
+
       <div class="navbar-right-menu">
         <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a class="" @click="addBookmark">
-              <p>
-                Add a bookmark
-              </p>
-            </a>
-          </li>
-           <drop-down v-if="userNotifications.length" :title="userNotificationsTitle" icon="ti-bell">
+          <li v-if='displaySearchBar' class="topnav-searchbar-container"><input class="form-control topnav-searchbar" type="text" name=""></li>
+          <li><a class="ti-search" @click="SearchBookmarks"></a></li>
+          <li><a class="ti-plus" @click="addBookmark"></a></li>
+
+           <drop-down :title="userNotificationsTitle" icon="ti-bell">
             <li v-for="notification in userNotifications" :key="notification.id">
               <router-link :to="{ name: 'notification', params: { id: notification.id }}" tag="a">
                 {{ notification.name }}
               </router-link>
-
             </li>
-
-
-
            </drop-down>
 
-          <router-link to="/app/me" tag="li" ref="Bookmark List">
-            <a>
-              <i class="ti-user"></i>
-              <p>{{userName.username}}</p>
-            </a>
-          </router-link>
-          <li>
-            <a class="btn-rotate" @click="logout">
-              <i class="ti-power-off"></i>
-              <p>
-                Logout
-              </p>
-            </a>
-          </li>
+           <drop-down :title="userName.username" icon="ti-user">
+            <li>
+              <router-link to="/app/me" tag="a" ref="Bookmark List">
+                Profile page
+              </router-link>
+            </li>
+            <li>
+              <a class="btn-rotate">
+                <i class="ti-user"></i>Friends
+              </a>
+            </li>
+            <li>
+              <a class="btn-rotate" @click="logout">
+                Logout<i class="ti-power-off"></i>
+              </a>
+            </li>
+           </drop-down>
+
         </ul>
       </div>
+
+
     </div>
   </nav>
 </template>
@@ -64,7 +70,8 @@
     data () {
       return {
         userNamee: this.$store.state.auth.userInformation,
-        activeNotifications: false
+        activeNotifications: false,
+        displaySearchBar: false
       }
     },
     computed: {
@@ -79,7 +86,7 @@
         : { username: 'Undefined' }
       },
       userNotificationsTitle () {
-        return (this.$store.state.notifications.all.length + ' Notifications')
+        return (this.$store.state.notifications.all.length.toString())
       },
       userNotifications () {
         return this.$store.state.notifications.all
@@ -104,6 +111,10 @@
       addBookmark () {
         this.$emit('toggleAddBookmark')
       },
+      SearchBookmarks () {
+        // this.$emit('toggleAddBookmark')
+        this.displaySearchBar = !this.displaySearchBar
+      },
       logout () {
         this.$store.dispatch('logout', {
           $router: this.$router
@@ -115,6 +126,14 @@
 <style scoped>
 </style>
 <style>
+.topnav-searchbar-container {
+    margin: 0px 15px 0px 0px;
+}
+.topnav-searchbar {
+    width: 100%;
+    margin: 15px 0px 15px 0px;
+    padding: 10px 15px 10px 15px;
+}
 .navbar-nav {
   cursor: pointer;
 }

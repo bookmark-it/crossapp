@@ -30,8 +30,10 @@
       <div class="row"> 
         <div class="col-sm-12"> 
           <span v-if="bookmarkNeedsSaving" class="ti-save"></span>
-          <span class="ti-share" @click="shareBookmark"></span>
-          <a href="#" class="ti-trash" @click="deleteBookmark"></a>
+          <span class="fa fa-at bk-share" @click="shareBookmark"></span>
+          <span class="fa fa-star" :class="{ 'bk-is-favorite': bookmark.favorite }" @click="toggleFavoriteState"></span>
+          <span class="fa fa-fire" :class="{ 'bk-to-read': bookmark.toread }" @click="toggleToreadState"></span>
+          <span class="fa fa-trash-o bk-delete" @click="deleteBookmark"></span>
         </div> 
         </div> 
       </div> 
@@ -45,6 +47,9 @@ export default {
     bookmark: Object
   },
   computed: {
+    bkInReadingList () {
+      return this.bookmark.toread
+    }
   },
   data () {
     return {
@@ -52,6 +57,16 @@ export default {
     }
   },
   methods: {
+    toggleToreadState (event) {
+      this.$store.dispatch('toggleToreadBookmark', {
+        bookmark: this.bookmark
+      })
+    },
+    toggleFavoriteState (event) {
+      this.$store.dispatch('toggleFavoriteBookmark', {
+        bookmark: this.bookmark
+      })
+    },
     shareBookmark () {
       this.$emit('shareBookmark', this.bookmark)
       this.$modal.show('share-bookmark')
@@ -117,10 +132,27 @@ export default {
   width: 100%;
 }
 .image{
-        height: 60px;
-            background-color: #4C5975;
+  height: 60px;
+  background-color: #4C5975;
 }
 
+.fa {
+  color:grey;
+}
+
+.bk-to-read {
+  color:#0084DE; 
+}
+
+.bk-is-favorite {
+  color:orange; 
+}
+.bk-delete:hover {
+  color:red; 
+}
+.bk-share:hover {
+  color:green; 
+}
 </style>
 
 

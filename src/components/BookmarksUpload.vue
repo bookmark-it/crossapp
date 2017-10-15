@@ -67,29 +67,16 @@
   <div class="row">
       <div class="col-sm-8">
 
+          <table>
+            
+          <tr v-for="folder in uploadErrors">
+            <td>
+              {{ folder[0] }}
+              {{ folder[1] }}
+            </td>
+          </tr>
 
-
-          <li v-for="folder in uploadedFoldersResults">
-            {{ folder }}
-          </li>
-
-
-
-      </div>
-  </div>
-
-
-
-
-  <div class="row">
-      <div class="col-sm-8">
-
-
-
-          <li v-for="bookmark in uploadedBookmarksResults">
-            {{ bookmark }}
-          </li>
-
+          </table>
 
 
       </div>
@@ -120,6 +107,7 @@
         uploadedFiles: [],
         uploadedBookmarksResults: [],
         uploadedFoldersResults: [],
+        uploadErrors: [],
         uploadError: null,
         currentStatus: null,
         uploadFieldName: 'bookmarkFiles'
@@ -159,6 +147,7 @@
           console.log(x.data)
           this.uploadedBookmarksResults = x.data.imported_bookmarks
           this.uploadedFoldersResults = x.data.imported_folders
+          this.uploadErrors = x.data.import_errors
 
           this.uploadedFiles = [].concat(x)
           this.currentStatus = STATUS_INITIAL

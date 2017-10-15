@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper">
     <side-bar type="sidebar" :sidebar-links="$sidebar.sidebarLinks">
-
     </side-bar>
     <div class="main-panel">
       <top-navbar v-on:toggleAddBookmark="toggleAddBookmark"></top-navbar>
       <bookmark-add :display="display"></bookmark-add>
+      
 
       <dashboard-content @click.native="toggleSidebar" @shareBookmark='shareBookmark'>
       </dashboard-content>
