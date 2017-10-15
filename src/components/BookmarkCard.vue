@@ -35,13 +35,14 @@
           <span class="fa fa-refresh bk-refresh" :class="{'fa-spin': refreshingBookmark}" @click="refreshBookmark"></span>
           <span class="fa fa-tags" @click="editingTags = !editingTags"></span>      
           <div class="dropdown" :class="{open:editingTags}" >
-            <ul class="dropdown-menu" style="padding:5px 5px;">
+            <ul class="dropdown-menu" style="padding:5px 5px;width:180px;">
               <li>
-                <input class="form-control" type="text" name="" style="margin:0px;padding:2px 4px;height:30px;">
+                <input @keydown.enter="addKeyword" v-model="newKeywordInput" class="form-control" type="text" placeholder="New tag" name="" style="margin:2px 0px 4px 0px;padding:4px 4px;height:22px;font-size:12px;">
               </li>
               <li>               
-                <button class="btn btn-info" v-for="word in bookmark.keywords" :key="word" style="margin:2px;padding:1px 4px;">
-                  {{ word.name }} x
+                <button class="btn btn-info" v-for="word in bookmark.keywords" :key="word.id" style="margin:2px;padding:1px 4px;float:left;">
+                  {{ word.name }} 
+                  <span @click="removeKeyword(word)">x</span>
                 </button>
               </li>
             </ul>
@@ -71,12 +72,21 @@ export default {
   },
   data () {
     return {
+      newKeywordInput: '',
       editingTags: false,
       refreshingBookmark: false,
       liveDocumentIconClass: 'fa-folder'
     }
   },
   methods: {
+    addKeyword () {
+      this.$store.dispatch('updateBookmarkKeywords', { 'bookmark': this.bookmark, 'newKeywordInput': { 'name': this.newKeywordInput } }).then(resp => {
+        this.newKeywordInput = ''
+      })
+    },
+    removeKeyword (deletedKeyword) {
+      this.$store.dispatch('removeBookmarkKeywords', { 'bookmark': this.bookmark, 'deletedKeyword': deletedKeyword })
+    },
     deleteBookmark () {
       this.$store.dispatch('deleteBookmark', {
         bookmark: this.bookmark

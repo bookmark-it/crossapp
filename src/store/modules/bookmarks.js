@@ -4,7 +4,6 @@ const initialState = {
   all: [],
   loading: false
 }
-
 const mutations = {
   REQUESTBOOKMARKS(state) {
     state.loading = true
@@ -17,11 +16,16 @@ const mutations = {
     state.all.push(result)
     state.loading = false
   },
+  ADDBOOKMARKKEYWORD(state, { bookmark, newKeywordInput }) {
+    // bookmark.keywords = newKeywordInput
+    bookmark.keywords.push(newKeywordInput)
+  },
+  REMOVEBOOKMARKKEYWORD(state, { bookmark, deletedKeyword }) {
+    let index = bookmark.keywords.indexOf(deletedKeyword)
+    bookmark.keywords.splice(index, 1)
+  },
   EDITBOOKMARK(state, {result}) {
     let index = state.all.indexOf(result)
-    console.log(result)
-    console.log(result)
-    console.log(result.id)
     state.all.splice(index, 1, result)
     // state.all[result.id] = result
     for (var i in state.all) {
@@ -67,6 +71,12 @@ const actions = {
         commit('ADDBOOKMARK', {result})
       })
     })
+  },
+  removeBookmarkKeywords({commit}, {bookmark, deletedKeyword}) {
+    commit('REMOVEBOOKMARKKEYWORD', {bookmark, deletedKeyword})
+  },
+  updateBookmarkKeywords({commit}, {bookmark, newKeywordInput}) {
+    commit('ADDBOOKMARKKEYWORD', {bookmark, newKeywordInput})
   },
   toggleToreadBookmark({commit}, {bookmark}) {
     commit('TOGGLETOREADBOOKMARK', {bookmark})
