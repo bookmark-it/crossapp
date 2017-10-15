@@ -19,8 +19,19 @@ const mutations = {
   },
   EDITBOOKMARK(state, {result}) {
     let index = state.all.indexOf(result)
-    state.all.splice(index, 1)
-    state.all.push(result)
+    console.log(result)
+    console.log(result)
+    console.log(result.id)
+    state.all.splice(index, 1, result)
+    // state.all[result.id] = result
+    for (var i in state.all) {
+      if (state.all[i].id === result.id) {
+        console.log(i)
+        // state.all[i] = result
+        break // Stop this loop, we found it!
+      }
+    }
+    console.log(state.all[i])
     state.loading = false
   },
   DELETEBOOKMARK(state, {bookmark}) {

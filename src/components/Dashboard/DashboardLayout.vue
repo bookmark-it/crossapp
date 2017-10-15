@@ -5,15 +5,12 @@
     <div class="main-panel">
       <top-navbar v-on:toggleAddBookmark="toggleAddBookmark"></top-navbar>
       <bookmark-add :display="display"></bookmark-add>
-      
-
-      <dashboard-content @click.native="toggleSidebar" @shareBookmark='shareBookmark'>
-      </dashboard-content>
-
+      <dashboard-content @click.native="toggleSidebar" @sortBookmark=sortBookmark></dashboard-content>
+      <sorting-pane></sorting-pane>
       <content-footer></content-footer>
     </div>
     <validate-action></validate-action>
-    <bookmark-share  ref="bkshare" v-bind:selectedBookmark="sharingBookmark"></bookmark-share>
+    <bookmark-share ref="bkshare"></bookmark-share>
   </div>
 </template>
 <style lang="scss">
@@ -26,6 +23,7 @@
   import BookmarkAdd from '../BookmarkAdd.vue'
   import BookmarkShare from '../BookmarkShare.vue'
   import validateAction from '../Inputs/validateAction.vue'
+  import SortingPane from '../SortingPane.vue'
 
   export default {
     components: {
@@ -34,15 +32,12 @@
       DashboardContent,
       BookmarkAdd,
       BookmarkShare,
-      validateAction
+      validateAction,
+      SortingPane
     },
     data() {
       return {
-        display: false,
-        sharingBookmark: {
-          'title': 'No bookmark to share',
-          'url': 'No URL to share'
-        }
+        display: false
       }
     },
     watch: {
@@ -58,8 +53,10 @@
       toggleAddBookmark() {
         this.display = !this.display
       },
-      shareBookmark (bookmark) {
-        this.sharingBookmark = bookmark
+      sortBookmark (bookmark) {
+        console.log('Lets sort this bookmark')
+        this.sortingModeActivated = !this.sortingModeActivated
+        this.$emit('sortBookmark', this.bookmark)
       }
     },
     created: function() {
@@ -74,3 +71,9 @@
   }
 
 </script>
+<style scoped>
+  .main-panel{
+    max-height: 100%;
+    overflow: scroll;
+  }
+</style>

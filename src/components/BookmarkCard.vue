@@ -30,9 +30,10 @@
       <div class="row"> 
         <div class="col-sm-12"> 
           <span v-if="bookmarkNeedsSaving" class="ti-save"></span>
-          <span class="fa fa-at bk-share" @click="shareBookmark"></span>
-          <span class="fa fa-star" :class="{ 'bk-is-favorite': bookmark.favorite }" @click="toggleFavoriteState"></span>
           <span class="fa fa-fire" :class="{ 'bk-to-read': bookmark.toread }" @click="toggleToreadState"></span>
+          <span class="fa fa-star" :class="{ 'bk-is-favorite': bookmark.favorite }" @click="toggleFavoriteState"></span>
+          <span class="fa fa-at bk-share" @click="shareBookmark"></span>
+          <span class="fa" :class="liveDocumentIconClass" @click="sortBookmark" v-on:mouseleave="closeFolderIconClass" v-on:mouseover="openFolderIconClass"></span>
           <span class="fa fa-trash-o bk-delete" @click="deleteBookmark"></span>
         </div> 
         </div> 
@@ -49,14 +50,24 @@ export default {
   computed: {
     bkInReadingList () {
       return this.bookmark.toread
+    },
+    currentBookmark () {
+      console.log(this.bookmark)
+      return this.bookmark
     }
   },
   data () {
     return {
-      bookmarkNeedsSaving: false
+      bookmarkNeedsSaving: false,
+      liveDocumentIconClass: 'fa-folder'
     }
   },
   methods: {
+    deleteBookmark () {
+      this.$store.dispatch('deleteBookmark', {
+        bookmark: this.bookmark
+      })
+    },
     toggleToreadState (event) {
       this.$store.dispatch('toggleToreadBookmark', {
         bookmark: this.bookmark
@@ -68,13 +79,17 @@ export default {
       })
     },
     shareBookmark () {
-      this.$emit('shareBookmark', this.bookmark)
-      this.$modal.show('share-bookmark')
+      // this.$emit('shareBookmark', this.bookmark)
+      this.$modal.show('share-bookmark', { bookmark: this.bookmark })
     },
-    deleteBookmark () {
-      this.$store.dispatch('deleteBookmark', {
-        bookmark: this.bookmark
-      })
+    sortBookmark () {
+      this.$emit('sortBookmark', this.bookmark)
+    },
+    openFolderIconClass (event) {
+      this.liveDocumentIconClass = 'fa-folder-open'
+    },
+    closeFolderIconClass (event) {
+      this.liveDocumentIconClass = 'fa-folder'
     },
     getClasses(index) {
       var remainder = index % 3

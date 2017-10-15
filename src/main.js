@@ -32,7 +32,7 @@ Vue.use(GlobalComponents)
 Vue.use(vClickOutside)
 // Vue.use(Notifications)
 Vue.use(SideBar)
-Vue.use(VModal)
+Vue.use(VModal, { dialog: true })
 
 // global libraries setup
 Object.defineProperty(Vue.prototype, '$Chartist', {

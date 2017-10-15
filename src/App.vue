@@ -2,6 +2,8 @@
 <div :class="{'nav-open': $sidebar.showSidebar}" class="" style="padding-right:0px;">
   <router-view></router-view>
   <!--This sidebar appears only for screens smaller than 992px-->
+  <v-dialog/>
+  <!--This sidebar appears only for screens smaller than 992px-->
   <side-bar type="navbar">
     <ul class="nav navbar-nav">
       <drop-down title="5 Notifications" icon="ti-bell">
