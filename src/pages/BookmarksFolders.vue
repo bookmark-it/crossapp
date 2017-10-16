@@ -19,13 +19,16 @@
 
 
     <div class="row">
-        <p>(You can double click on an item to turn it into a folder.)</p>
+        <p>Access your folders from here : </p>
         <!-- the demo root element -->
-        <ul>
+      <ul v-for="folder in folders" :key="folder.id">
           <folder-tree-view
             class="item"
-            :model="treeData">
+            :model="folder">
           </folder-tree-view>
+
+
+
         </ul>
     </div>  
 

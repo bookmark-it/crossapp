@@ -7,14 +7,15 @@
 
   <li>
     <div :class="{bold: isFolder}" @click="toggle" @dblclick="changeType">
+      <i class="fa" :class="{ 'fa-folder-o': !open ,'fa-folder-open-o': open }"></i>
       {{model.name}}
-      <span v-if="isFolder">[{{open ? '-' : '+'}}]</span>
+      <span v-if="isFolder"> [{{open ? '-' : '+'}}]</span>
     </div>
     <ul v-show="open" v-if="isFolder"> 
       <li class="add" @click="addChild">+</li>
       <folder-tree-view
         class="item"
-        v-for="model in model.children"
+        v-for="model in model.children_directories"
         :model="model">
       </folder-tree-view>
 
@@ -48,8 +49,8 @@ export default {
   },
   computed: {
     isFolder: function () {
-      return this.model.children &&
-        this.model.children.length
+      return this.model.children_directories &&
+        this.model.children_directories.length
     }
   },
   methods: {
