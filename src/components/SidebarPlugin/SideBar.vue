@@ -28,10 +28,16 @@
             <p>Bookmark List</p>
           </a>
         </router-link>
-        <router-link to="/app/table-list" tag="li" ref="Table List">
+        <router-link to="/app/categories" tag="li" ref="Categories">
           <a>
             <i class="ti-view-list-alt"></i>
             <p>Categories</p>
+          </a>
+        </router-link>
+        <router-link to="/app/folders" tag="li" ref="Table List">
+          <a>
+            <i class="ti-folder"></i>
+            <p>Folders</p>
           </a>
         </router-link>
       </ul>
@@ -42,6 +48,7 @@
   import MovingArrow from './MovingArrow.vue'
   export default {
     props: {
+      // blue css background color :  #35495E;
       type: {
         type: String,
         default: 'sidebar',
@@ -76,6 +83,7 @@
           return 'sidebar'
         } else {
           return 'collapse navbar-collapse off-canvas-sidebar'
+          // return ' '
         }
       },
       navClasses () {

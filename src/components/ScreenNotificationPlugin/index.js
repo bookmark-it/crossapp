@@ -1,4 +1,4 @@
-import Notifications from './Notifications.vue'
+import ScreenAlerts from './ScreenAlerts.vue'
 
 const NotificationStore = {
   state: [], // here the notifications will be added
@@ -19,7 +19,7 @@ var NotificationsPlugin = {
         return NotificationStore
       }
     })
-    Vue.component('Notifications', Notifications)
+    Vue.component('ScreenAlerts', ScreenAlerts)
   }
 }
 

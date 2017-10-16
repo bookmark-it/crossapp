@@ -16,6 +16,12 @@ const mutations = {
     state.loading = false
     state.error = ''
   },
+  FETCHUSERINFORMATION(state, {result}) {
+    console.log('Fetch user information store result')
+    console.log(result)
+    state.userInformation = result
+    // console.log(state.userInformation)
+  },
   LOGOUT(state) {
     state.loggedIn = false
     state.loading = false
@@ -31,7 +37,6 @@ const mutations = {
 const actions = {
   login({commit}, {$router, credentials}) {
     commit('LOADING', {loading: true})
-
     auth.login(credentials).then(res => {
       res.json().then(({auth_token}) => {
         /* eslint-disable camelcase */
@@ -43,6 +48,14 @@ const actions = {
       })
     }, (err) => {
       commit('ERROR')
+    })
+  },
+  fetchUserInformation({commit}) {
+    auth.fetchUserInfo().then(res => {
+      res.json().then(result => {
+        console.log(result)
+        commit('FETCHUSERINFORMATION', {result})
+      })
     })
   },
   logout({commit}, {$router}) {

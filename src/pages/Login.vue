@@ -27,6 +27,18 @@
                         </fg-input>
                         <fg-input type="password" label="Password" name="password" placeholder="••••••••" v-model="form.password">
                         </fg-input>
+
+                        <router-link to="/register" tag="a" ref="Register">
+                          <small>Don't have an account ? </small>
+                        </router-link>
+                        <small>or</small>
+
+                        <a href="#"><small> Forgot your password?</small></a>
+
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
                       </div>
                     </div>
 

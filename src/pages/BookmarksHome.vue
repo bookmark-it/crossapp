@@ -19,39 +19,21 @@
       </div>
     </div>
 
-    <!--Charts-->
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="card" style="background-color: rgba(0,0,0,0);border: none;box-shadow:none;">
-    <div class="row">
-          <div class="col-sm-10">
-              <input v-model="aaa"  debounce="500" class="form-control mr-sm-6" type="text" placeholder="Search or create bookmark" >
-          </div>
-          <div class="col-sm-2">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </div>
-        </div>
-        </div>
-    </div>
-    </div>
-
 
     <!--Charts-->
     <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+              <div class="header">
+                <h4 class="title">Recent actions and quick open tabs</h4> 
+                <p class="category">Access and open your frequent bookmarks from here</p>
+              </div> 
+              <div class="content">
 
-      <div class="col-xs-12">
-        <chart-card :chart-data="usersChart.data" :chart-options="usersChart.options">
-          <h4 class="title" slot="title">Catégorie de bookmarks</h4>
-          <span slot="subTitle"> Accédez à vos bookmarks par catégorie</span>
-          <span slot="footer">
-            <i class="ti-reload"></i> Updated 3 minutes ago</span>
-          <div slot="legend">
-            <i class="fa fa-circle text-info"></i> Open
-            <i class="fa fa-circle text-danger"></i> Click
-            <i class="fa fa-circle text-warning"></i> Click Second Time
+              </div>
+        
           </div>
-        </chart-card>
-      </div>
+        </div>
 
     </div>
 
@@ -59,45 +41,35 @@
 </template>
 <script>
   import StatsCard from 'components/StatsCard.vue'
-  import ChartCard from 'components/ChartCard.vue'
   export default {
     components: {
-      StatsCard,
-      ChartCard
+      StatsCard
     },
     computed: {
       statsCards() {
         return [
           {
-            type: 'warning',
-            icon: 'ti-server',
-            title: 'Bookmarks',
-            value: this.$store.state.bookmarks.all.length,
-            footerText: this.$store.state.bookmarks.all.length + ' bookmarks non catégorisés',
+            type: 'danger',
+            icon: 'ti-heart',
+            title: 'New bookmark',
+            value: '+',
+            footerText: 'Enter url here',
             footerIcon: 'ti-reload'
           },
           {
-            type: 'success',
-            icon: 'ti-wallet',
-            title: 'Quick launch',
-            value: '7',
-            footerText: 'Open your quick launch tabs',
-            footerIcon: 'ti-calendar'
-          },
-          {
-            type: 'danger',
-            icon: 'ti-heart',
-            title: 'Favoris',
-            value: '23',
-            footerText: 'In the last hour',
-            footerIcon: 'ti-timer'
-          },
-          {
             type: 'info',
-            icon: 'ti-twitter-alt',
-            title: 'Réseau',
-            value: '45',
-            footerText: 'Updated now',
+            icon: 'ti-server',
+            title: 'Bookmarks',
+            value: this.$store.state.bookmarks.all.length,
+            footerText: this.$store.state.bookmarks.all.length + ' saved bookmarks',
+            footerIcon: 'ti-bookmark'
+          },
+          {
+            type: 'warning',
+            icon: 'ti-bell',
+            title: 'Notifications',
+            value: this.$store.state.notifications.all.length,
+            footerText: 'Notifications synchronized',
             footerIcon: 'ti-reload'
           }
         ]

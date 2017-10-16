@@ -1,49 +1,95 @@
 <template>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" :class="{toggled: $sidebar.showSidebar}" @click="toggleSidebar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar bar1"></span>
-          <span class="icon-bar bar2"></span>
-          <span class="icon-bar bar3"></span>
-        </button>
-        <a class="navbar-brand">{{routeName}}</a>
-      </div>
+
+
+      <ul class="nav navbar-header">
+        <li>        
+          <button type="button" class="navbar-toggle" :class="{toggled: $sidebar.showSidebar}" @click="toggleSidebar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar bar1"></span>
+            <span class="icon-bar bar2"></span>
+            <span class="icon-bar bar3"></span>
+          </button>
+        </li>
+        <li>
+          <a class="navbar-brand">{{routeName}}</a>
+        </li>
+      </ul>
+
       <div class="navbar-right-menu">
         <ul class="nav navbar-nav navbar-right">
-           <drop-down title="5 Notifications" icon="ti-bell">
-             <li><a href="#">Notification 1</a></li>
-             <li><a href="#">Notification 2</a></li>
-             <li><a href="#">Notification 3</a></li>
-             <li><a href="#">Notification 4</a></li>
-             <li><a href="#">Another notification</a></li>
+          <li v-if='displaySearchBar' class="topnav-searchbar-container"><input class="form-control topnav-searchbar" type="text" name=""></li>
+          <li><a class="ti-search" @click="SearchBookmarks"></a></li>
+          <li><a class="ti-plus" @click="addBookmark"></a></li>
+
+           <drop-down :title="userNotificationsTitle" icon="ti-bell">
+            <li v-for="notification in userNotifications" :key="notification.id">
+              <router-link :to="{ name: 'notification', params: { id: notification.id }}" tag="a">
+                {{ notification.name }}
+              </router-link>
+            </li>
            </drop-down>
-          <li>
-            <a class="btn-rotate" @click="logout">
-              <i class="ti-power-off"></i>
-              <p>
-                Logout
-              </p>
-            </a>
-          </li>
+
+           <drop-down :title="userName.username" icon="ti-user">
+            <li>
+              <router-link to="/app/me" tag="a" ref="Bookmark List">
+                Profile page
+              </router-link>
+            </li>
+            <li>
+              <a class="btn-rotate">
+                <i class="ti-user"></i>Friends
+              </a>
+            </li>
+            <li>
+              <a class="btn-rotate" @click="logout">
+                Logout<i class="ti-power-off"></i>
+              </a>
+            </li>
+           </drop-down>
+
         </ul>
       </div>
+
+
     </div>
   </nav>
 </template>
 
 <script>
   export default {
+    mount () {
+      // this.$store.dispatch('fetchUserInformation')
+    },
+    created () {
+      console.log('Created')
+      // this.$store.dispatch('fetchUserInformation')
+      console.log(this.$store.state.auth.userInformation)
+    },
+    data () {
+      return {
+        userNamee: this.$store.state.auth.userInformation,
+        activeNotifications: false,
+        displaySearchBar: false
+      }
+    },
     computed: {
       routeName () {
         const {name} = this.$route
         return this.capitalizeFirstLetter(name)
-      }
-    },
-    data () {
-      return {
-        activeNotifications: false
+      },
+      userName () {
+        console.log('Computeed')
+        console.log(this.$store.state.auth.userInformation)
+        return this.$store.state.auth.userInformation ? this.$store.state.auth.userInformation[0]
+        : { username: 'Undefined' }
+      },
+      userNotificationsTitle () {
+        return (this.$store.state.notifications.all.length.toString())
+      },
+      userNotifications () {
+        return this.$store.state.notifications.all
       }
     },
     methods: {
@@ -62,6 +108,13 @@
       hideSidebar () {
         this.$sidebar.displaySidebar(false)
       },
+      addBookmark () {
+        this.$emit('toggleAddBookmark')
+      },
+      SearchBookmarks () {
+        // this.$emit('toggleAddBookmark')
+        this.displaySearchBar = !this.displaySearchBar
+      },
       logout () {
         this.$store.dispatch('logout', {
           $router: this.$router
@@ -71,14 +124,16 @@
   }
 </script>
 <style scoped>
-.navbar-bkit-search{
-
-    display:inline-block;
-
-}
-
 </style>
 <style>
+.topnav-searchbar-container {
+    margin: 0px 15px 0px 0px;
+}
+.topnav-searchbar {
+    width: 100%;
+    margin: 15px 0px 15px 0px;
+    padding: 10px 15px 10px 15px;
+}
 .navbar-nav {
   cursor: pointer;
 }
