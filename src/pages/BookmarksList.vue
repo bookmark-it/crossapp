@@ -30,7 +30,7 @@
       <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="(bookmark, index) in bookmarks" :key="bookmark.id">
         <bookmark-card
           :bookmark="bookmark" 
-          v-bind:style="{ 'z-index': index*-1 }"
+          v-bind:style="{ 'z-index': 9999999-index }"
           @sortBookmark=sortBookmark> 
         </bookmark-card>
       </div>
