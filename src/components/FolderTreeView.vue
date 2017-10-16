@@ -51,7 +51,27 @@ export default {
     isFolder: function () {
       return this.model.children_directories &&
         this.model.children_directories.length
+    },
+    currentFolder: function () {
+      console.log('this.model')
+      console.log(this.model)
+      return this.model
     }
+  },
+  created () {
+    console.log('created')
+    this.$http.get('folders/' + this.model.id).then(res => {
+      console.log(this.model.id)
+      // console.log(res.body)
+      // this.model = res.body
+      // a here :
+      this.$store.dispatch('updateCurrentFolder', { 'folder': this.model, 'result': res.body })
+      console.log(this.model.name)
+      // a
+      // this.$store.dispatch('updateBookmarkKeywords', { 'bookmark': this.bookmark, 'newKeywordInput': { 'name': this.newKeywordInput } }).then(resp => {
+      //   this.newKeywordInput = ''
+      // })
+    })
   },
   methods: {
     toggle: function () {

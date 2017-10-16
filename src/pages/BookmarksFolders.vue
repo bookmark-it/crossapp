@@ -1,12 +1,9 @@
 <template>
-  <div> 
-
-    
     <div class="row">
-      <div class="" style="height: 45px;"> 
-        <a>++ New folder ++</a> 
-      </div>
-    </div>
+
+
+      
+  <div class="xs-col-6"> 
 
     <div class="row">
       <div class="folder-main-container" v-for="folder in folders" :key="folder.id">
@@ -15,10 +12,13 @@
         </folder-card>
       </div>
     </div>  
+    </div>  
 
 
+  <div class="xs-col-6"> 
 
     <div class="row">
+        <a href="#">Create a new folder</a>
         <p>Access your folders from here : </p>
         <!-- the demo root element -->
       <ul v-for="folder in folders" :key="folder.id">
@@ -26,13 +26,16 @@
             class="item"
             :model="folder">
           </folder-tree-view>
-
-
-
         </ul>
     </div>  
 
 
+
+
+
+
+
+  </div> 
   </div> 
 </template>
 <script>
@@ -52,34 +55,6 @@ export default {
   },
   data () {
     return {
-      treeData: {
-        name: 'My Tree',
-        children: [
-          { name: 'Level 1 file' },
-          { name: 'Level 1 folder' },
-          {
-            name: 'Level 2 folder',
-            children: [
-              {
-                name: 'Level 3 folder',
-                children: [
-                  { name: 'Level 4 file 1' },
-                  { name: 'Level 4 file 2' }
-                ]
-              },
-              { name: 'Level 3 folder 3' },
-              { name: 'Level 3 folder 4' },
-              {
-                name: 'Level 4 folder 1',
-                children: [
-                  { name: 'Level 5 file 1' },
-                  { name: 'Level 5 file 2' }
-                ]
-              }
-            ]
-          }
-        ]
-      }
     }
   }
 }

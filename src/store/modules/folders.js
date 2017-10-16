@@ -9,6 +9,9 @@ const mutations = {
   FETCHFOLDERS(state, {results}) {
     state.all = results
     state.loading = false
+  },
+  UPDATEFOLDER(state, {folder, result}) {
+    folder = result
   }
 }
 
@@ -19,6 +22,9 @@ const actions = {
         commit('FETCHFOLDERS', {results})
       })
     })
+  },
+  updateCurrentFolder({commit}, {folder, result}) {
+    commit('UPDATEFOLDER', {folder, result})
   }
 }
 
