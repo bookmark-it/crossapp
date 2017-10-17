@@ -160,8 +160,6 @@
 
 }
 .dropdown-menu{
-  width:125px;
-  position: absolute;
-  top:-30px;
+  width:125px; 
 }
 </style>
