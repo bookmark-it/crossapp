@@ -21,7 +21,20 @@
         <ul class="nav navbar-nav navbar-right">
           <li v-if='displaySearchBar' class="topnav-searchbar-container"><input class="form-control topnav-searchbar" type="text" name=""></li>
           <li><a class="ti-search" @click="SearchBookmarks"></a></li>
-          <li><a class="ti-plus" @click="addBookmark"></a></li>
+          <li><a class="ti-plus" @click="addBookmark"></a>
+            <div class="dropdown" :class="{open:displayNewBookmarkInput}" >
+              <ul class="dropdown-menu" style="padding:5px 5px;width:375px;">
+                <li class="row" style="padding:0px 1px;margin:0;">
+                  <div class="col-xs-10" style="padding:0;margin:0;">
+                    <input class="form-control" type="text" placeholder="Http://www.new-bookmark-url.com/this-page-is-cool" name="" style="margin:2px 0px 4px 0px;padding:4px 4px;height:22px;font-size:12px;">
+                  </div>
+                  <div class="col-xs-2 text-center" style="padding:0;margin:0;">
+                    <button class="btn btn-primary" style="margin:0px 2px;padding:0px 4px;">Add</button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
 
            <drop-down :title="userNotificationsTitle" icon="ti-bell">
             <li v-for="notification in userNotifications" :key="notification.id">
@@ -71,7 +84,8 @@
       return {
         userNamee: this.$store.state.auth.userInformation,
         activeNotifications: false,
-        displaySearchBar: false
+        displaySearchBar: false,
+        displayNewBookmarkInput: false
       }
     },
     computed: {
@@ -109,7 +123,8 @@
         this.$sidebar.displaySidebar(false)
       },
       addBookmark () {
-        this.$emit('toggleAddBookmark')
+        // this.$emit('toggleAddBookmark')
+        this.displayNewBookmarkInput = !this.displayNewBookmarkInput
       },
       SearchBookmarks () {
         // this.$emit('toggleAddBookmark')
@@ -139,5 +154,14 @@
 }
 .navbar-toggle {
   float: left;
+}
+
+.dropdown{
+
+}
+.dropdown-menu{
+  width:125px;
+  position: absolute;
+  top:-30px;
 }
 </style>

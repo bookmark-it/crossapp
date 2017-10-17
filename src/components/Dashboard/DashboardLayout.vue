@@ -6,7 +6,6 @@
       <top-navbar v-on:toggleAddBookmark="toggleAddBookmark"></top-navbar>
       <bookmark-add :display="display"></bookmark-add>
       <dashboard-content @click.native="toggleSidebar" @sortBookmark=sortBookmark></dashboard-content>
-      <sorting-pane></sorting-pane>
       <content-footer></content-footer>
     </div>
     <validate-action></validate-action>
@@ -23,7 +22,7 @@
   import BookmarkAdd from '../BookmarkAdd.vue'
   import BookmarkShare from '../BookmarkShare.vue'
   import validateAction from '../Inputs/validateAction.vue'
-  import SortingPane from '../SortingPane.vue'
+  // import SortingPane from '../SortingPane.vue'
 
   export default {
     components: {
@@ -32,8 +31,7 @@
       DashboardContent,
       BookmarkAdd,
       BookmarkShare,
-      validateAction,
-      SortingPane
+      validateAction
     },
     data() {
       return {

@@ -10,7 +10,13 @@
       </div>  
         </div>
         <div class="col-xs-9">
-          <h2 class="title text-left">{{bookmark.title || "No title"}} </h2>
+          <h2 class="title text-left">
+            <span v-if="!editingTitles" @dblclick="editingTitles=!editingTitles"> {{bookmark.title || "No title"}}</span>
+            <textarea v-if="editingTitles"
+                      v-model="currentBookmark.title"
+                 @keyup.enter.stop = "editingTitles=false">      
+             </textarea>
+          </h2>
         </div>
       </div> 
   </div>
@@ -18,7 +24,8 @@
     
   <div class="content"> 
     <p class="description text-left">
-      {{bookmark.description || "No description"}}
+      <span v-if="!editingTitles" @dblclick="editingTitles=!editingTitles"> {{bookmark.description || "No description"}}</span>
+      <textarea v-if="editingTitles" v-model="currentBookmark.description" rows=3 placeholder="Enter description here" @keyup.enter = "editingTitles=false" style="width:100%;"></textarea>
     </p> 
     <p class="url-title-container ">
       <a :href="bookmark.url" target="_blank"><small>{{bookmark.url}}</small></a>
@@ -29,6 +36,7 @@
   <div class="footer">
       <div class="row"> 
         <div class="col-sm-12"> 
+          <span class="fa fa-save" v-if="editingTitles" @click="editingTitles=!editingTitles"></span>
           <span class="fa fa-fire" :class="{ 'bk-to-read': bookmark.toread }" @click="toggleToreadState"></span>
           <span class="fa fa-star" :class="{ 'bk-is-favorite': bookmark.favorite }" @click="toggleFavoriteState"></span>
           <span class="fa fa-at bk-share" @click="shareBookmark"></span>
@@ -72,8 +80,11 @@ export default {
   },
   data () {
     return {
-      newKeywordInput: '',
+      editingTitles: false,
+      newDescriptionInput: '',
+      newTitleInput: '',
       editingTags: false,
+      newKeywordInput: '',
       refreshingBookmark: false,
       liveDocumentIconClass: 'fa-folder'
     }
@@ -218,6 +229,22 @@ export default {
 }
 .bk-refresh:hover {
   color:#0084DE; 
+}
+
+input{ 
+  border:none;
+  background-color: rgba(0,0,0,0);
+}
+
+textarea{
+  border:none;
+  background-color: rgba(0,0,0,0);
+  resize: none;
+}
+textarea:focus{
+  border:none;
+  outline:none;
+  background-color: rgba(0,0,0,0);
 }
 </style>
 
