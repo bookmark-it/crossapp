@@ -14,6 +14,7 @@
             <span v-if="!editingTitles" @dblclick="editingTitles=!editingTitles"> {{bookmark.title || "No title"}}</span>
             <textarea v-if="editingTitles"
                       v-model="currentBookmark.title"
+                      placeholder="Enter title here" 
                  @keyup.enter.stop = "editingTitles=false">      
              </textarea>
           </h2>
@@ -237,9 +238,13 @@ input{
 }
 
 textarea{
+  padding:0;
   border:none;
   background-color: rgba(0,0,0,0);
   resize: none;
+}
+h2>textarea::-webkit-input-placeholder, h2>textarea::-webkit-moz-placeholder {
+  color:white;
 }
 textarea:focus{
   border:none;
