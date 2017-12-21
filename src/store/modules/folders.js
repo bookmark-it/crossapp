@@ -11,7 +11,12 @@ const mutations = {
     state.loading = false
   },
   UPDATEFOLDER(state, {folder, result}) {
+    console.log(folder)
+    console.log(state)
+    console.log(result)
     folder = result
+    folder['children_directories'] = ''
+    folder.children_directories = result.children_directories
   }
 }
 

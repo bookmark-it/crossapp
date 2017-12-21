@@ -15,7 +15,7 @@
             <textarea v-if="editingTitles"
                       v-model="currentBookmark.title"
                       placeholder="Enter title here" 
-                 @keyup.enter.stop = "editingTitles=false">      
+                 @keyup.enter.stop = "editingTitles=editingTitles">      
              </textarea>
           </h2>
         </div>
@@ -26,7 +26,7 @@
   <div class="content"> 
     <p class="description text-left">
       <span v-if="!editingTitles" @dblclick="editingTitles=!editingTitles"> {{bookmark.description || "No description"}}</span>
-      <textarea v-if="editingTitles" v-model="currentBookmark.description" rows=3 placeholder="Enter description here" @keyup.enter = "editingTitles=false" style="width:100%;"></textarea>
+      <textarea v-if="editingTitles" v-model="currentBookmark.description" rows=3 placeholder="Enter description here" @keyup.enter = "editingTitles=editingTitles" style="width:100%;"></textarea>
     </p> 
     <p class="url-title-container ">
       <a :href="bookmark.url" target="_blank"><small>{{bookmark.url}}</small></a>
