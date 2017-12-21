@@ -15,23 +15,10 @@
 
       </slot>
       <ul :class="navClasses">
-        <!--By default vue-router adds an active class to each route link. This way the links are colored when clicked-->
-        <router-link to="/app/home" tag="li" ref="Dashboard">
-          <a>
-            <i class="ti-panel"></i>
-            <p>Dashboard</p>
-          </a>
-        </router-link>
         <router-link to="/app/bookmarks" tag="li" ref="Bookmark List">
           <a>
             <i class="ti-bookmark"></i>
-            <p>Bookmark List</p>
-          </a>
-        </router-link>
-        <router-link to="/app/categories" tag="li" ref="Categories">
-          <a>
-            <i class="ti-view-list-alt"></i>
-            <p>Categories</p>
+            <p>All Items</p>
           </a>
         </router-link>
         <router-link to="/app/folders" tag="li" ref="Table List">
