@@ -1,5 +1,5 @@
 <template>
- 
+
 
 
 <div>
@@ -11,7 +11,7 @@
       {{model.name}}
       <span v-if="isFolder"> [{{open ? '-' : '+'}}]</span>
     </div>
-    <ul v-show="open" v-if="isFolder"> 
+    <ul v-show="open" v-if="isFolder">
       <li class="add" @click="addChild">+</li>
       <folder-tree-view
         class="item"
@@ -34,7 +34,8 @@
 </template>
 
 <script>
-// import item from './FolderTreeView.vue'
+import Vue from 'vue'
+
 export default {
   beforeCreate: function () {
     this.$options.components.FolderTreeView = require('./FolderTreeView.vue')
@@ -105,7 +106,7 @@ export default {
 }
 </script>
 
-<style scoped> 
+<style scoped>
 
 body {
   font-family: Menlo, Consolas, monospace;

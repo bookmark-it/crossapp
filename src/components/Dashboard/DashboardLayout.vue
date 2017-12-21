@@ -3,8 +3,7 @@
     <side-bar type="sidebar" :sidebar-links="$sidebar.sidebarLinks">
     </side-bar>
     <div class="main-panel">
-      <top-navbar v-on:toggleAddBookmark="toggleAddBookmark"></top-navbar>
-      <bookmark-add :display="display"></bookmark-add>
+      <top-navbar></top-navbar>
       <dashboard-content @click.native="toggleSidebar" @sortBookmark=sortBookmark></dashboard-content>
       <content-footer></content-footer>
     </div>
@@ -55,19 +54,13 @@
         this.display = !this.display
       },
       sortBookmark (bookmark) {
-        console.log('Lets sort this bookmark')
         this.sortingModeActivated = !this.sortingModeActivated
-        this.$emit('sortBookmark', this.bookmark)
       }
     },
     created: function() {
       this.$store.dispatch('fetchUserInformation')
       this.$store.dispatch('fetchBookmarks')
-      this.$store.dispatch('fetchCategories')
       this.$store.dispatch('fetchFolders')
-      this.$store.dispatch('fetchWebsites')
-      this.$store.dispatch('fetchFriends')
-      this.$store.dispatch('fetchNotifications')
     }
   }
 
