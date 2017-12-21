@@ -1,42 +1,14 @@
 <template>
-
-<div class="row">
-  <div class="col-md-12" style="margin-bottom: 30px;">
-
-    <div class="row">
-      <div class="col-sm-1" style="margin:0;padding:0;">
-          <select class="form-control" v-model="searchPrimaryFilter">
-            <option></option>
-            <option>To read</option>
-            <option>Favorites</option>
-          </select>
-      </div>
-      <div class="col-sm-8">
-          <input v-model="bkitSeachQuery" debounce="500" class="form-control mr-sm-6" type="text" placeholder="Search or create bookmark" >
-      </div>
-      <div class="col-sm-1">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="fa fa-search"></span></button>
-      </div>
-      <div class="col-sm-2">
-          <span class="fa toggle-bk-view" v-bind:class="{ 'fa-list': bookmarkCardView, 'fa-th': !bookmarkCardView }" @click="toggleBookmarkView"></span>
-          <span class="fa fa-pencil toggle-bk-view" @click='sortingModeActivated = !sortingModeActivated'></span>
-      </div>
-    </div>
-
-  </div>
   <div class="col-md-12 bookmarks-list">
     <spinner :loading="loading" :color="'#3091B2'"></spinner>
     <div class="row" v-if="!loading">
       <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="(bookmark, index) in bookmarks" :key="bookmark.id">
         <bookmark-card
-          :bookmark="bookmark" 
-          v-bind:style="{ 'z-index': 9999999-index }"
-          @sortBookmark=sortBookmark> 
+          :bookmark="bookmark"
+          v-bind:style="{ 'z-index': 9999999-index }">
         </bookmark-card>
       </div>
     </div>
-
-
   </div>
 </div>
 </template>
@@ -47,15 +19,6 @@ import BookmarkCard from '../components/BookmarkCard.vue'
 export default {
   components: {
     BookmarkCard
-  },
-  methods: {
-    sortBookmark (bookmark) {
-      console.log('Lets sort this bookmark')
-      this.sortingModeActivated = !this.sortingModeActivated
-    },
-    toggleBookmarkView () {
-      this.bookmarkCardView = !this.bookmarkCardView
-    }
   },
   data () {
     return {
