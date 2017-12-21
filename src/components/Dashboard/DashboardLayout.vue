@@ -9,7 +9,6 @@
     </div>
     <validate-action></validate-action>
     <bookmark-share ref="bkshare"></bookmark-share>
-    <folder-create ref="createdir"></folder-create>
   </div>
 </template>
 <style lang="scss">
@@ -20,7 +19,6 @@
   import ContentFooter from './ContentFooter.vue'
   import DashboardContent from './Content.vue'
   import BookmarkAdd from '../BookmarkAdd.vue'
-  import FolderCreate from '../FolderCreate.vue'
   import BookmarkShare from '../BookmarkShare.vue'
   import validateAction from '../Inputs/validateAction.vue'
   // import SortingPane from '../SortingPane.vue'
@@ -31,7 +29,6 @@
       ContentFooter,
       DashboardContent,
       BookmarkAdd,
-      FolderCreate,
       BookmarkShare,
       validateAction
     },
