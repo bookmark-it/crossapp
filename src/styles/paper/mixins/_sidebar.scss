@@ -51,6 +51,11 @@
 @mixin sidebar-active-color($font-color) {
   .nav {
     li {
+      a.active {
+        color: $font-color;
+        opacity: 1;
+      }
+
       &.active > a {
         color: $font-color;
         opacity: 1;
