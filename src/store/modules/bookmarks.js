@@ -13,7 +13,7 @@ const mutations = {
     state.loading = false
   },
   ADDBOOKMARK(state, {result}) {
-    state.all.push(result)
+    state.search.push(result)
     state.loading = false
   },
   ADDBOOKMARKKEYWORD(state, { bookmark, newKeywordInput }) {
@@ -25,31 +25,31 @@ const mutations = {
     bookmark.keywords.splice(index, 1)
   },
   EDITBOOKMARK(state, {result}) {
-    let index = state.all.indexOf(result)
-    state.all.splice(index, 1, result)
-    // state.all[result.id] = result
-    for (var i in state.all) {
-      if (state.all[i].id === result.id) {
+    let index = state.search.indexOf(result)
+    state.search.splice(index, 1, result)
+    // state.search[result.id] = result
+    for (var i in state.search) {
+      if (state.search[i].id === result.id) {
         console.log(i)
-        // state.all[i] = result
+        // state.search[i] = result
         break // Stop this loop, we found it!
       }
     }
-    console.log(state.all[i])
+    console.log(state.search[i])
     state.loading = false
   },
   DELETEBOOKMARK(state, {bookmark}) {
-    let index = state.all.indexOf(bookmark)
-    state.all.splice(index, 1)
+    let index = state.search.indexOf(bookmark)
+    state.search.splice(index, 1)
     state.loading = false
   },
   TOGGLETOREADBOOKMARK(state, {bookmark}) {
-    let index = state.all.indexOf(bookmark)
-    state.all[index].toread = !state.all[index].toread
+    let index = state.search.indexOf(bookmark)
+    state.search[index].toread = !state.search[index].toread
   },
   TOGGLEFAVORITEBOOKMARK(state, {bookmark}) {
-    let index = state.all.indexOf(bookmark)
-    state.all[index].favorite = !state.all[index].favorite
+    let index = state.search.indexOf(bookmark)
+    state.search[index].favorite = !state.search[index].favorite
   },
   LOGOUT(state) {
     state = initialState
@@ -61,7 +61,7 @@ const actions = {
     commit('SEARCHINGBOOKMARKS')
     bookmarks.search(params).then(res => {
       res.json().then(results => {
-        commit('SEARCHRESULTS', {results})
+        commit('SEARCHRESULTS', {results: results.hits})
       })
     })
   },

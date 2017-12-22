@@ -21,6 +21,11 @@ export default {
     BookmarkCard
   },
   props: ['page'],
+  mounted() {
+    const params = {}
+    params[this.page] = true
+    this.$store.dispatch('searchBookmarks', params)
+  },
   data () {
     return {
       bkitSeachQuery: '',

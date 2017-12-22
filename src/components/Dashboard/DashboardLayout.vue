@@ -56,7 +56,6 @@
     },
     created: function() {
       this.$store.dispatch('fetchUserInformation')
-      this.$store.dispatch('searchBookmarks')
       this.$store.dispatch('fetchFolders')
     }
   }

@@ -63,7 +63,7 @@ export default new Router({
           path: 'favorites',
           name: 'favorites',
           component: BookmarksList,
-          props: { page: 'favorites' }
+          props: { page: 'favorite' }
         }, {
           path: 'toread',
           name: 'toread',

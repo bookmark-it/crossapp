@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 export default {
   search(params) {
-    return Vue.http.get('bookmarks', {params})
+    return Vue.http.get('search/', {params})
   },
   fetchAll() {
     return Vue.http.get('bookmarks')

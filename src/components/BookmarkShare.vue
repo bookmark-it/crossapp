@@ -92,14 +92,8 @@
 
 <script>
 export default {
-  method: {
-    updateCurrentBk () {
-      console.log('Share computed')
-    }
-  },
   computed: {
     friendList () {
-      console.log(this.$store.state.friends.all)
       return this.$store.state.friends.all
     }
   },
