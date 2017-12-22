@@ -1,6 +1,6 @@
 <template>
 
-<div class='col-md-7 col-lg-8'> 
+<div class='col-md-7 col-lg-8'>
   <div class="card user-friends-page">
 
 
@@ -68,7 +68,7 @@
       <div class="col-sm-8">
 
           <table>
-            
+
           <tr v-for="folder in uploadErrors">
             <td>
               {{ folder[0] }}
@@ -137,14 +137,8 @@
       save(formData) {
         // upload data to the server
         this.currentStatus = STATUS_SAVING
-        console.log('Upload files here')
-        console.log(formData)
         this.$http.post('me/upload/', formData)
         .then(x => {
-          console.log('x')
-          console.log(x)
-          console.log('x.data')
-          console.log(x.data)
           this.uploadedBookmarksResults = x.data.imported_bookmarks
           this.uploadedFoldersResults = x.data.imported_folders
           this.uploadErrors = x.data.import_errors

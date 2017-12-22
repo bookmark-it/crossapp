@@ -54,28 +54,12 @@ export default {
         this.model.children_directories.length
     },
     currentFolder: function () {
-      console.log('this.model')
-      console.log(this.model)
       return this.model
     }
   },
   created () {
-    // console.log('created')
-    // console.log(this.model.id)
-    // console.log(this.model)
     this.$http.get('folders/' + this.model.id).then(res => {
-      // console.log(this.model.id)
-      // console.log(res.body)
-      // this.model = res.body
-      // a here :
       this.$store.dispatch('updateCurrentFolder', { 'folder': this.model, 'result': res.body })
-      // console.log(this.model.name)
-      // console.log(res.body.name)
-      // console.log(res.body.children_directories)
-      // a
-      // this.$store.dispatch('updateBookmarkKeywords', { 'bookmark': this.bookmark, 'newKeywordInput': { 'name': this.newKeywordInput } }).then(resp => {
-      //   this.newKeywordInput = ''
-      // })
     })
   },
   methods: {
@@ -95,12 +79,6 @@ export default {
       this.model.children.push({
         name: 'new stuff'
       })
-    }
-  },
-  watch: {
-    model: function () {
-      console.log('edited model')
-      console.log(this.model.children_directories)
     }
   }
 }

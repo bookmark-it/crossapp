@@ -1,11 +1,11 @@
 <template>
 <div>
 
-<div class="row"> 
-  <div class="col-sm-12"> 
+<div class="row">
+  <div class="col-sm-12">
       <h1>{{ folder.name }}</h1>
       <p><small>{{ folderCreationDate }}</small></p>
-  </div> 
+  </div>
 </div>
 
 
@@ -26,7 +26,7 @@
     </div>
 
 
-<div class="row"> 
+<div class="row">
   <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 
     <div class="row" style="max-height: 436px;overflow: scroll;">
@@ -35,12 +35,12 @@
           :bookmark="bookmark">
         </bookmark-card>
       </div>
-    </div> 
-  </div> 
+    </div>
+  </div>
   <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
     <div class="card">
-      <h3>General information</h3> 
-      <div class="row text-center">       
+      <h3>General information</h3>
+      <div class="row text-center">
         <div class="col-xs-12 col-sm-6 col-md-6">
           <button class="btn btn-success">Go Public ! </button>
         </div>
@@ -54,23 +54,23 @@
             :folder="folder">
           </folder-card>
         </div>
-      </div>  
+      </div>
 
-    </div> 
-
-
+    </div>
 
 
-  </div> 
-</div> 
-       
+
+
+  </div>
+</div>
+
 
 
 
 
 </div>
 
- 
+
 </template>
 <script>
   import BookmarkCard from '../components/BookmarkCard.vue'
@@ -94,15 +94,10 @@ import FolderCard from '../components/FolderCard.vue'
       this.$http.get('folders/' + this.$route.params.id).then(res => {
         res.json().then(result => {
           this.folder = result
-          // console.log(this.folder)
         })
       })
     },
     computed: {
-      changeRouteDetect () {
-        console.log(this.$route.params.id)
-        console.log('yooo')
-      },
       folderDirectBookmarks () {
         return this.folder.bookmarks
       },
@@ -116,7 +111,6 @@ import FolderCard from '../components/FolderCard.vue'
     },
     watch: {
       '$route' () {
-        console.log(this.$route.params.id)
         this.folder = Object
         this.$http.get('folders/' + this.$route.params.id).then(res => {
           res.json().then(result => {
@@ -137,7 +131,7 @@ import FolderCard from '../components/FolderCard.vue'
 </script>
 
 <style scoped>
-  
+
 h1 {
   margin:0;
 }

@@ -1,6 +1,6 @@
 <template>
 <div>
-  
+
     sorting pane y'all
 </div>
 </template>
@@ -14,16 +14,10 @@
 <script>
 export default {
   props: ['selectedBookmark'],
-  method: {
-    updateCurrentBk () {
-      console.log('Share computed')
-    }
-  },
   computed: {
   },
   watch: {
     selectedBookmark () {
-      console.log('Updated selectedBookmark')
       this.shareObject.url = this.selectedBookmark.url
       this.shareObject.title = this.selectedBookmark.title
     }
@@ -64,7 +58,7 @@ export default {
 }
 </script>
 
-<style scoped> 
+<style scoped>
 h4{
   margin: 10px 10px;
 }

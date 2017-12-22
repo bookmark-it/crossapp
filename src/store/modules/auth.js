@@ -17,10 +17,7 @@ const mutations = {
     state.error = ''
   },
   FETCHUSERINFORMATION(state, {result}) {
-    console.log('Fetch user information store result')
-    console.log(result)
     state.userInformation = result
-    // console.log(state.userInformation)
   },
   LOGOUT(state) {
     state.loggedIn = false
@@ -53,7 +50,6 @@ const actions = {
   fetchUserInformation({commit}) {
     auth.fetchUserInfo().then(res => {
       res.json().then(result => {
-        console.log(result)
         commit('FETCHUSERINFORMATION', {result})
       })
     })

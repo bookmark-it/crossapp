@@ -16,7 +16,7 @@
         <div class="container">
           <div class="row">
 
-        
+
 
 
         <div class="col-lg-6 col-md-6 col-sm-8 col-lg-offset-3 col-md-offset-3 col-sm-offset-2">
@@ -79,7 +79,7 @@
 </div>
 
 
-        
+
 
 
 
@@ -88,7 +88,7 @@
         </div>
       </div>
 
-    </div> 
+    </div>
 
 </div>
 
@@ -107,23 +107,14 @@
         registerForm: {
           username: '',
           password: ''
-          // displayname: '',
-          // email: '',
-          // city: '',
-          // country: '',
-          // postalcode: ''
         }
       }
     },
     methods: {
       registerForBookmarks () {
-        console.log(this.registerForm)
         if (this.registerForm.username !== '' && this.registerForm.username !== '') {
           this.$http.post('auth/register/', this.registerForm).then(res => {
             this.$router.push('/')
-          }, error => {
-            console.log('error')
-            console.log(error)
           })
         }
       }

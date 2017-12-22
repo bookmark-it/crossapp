@@ -143,7 +143,6 @@ export default {
       this.shareObject.to.splice(index, 1)
     },
     beforeOpen (event) {
-      console.log(event.params.bookmark)
       this.shareObject.url = event.params.bookmark.url
       this.shareObject.title = event.params.bookmark.title
     },
