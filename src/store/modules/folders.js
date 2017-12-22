@@ -20,8 +20,8 @@ const mutations = {
 const actions = {
   fetchFolders({commit}) {
     folders.fetchAll().then(res => {
-      res.json().then(results => {
-        commit('FETCHFOLDERS', {results})
+      res.json().then((response) => {
+        commit('FETCHFOLDERS', response)
       })
     })
   },

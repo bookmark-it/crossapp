@@ -5,14 +5,16 @@ const initialState = {
   all: [],
   favorite: [],
   toread: [],
+  next: false,
   loading: false
 }
 const mutations = {
   SEARCHINGBOOKMARKS(state) {
     state.loading = true
   },
-  SEARCHRESULTS(state, {page, results}) {
-    state[page] = results
+  SEARCHRESULTS(state, {pageType, response, push}) {
+    state[pageType] = push ? state[pageType].concat(response.results) : response.results
+    state.next = response.next
     state.loading = false
   },
   UPDATEBOOKMARK(state, bookmark) {
@@ -35,18 +37,20 @@ const mutations = {
 }
 
 const actions = {
-  searchBookmarks({commit}, {page, query}) {
-    console.log('page', page)
-    console.log('query', query)
-    commit('SEARCHINGBOOKMARKS')
+  searchBookmarks({commit}, {pageType, push, query, page}) {
+    if (!push) {
+      commit('SEARCHINGBOOKMARKS')
+    }
     const params = {}
-    params[page] = true
+    params[pageType] = true
     if (query) {
       params.query = query
     }
+    params.page = page || 1
+    console.log('pageType', pageType)
     bookmarks.search(params).then(res => {
-      res.json().then(results => {
-        commit('SEARCHRESULTS', {page, results: results.hits})
+      res.json().then((response) => {
+        commit('SEARCHRESULTS', {pageType, response, push})
       })
     })
   },

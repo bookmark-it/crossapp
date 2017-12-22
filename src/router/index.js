@@ -58,17 +58,17 @@ export default new Router({
           path: 'bookmarks',
           name: 'bookmarks',
           component: BookmarksList,
-          props: { page: 'all' }
+          props: { pageType: 'all' }
         }, {
           path: 'favorites',
           name: 'favorites',
           component: BookmarksList,
-          props: { page: 'favorite' }
+          props: { pageType: 'favorite' }
         }, {
           path: 'toread',
           name: 'toread',
           component: BookmarksList,
-          props: { page: 'toread' }
+          props: { pageType: 'toread' }
         }, {
           path: 'folders',
           name: 'folders',

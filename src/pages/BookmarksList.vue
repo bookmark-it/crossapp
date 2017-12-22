@@ -10,6 +10,9 @@
         </bookmark-card>
       </div>
     </div>
+    <p v-if="next" @click="loadmore">
+      loadMore
+    </p>
   </div>
 </div>
 </template>
@@ -18,19 +21,28 @@
 import BookmarkCard from '../components/BookmarkCard.vue'
 
 export default {
+  data() {
+    return {
+      params: {
+        query: '',
+        pageType: this.pageType,
+        page: 1
+      }
+    }
+  },
   components: {
     BookmarkCard
   },
-  props: ['page'],
+  props: ['pageType'],
   mounted() {
-    this.$store.dispatch('searchBookmarks', {
-      page: this.page,
-      query: this.$route.query.query
-    })
+    this.$store.dispatch('searchBookmarks', this.params)
   },
   computed: {
+    next() {
+      return this.$store.state.bookmarks.next
+    },
     bookmarks() {
-      return this.$store.state.bookmarks[this.page]
+      return this.$store.state.bookmarks[this.pageType]
     },
     loading() {
       return this.$store.state.bookmarks.loading
@@ -44,17 +56,24 @@ export default {
     },
     updateBookmark(bookmark) {
       this.$store.dispatch('updateBookmark', bookmark)
+    },
+    loadmore() {
+      this.params.page = (this.params.page || 1) + 1
+      this.$store.dispatch('searchBookmarks', {
+        ...this.params,
+        push: true
+      })
     }
   },
   watch: {
-    page: function(newVal, oldVal) {
-      this.$store.dispatch('searchBookmarks', {page: newVal})
+    pageType: function(newVal, oldVal) {
+      this.params.pageType = newVal
+      this.$store.dispatch('searchBookmarks', this.params)
     },
     '$route' (to, from) {
-      this.$store.dispatch('searchBookmarks', {
-        page: this.page,
-        query: to.query.query
-      })
+      this.params.query = to.query.query
+      this.params.page = 1
+      this.$store.dispatch('searchBookmarks', this.params)
     }
   }
 }
