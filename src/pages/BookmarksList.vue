@@ -5,7 +5,8 @@
       <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="(bookmark, index) in bookmarks" :key="bookmark.id">
         <bookmark-card
           :bookmark="bookmark"
-          v-bind:style="{ 'z-index': 9999999-index }">
+          v-on:update="updateBookmark"
+          v-on:delete="deleteBookmark">
         </bookmark-card>
       </div>
     </div>
@@ -41,6 +42,16 @@ export default {
     },
     loading() {
       return this.$store.state.bookmarks.loading
+    }
+  },
+  methods: {
+    deleteBookmark() {
+      this.$store.dispatch('deleteBookmark', {
+        bookmark: this.bookmark
+      })
+    },
+    updateBookmark(bookmark) {
+      this.$store.dispatch('updateBookmark', bookmark)
     }
   },
   watch: {

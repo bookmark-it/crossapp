@@ -18,17 +18,14 @@
   import TopNavbar from './TopNavbar.vue'
   import ContentFooter from './ContentFooter.vue'
   import DashboardContent from './Content.vue'
-  import BookmarkAdd from '../BookmarkAdd.vue'
   import BookmarkShare from '../BookmarkShare.vue'
   import validateAction from '../Inputs/validateAction.vue'
-  // import SortingPane from '../SortingPane.vue'
 
   export default {
     components: {
       TopNavbar,
       ContentFooter,
       DashboardContent,
-      BookmarkAdd,
       BookmarkShare,
       validateAction
     },
