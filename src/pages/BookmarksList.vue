@@ -1,18 +1,20 @@
 <template>
-  <div class="col-md-12 bookmarks-list">
-    <spinner :loading="loading" :color="'#3091B2'"></spinner>
-    <div class="row" v-if="!loading">
-      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="(bookmark, index) in bookmarks" :key="bookmark.id">
-        <bookmark-card
-          :bookmark="bookmark"
-          v-on:update="updateBookmark"
-          v-on:delete="deleteBookmark">
-        </bookmark-card>
+  <div v-infinite-scroll="loadmore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+    <div class="col-md-12 bookmarks-list">
+      <spinner :loading="loading" :color="'#3091B2'"></spinner>
+      <div class="row" v-if="!loading">
+        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="(bookmark, index) in bookmarks" :key="bookmark.id">
+          <bookmark-card
+            :bookmark="bookmark"
+            v-on:update="updateBookmark"
+            v-on:delete="deleteBookmark">
+          </bookmark-card>
+        </div>
       </div>
+      <p v-if="next" @click="loadmore">
+        loadMore
+      </p>
     </div>
-    <p v-if="next" @click="loadmore">
-      loadMore
-    </p>
   </div>
 </div>
 </template>

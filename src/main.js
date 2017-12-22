@@ -3,6 +3,7 @@ import {sync} from 'vuex-router-sync'
 import vClickOutside from 'v-click-outside'
 import VueResource from 'vue-resource'
 import VModal from 'vue-js-modal'
+import infiniteScroll from 'vue-infinite-scroll'
 
 // Plugins
 import GlobalComponents from './globalComponents'
@@ -31,6 +32,7 @@ Vue.use(GlobalComponents)
 Vue.use(vClickOutside)
 Vue.use(SideBar)
 Vue.use(VModal, { dialog: true })
+Vue.use(infiniteScroll)
 
 // global libraries setup
 Object.defineProperty(Vue.prototype, '$Chartist', {
