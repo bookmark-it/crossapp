@@ -35,10 +35,15 @@ const mutations = {
 }
 
 const actions = {
-  searchBookmarks({commit}, page) {
+  searchBookmarks({commit}, {page, query}) {
+    console.log('page', page)
+    console.log('query', query)
     commit('SEARCHINGBOOKMARKS')
     const params = {}
     params[page] = true
+    if (query) {
+      params.query = query
+    }
     bookmarks.search(params).then(res => {
       res.json().then(results => {
         commit('SEARCHRESULTS', {page, results: results.hits})

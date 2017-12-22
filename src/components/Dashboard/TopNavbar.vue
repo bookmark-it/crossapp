@@ -20,7 +20,7 @@
       <div class="navbar-right-menu">
         <ul class="nav navbar-nav navbar-right">
           <li class="topnav-searchbar-container">
-            <input class="form-control topnav-searchbar" type="text" name="">
+            <input v-model="query" class="form-control topnav-searchbar" type="text" name="" v-on:keyup.enter="submit">
           </li>
           <li>
             <a class="btn-rotate" @click="logout">
@@ -36,30 +36,43 @@
 
 <script>
   export default {
+    data() {
+      return {
+        query: this.$route.query.query
+      }
+    },
     computed: {
-      routeName () {
+      routeName() {
         const {name} = this.$route
         return this.capitalizeFirstLetter(name)
       },
-      userName () {
+      userName() {
         return this.$store.state.auth.userInformation ? this.$store.state.auth.userInformation[0]
         : { username: 'Undefined' }
       }
     },
     methods: {
-      capitalizeFirstLetter (string) {
+      capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1)
       },
-      toggleSidebar () {
+      toggleSidebar() {
         this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)
       },
-      hideSidebar () {
+      hideSidebar() {
         this.$sidebar.displaySidebar(false)
       },
-      logout () {
+      logout() {
         this.$store.dispatch('logout', {
           $router: this.$router
         })
+      },
+      submit() {
+        this.$router.push({name: 'bookmarks', query: {query: this.query}})
+      }
+    },
+    watch: {
+      '$route' (to, from) {
+        this.query = to.query.query || ''
       }
     }
   }

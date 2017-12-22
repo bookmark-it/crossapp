@@ -23,16 +23,10 @@ export default {
   },
   props: ['page'],
   mounted() {
-    this.$store.dispatch('searchBookmarks', this.page)
-  },
-  data () {
-    return {
-      bkitSeachQuery: '',
-      bookmarkCardView: true,
-      sortingModeActivated: false,
-      bookmarksList: [],
-      searchPrimaryFilter: ''
-    }
+    this.$store.dispatch('searchBookmarks', {
+      page: this.page,
+      query: this.$route.query.query
+    })
   },
   computed: {
     bookmarks() {
@@ -54,7 +48,13 @@ export default {
   },
   watch: {
     page: function(newVal, oldVal) {
-      this.$store.dispatch('searchBookmarks', newVal)
+      this.$store.dispatch('searchBookmarks', {page: newVal})
+    },
+    '$route' (to, from) {
+      this.$store.dispatch('searchBookmarks', {
+        page: this.page,
+        query: to.query.query
+      })
     }
   }
 }
