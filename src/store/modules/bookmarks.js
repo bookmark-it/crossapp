@@ -1,15 +1,15 @@
 import bookmarks from '../../api/bookmarks'
 
 const initialState = {
-  all: [],
+  search: [],
   loading: false
 }
 const mutations = {
-  REQUESTBOOKMARKS(state) {
+  SEARCHINGBOOKMARKS(state) {
     state.loading = true
   },
-  FETCHBOOKMARKS(state, {results}) {
-    state.all = results
+  SEARCHRESULTS(state, {results}) {
+    state.search = results
     state.loading = false
   },
   ADDBOOKMARK(state, {result}) {
@@ -57,11 +57,11 @@ const mutations = {
 }
 
 const actions = {
-  fetchBookmarks({commit}) {
-    commit('REQUESTBOOKMARKS')
-    bookmarks.fetchAll().then(res => {
+  searchBookmarks({commit}, params) {
+    commit('SEARCHINGBOOKMARKS')
+    bookmarks.search(params).then(res => {
       res.json().then(results => {
-        commit('FETCHBOOKMARKS', {results})
+        commit('SEARCHRESULTS', {results})
       })
     })
   },

@@ -20,6 +20,7 @@ export default {
   components: {
     BookmarkCard
   },
+  props: ['page'],
   data () {
     return {
       bkitSeachQuery: '',
@@ -31,24 +32,17 @@ export default {
   },
   computed: {
     bookmarks() {
-      var searchQueryResults = this.$store.state.bookmarks.all
-      if (this.searchPrimaryFilter === 'To read') {
-        searchQueryResults = searchQueryResults.filter((item) => {
-          return item.toread === true
-        })
-      } else if (this.searchPrimaryFilter === 'Favorites') {
-        searchQueryResults = searchQueryResults.filter((item) => {
-          return item.favorite === true
-        })
-      }
-      return this.bkitSeachQuery ? searchQueryResults.filter((item) => {
-        return item.title.toLowerCase().includes(this.bkitSeachQuery.toLowerCase()) ||
-          item.url.toLowerCase().includes(this.bkitSeachQuery.toLowerCase()) ||
-          item.description.toLowerCase().includes(this.bkitSeachQuery.toLowerCase())
-      }) : searchQueryResults
+      return this.$store.state.bookmarks.search
     },
     loading() {
       return this.$store.state.bookmarks.loading
+    }
+  },
+  watch: {
+    page: function(newVal, oldVal) {
+      const params = {}
+      params[newVal] = true
+      this.$store.dispatch('searchBookmarks', params)
     }
   }
 }

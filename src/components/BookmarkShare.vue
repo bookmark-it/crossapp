@@ -10,13 +10,13 @@
           <div class="col-sm-10">
             <h4>{{ shareObject.title || 'This bookmark has no title' }}</h4>
             <h5 style="overflow:hidden;">{{ shareObject.url }}</h5>
-          </div> 
+          </div>
           <div class="col-sm-2 text-center" style="padding-top: 10px;float:right;">
             <button class="btn btn-danger" @click="closeModal"><span class="ti-close"></span></button>
-          </div> 
+          </div>
         </div>
-          
-        
+
+
         <hr>
 
         <div class="row">
@@ -35,7 +35,7 @@
                 </button>
               </p>
             </form>
-          </div> 
+          </div>
 
           <div class="col-sm-6">
             <h5>Email</h5>
@@ -51,7 +51,7 @@
                 </button>
               </p>
             </form>
-          </div> 
+          </div>
 
         </div>
 
@@ -65,16 +65,16 @@
           <div class="col-sm-12">
             <h5>Add a message:</h5>
             <textarea v-model="destination.message" rows=4 class="form-control mr-sm-6" style="width:100%;margin-left:15px;margin-right:25px;"></textarea>
-          </div> 
+          </div>
         </div>
 
         <div class="row text-center" style="padding: 15px 0px 15px 0px;">
           <div class="col-sm-4 col-sm-offset-2">
             <button class="btn btn-warning" @click="closeModal">Cancel</button>
-          </div> 
+          </div>
           <div class="col-sm-4">
             <button class="btn btn-success" @click="shareBookmark">Send</button>
-          </div> 
+          </div>
         </div>
 
       </div>
@@ -170,7 +170,7 @@ export default {
 }
 </script>
 
-<style scoped> 
+<style scoped>
 
 hr {
   margin-top: 10px;

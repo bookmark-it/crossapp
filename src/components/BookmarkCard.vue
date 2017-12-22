@@ -7,27 +7,27 @@
         <div class="col-xs-2">
       <div class="row">
           <img class="bk-favi-image" :src="bookmark.favicon_url" alt="...">
-      </div>  
+      </div>
         </div>
         <div class="col-xs-9">
           <h2 class="title text-left">
             <span v-if="!editingTitles" @dblclick="editingTitles=!editingTitles"> {{bookmark.title || "No title"}}</span>
             <textarea v-if="editingTitles"
                       v-model="currentBookmark.title"
-                      placeholder="Enter title here" 
-                 @keyup.enter.stop = "editingTitles=editingTitles">      
+                      placeholder="Enter title here"
+                 @keyup.enter.stop = "editingTitles=editingTitles">
              </textarea>
           </h2>
         </div>
-      </div> 
+      </div>
   </div>
   </div>
-    
-  <div class="content"> 
+
+  <div class="content">
     <p class="description text-left">
       <span v-if="!editingTitles" @dblclick="editingTitles=!editingTitles"> {{bookmark.description || "No description"}}</span>
       <textarea v-if="editingTitles" v-model="currentBookmark.description" rows=3 placeholder="Enter description here" @keyup.enter = "editingTitles=editingTitles" style="width:100%;"></textarea>
-    </p> 
+    </p>
     <p class="url-title-container ">
       <a :href="bookmark.url" target="_blank"><small>{{bookmark.url}}</small></a>
     </p>
@@ -35,22 +35,22 @@
 
 
   <div class="footer">
-      <div class="row"> 
-        <div class="col-sm-12"> 
+      <div class="row">
+        <div class="col-sm-12">
           <span class="fa fa-save" v-if="editingTitles" @click="editingTitles=!editingTitles"></span>
           <span class="fa fa-fire" :class="{ 'bk-to-read': bookmark.toread }" @click="toggleToreadState"></span>
           <span class="fa fa-star" :class="{ 'bk-is-favorite': bookmark.favorite }" @click="toggleFavoriteState"></span>
           <span class="fa fa-at bk-share" @click="shareBookmark"></span>
           <span class="fa fa-refresh bk-refresh" :class="{'fa-spin': refreshingBookmark}" @click="refreshBookmark"></span>
-          <span class="fa fa-tags" @click="editingTags = !editingTags"></span>      
+          <span class="fa fa-tags" @click="editingTags = !editingTags"></span>
           <div class="dropdown" :class="{open:editingTags}" >
             <ul class="dropdown-menu" style="padding:5px 5px;width:180px;">
               <li>
                 <input @keydown.enter="addKeyword" v-model="newKeywordInput" class="form-control" type="text" placeholder="New tag" name="" style="margin:2px 0px 4px 0px;padding:4px 4px;height:22px;font-size:12px;">
               </li>
-              <li>               
+              <li>
                 <button class="btn btn-info" v-for="word in bookmark.keywords" :key="word.id" style="margin:2px;padding:1px 4px;float:left;">
-                  {{ word.name }} 
+                  {{ word.name }}
                   <span @click="removeKeyword(word)">x</span>
                 </button>
               </li>
@@ -58,9 +58,9 @@
           </div>
           <span class="fa" :class="liveDocumentIconClass" @click="sortBookmark" v-on:mouseleave="closeFolderIconClass" v-on:mouseover="openFolderIconClass"></span>
           <span class="fa fa-trash-o bk-delete" @click="deleteBookmark"></span>
-        </div> 
-        </div> 
-      </div> 
+        </div>
+        </div>
+      </div>
   </div>
 </div>
 </template>
@@ -75,7 +75,6 @@ export default {
       return this.bookmark.toread
     },
     currentBookmark () {
-      console.log(this.bookmark)
       return this.bookmark
     }
   },
@@ -118,7 +117,6 @@ export default {
       this.refreshingBookmark = true
       this.$http.get('bookmarks/' + this.bookmark.id).then(response => {
         this.refreshingBookmark = false
-        console.log(response.body)
       })
     },
     shareBookmark () {
@@ -148,7 +146,7 @@ export default {
 }
 </script>
 
-<style scoped> 
+<style scoped>
 .card{
   z-index: 10;
 }
@@ -212,27 +210,27 @@ export default {
 }
 
 .bk-to-read {
-  color:#0084DE; 
+  color:#0084DE;
 }
 
 .bk-is-favorite {
-  color:orange; 
+  color:orange;
 }
 .bk-delete:hover {
-  color:red; 
+  color:red;
 }
 .bk-share:hover {
-  color:green; 
+  color:green;
 }
 
 .fa-spin {
-  color:#0084DE; 
+  color:#0084DE;
 }
 .bk-refresh:hover {
-  color:#0084DE; 
+  color:#0084DE;
 }
 
-input{ 
+input{
   border:none;
   background-color: rgba(0,0,0,0);
 }

@@ -57,14 +57,25 @@ export default new Router({
         {
           path: 'bookmarks',
           name: 'bookmarks',
-          component: BookmarksList
+          component: BookmarksList,
+          props: { page: 'all' }
+        }, {
+          path: 'favorites',
+          name: 'favorites',
+          component: BookmarksList,
+          props: { page: 'favorites' }
+        }, {
+          path: 'toread',
+          name: 'toread',
+          component: BookmarksList,
+          props: { page: 'toread' }
         }, {
           path: 'folders',
           name: 'folders',
           component: BookmarksFolders
         }, {
-          name: 'folder',
           path: 'folders/:id',
+          name: 'folder',
           component: BookmarksFolderPage
         }
       ]

@@ -21,6 +21,18 @@
             <p>All Items</p>
           </a>
         </router-link>
+        <router-link to="/app/favorites" tag="li" ref="Bookmark List">
+          <a>
+            <i class="ti-star"></i>
+            <p>Favorites</p>
+          </a>
+        </router-link>
+        <router-link to="/app/toread" tag="li" ref="Bookmark List">
+          <a>
+            <i class="ti-book"></i>
+            <p>Reading List</p>
+          </a>
+        </router-link>
         <router-link to="/app/folders" tag="li" ref="Table List">
           <a>
             <i class="ti-folder"></i>
