@@ -1,21 +1,30 @@
 import bookmarks from '../../api/bookmarks'
+import _ from 'lodash'
 
 const initialState = {
-  search: [],
+  all: [],
+  favorite: [],
+  toread: [],
   loading: false
 }
 const mutations = {
   SEARCHINGBOOKMARKS(state) {
     state.loading = true
   },
-  SEARCHRESULTS(state, {results}) {
-    state.search = results
+  SEARCHRESULTS(state, {page, results}) {
+    state[page] = results
     state.loading = false
   },
   UPDATEBOOKMARK(state, bookmark) {
-    state.search = state.search.map((bk) => {
+    state.all = state.all.map((bk) => {
       return (bk.id === bookmark.id) ? bookmark : bk
     })
+    state.favorite = _.compact(state.favorite.map((bk) => {
+      return (bk.id === bookmark.id) ? null : bk
+    }))
+    state.toread = _.compact(state.toread.map((bk) => {
+      return (bk.id === bookmark.id) ? null : bk
+    }))
   },
   DELETEBOOKMARK(state, {bookmark}) {
     state.loading = false
@@ -26,11 +35,13 @@ const mutations = {
 }
 
 const actions = {
-  searchBookmarks({commit}, params) {
+  searchBookmarks({commit}, page) {
     commit('SEARCHINGBOOKMARKS')
+    const params = {}
+    params[page] = true
     bookmarks.search(params).then(res => {
       res.json().then(results => {
-        commit('SEARCHRESULTS', {results: results.hits})
+        commit('SEARCHRESULTS', {page, results: results.hits})
       })
     })
   },

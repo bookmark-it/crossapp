@@ -23,9 +23,7 @@ export default {
   },
   props: ['page'],
   mounted() {
-    const params = {}
-    params[this.page] = true
-    this.$store.dispatch('searchBookmarks', params)
+    this.$store.dispatch('searchBookmarks', this.page)
   },
   data () {
     return {
@@ -38,7 +36,7 @@ export default {
   },
   computed: {
     bookmarks() {
-      return this.$store.state.bookmarks.search
+      return this.$store.state.bookmarks[this.page]
     },
     loading() {
       return this.$store.state.bookmarks.loading
@@ -56,9 +54,7 @@ export default {
   },
   watch: {
     page: function(newVal, oldVal) {
-      const params = {}
-      params[newVal] = true
-      this.$store.dispatch('searchBookmarks', params)
+      this.$store.dispatch('searchBookmarks', newVal)
     }
   }
 }
