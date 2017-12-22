@@ -11,9 +11,6 @@
           </bookmark-card>
         </div>
       </div>
-      <p v-if="next" @click="loadmore">
-        loadMore
-      </p>
     </div>
   </div>
 </div>
@@ -60,6 +57,9 @@ export default {
       this.$store.dispatch('updateBookmark', bookmark)
     },
     loadmore() {
+      if (!this.next) {
+        return
+      }
       this.params.page = (this.params.page || 1) + 1
       this.$store.dispatch('searchBookmarks', {
         ...this.params,
