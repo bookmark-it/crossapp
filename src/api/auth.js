@@ -5,6 +5,6 @@ export default {
     return Vue.http.post('auth/token/create/', {username, password})
   },
   fetchUserInfo () {
-    return Vue.http.get('me')
+    return Vue.http.get('auth/me')
   }
 }
