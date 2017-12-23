@@ -29,14 +29,13 @@
 
 
   <div class="footer">
-      <div class="row">
-        <div class="col-sm-12">
-          <span class="fa fa-fire" :class="{ 'bk-to-read': bookmark.toread }" @click="toggleToreadState"></span>
-          <span class="fa fa-star" :class="{ 'bk-is-favorite': bookmark.favorite }" @click="toggleFavoriteState"></span>
-          <span class="fa fa-trash-o bk-delete" @click="deleteBookmark"></span>
-        </div>
-        </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <span class="fa fa-fire" :class="{ 'bk-to-read': bookmark.toread }" @click="toggleToreadState"></span>
+        <span class="fa fa-star" :class="{ 'bk-is-favorite': bookmark.favorite }" @click="toggleFavoriteState"></span>
+        <span class="fa fa-trash-o bk-delete" @click="deleteBookmark"></span>
       </div>
+    </div>
   </div>
 </div>
 </template>
