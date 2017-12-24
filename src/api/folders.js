@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 export default {
-  fetchAll() {
+  fetchFolders() {
     return Vue.http.get('folders')
   }
 }

@@ -35,11 +35,10 @@ const actions = {
   login({commit}, {$router, credentials}) {
     commit('LOADING', {loading: true})
     auth.login(credentials).then(res => {
-      res.json().then(({authToken}) => {
-        /* eslint-disable camelcase */
-        localStorage.setItem('auth_token', authToken)
-        Vue.http.headers.common['Authorization'] = `Token ${authToken}`
-        /* eslint-disable camelcase */
+      /* eslint-disable camelcase */
+      res.json().then(({auth_token}) => {
+        localStorage.setItem('auth_token', auth_token)
+        Vue.http.headers.common['Authorization'] = `Token ${auth_token}`
         commit('LOGIN')
         $router.push('/')
       })

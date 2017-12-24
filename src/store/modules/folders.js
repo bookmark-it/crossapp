@@ -22,7 +22,7 @@ const mutations = {
 
 const actions = {
   fetchFolders({commit}) {
-    folders.fetchAll().then(res => {
+    folders.fetchFolders().then(res => {
       res.json().then((response) => {
         commit('FETCHFOLDERS', response)
       })
