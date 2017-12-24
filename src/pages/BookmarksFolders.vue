@@ -1,79 +1,108 @@
 <template>
-    <div class="row">
-
-
-      
-  <div class="xs-col-6"> 
-
-    <div class="row">
-      <div class="folder-main-container" v-for="folder in folders" :key="folder.id">
-        <folder-card
-          :folder="folder">
-        </folder-card>
-      </div>
-    </div>  
-    </div>  
-
-
-  <div class="xs-col-6"> 
-
-    <div class="row">
-        <a href="#">Create a new folder</a>
-        <p>Access your folders from here : </p>
-        <!-- the demo root element -->
-      <ul v-for="folder in folders" :key="folder.id">
-          <folder-tree-view
-            class="item"
-            :model="folder">
-          </folder-tree-view>
-        </ul>
-    </div>  
-
-
-
-
-
-
-
-  </div> 
-  </div> 
+<div class="row">
+  <draggable element="div" class="col-md-12" :options="dragOptions" :move="onMove" @start="isDragging=true" @end="isDragging=false">
+    <transition-group class="list-group" tag="ul">
+      <draggable class="list-group-item" element="li" :options="dragOptions" :move="onMove" @start="isDragging=true" @end="isDragging=false" v-for="folder in folders" :key="folder.order">
+        {{folder.name}}
+      </draggable>
+    </transition-group>
+  </draggable>
+</div>
 </template>
+
 <script>
+import draggable from 'vuedraggable'
 import FolderCard from '../components/FolderCard.vue'
-import FolderTreeView from '../components/FolderTreeView.vue'
+
 export default {
+  name: 'folders',
   components: {
-    FolderCard,
-    FolderTreeView
+    draggable,
+    FolderCard
   },
-  computed: {
-    folders() {
-      return this.$store.state.folders.all
+  data() {
+    return {
+      list2: [],
+      editable: true,
+      isDragging: false,
+      delayedDragging: false
     }
   },
   methods: {
+    onMove({
+      relatedContext,
+      draggedContext
+    }) {
+      const relatedElement = relatedContext.element
+      const draggedElement = draggedContext.element
+      return (!relatedElement || !relatedElement.fixed) && !draggedElement.fixed
+    }
   },
-  data () {
-    return {
+  computed: {
+    dragOptions() {
+      return {
+        animation: 0,
+        group: 'description',
+        disabled: !this.editable,
+        ghostClass: 'ghost'
+      }
+    },
+    listString() {
+      return JSON.stringify(this.list, null, 2)
+    },
+    folders: {
+      get() {
+        return this.$store.state.folders.all.map(({
+          name
+        }, index) => ({
+          name,
+          order: index + 1,
+          fixed: false
+        }))
+      },
+      set(value) {
+        this.$store.commit('UPDATEFOLDERS', value)
+      }
+    }
+  },
+  watch: {
+    isDragging(newValue) {
+      if (newValue) {
+        this.delayedDragging = true
+        return
+      }
+      this.$nextTick(() => {
+        this.delayedDragging = false
+      })
     }
   }
 }
 </script>
-<style scoped>
 
-
-.folder-main-container {
-    display:inline-block;
-    position:relative;
-    height:115px;
-    width:130px;
-    margin:15px;
+<style>
+.flip-list-move {
+  transition: transform 0.5s;
 }
 
-h4, p, a {
-  margin:0px; 
-  z-index: 1;
-  color:black;
+.no-move {
+  transition: transform 0s;
 }
 
+.ghost {
+  opacity: .5;
+  background: #C8EBFB;
+}
+
+.list-group {
+  min-height: 20px;
+}
+
+.list-group-item {
+  cursor: move;
+  max-width: 200px;
+}
+
+.list-group-item i {
+  cursor: pointer;
+}
 </style>

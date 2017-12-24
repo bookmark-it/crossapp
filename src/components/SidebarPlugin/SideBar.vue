@@ -51,7 +51,6 @@
 </div>
 </template>
 <script>
-import MovingArrow from './MovingArrow.vue'
 export default {
   props: {
     // blue css background color :  #35495E;
@@ -79,9 +78,6 @@ export default {
         return acceptedValues.indexOf(value) !== -1
       }
     }
-  },
-  components: {
-    // MovingArrow
   },
   computed: {
     folders() {

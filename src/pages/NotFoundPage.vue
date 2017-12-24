@@ -63,5 +63,4 @@
 
 <script>
   export default {}
-
 </script>
