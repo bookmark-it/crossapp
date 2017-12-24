@@ -58,13 +58,13 @@ export default {
   },
   watch: {
     isDragging(newValue) {
-      // if (newValue) {
-      //   this.delayedDragging = true
-      //   return
-      // }
-      // this.$nextTick(() => {
-      //   this.delayedDragging = false
-      // })
+      if (newValue) {
+        this.delayedDragging = true
+        return
+      }
+      this.$nextTick(() => {
+        this.delayedDragging = false
+      })
     }
   }
 }
