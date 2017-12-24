@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <draggable element="div" class="col-md-12" v-model="folders" :options="dragOptions" :move="onMove" @start="isDragging=true" @end="isDragging=false">
+    <draggable element="div" class="col-md-12" :options="dragOptions" :move="onMove" @start="isDragging=true" @end="isDragging=false">
       <transition-group class="list-group" tag="ul">
         <draggable class="list-group-item" element="li" :options="dragOptions" :move="onMove" @start="isDragging=true" @end="isDragging=false" v-for="folder in folders" :key="folder.order">
           {{folder.name}}
