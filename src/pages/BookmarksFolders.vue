@@ -1,12 +1,12 @@
 <template>
-<div class="row">
-  <draggable element="div" class="col-md-12" :options="dragOptions" :move="onMove" @start="isDragging=true" @end="isDragging=false">
-    <transition-group class="list-group" tag="ul">
-      <draggable class="list-group-item" element="li" :options="dragOptions" :move="onMove" @start="isDragging=true" @end="isDragging=false" v-for="folder in folders" :key="folder.order">
-        {{folder.name}}
-      </draggable>
-    </transition-group>
-  </draggable>
+  <div class="row">
+    <draggable element="div" class="col-md-12" v-model="folders" :options="dragOptions" :move="onMove" @start="isDragging=true" @end="isDragging=false">
+      <transition-group class="list-group" tag="ul">
+        <draggable class="list-group-item" element="li" :options="dragOptions" :move="onMove" @start="isDragging=true" @end="isDragging=false" v-for="folder in folders" :key="folder.order">
+          {{folder.name}}
+        </draggable>
+      </transition-group>
+    </draggable>
 </div>
 </template>
 
@@ -47,14 +47,9 @@ export default {
         ghostClass: 'ghost'
       }
     },
-    listString() {
-      return JSON.stringify(this.list, null, 2)
-    },
     folders: {
       get() {
-        return this.$store.state.folders.all.map(({
-          name
-        }, index) => ({
+        return this.$store.state.folders.all.map(({name}, index) => ({
           name,
           order: index + 1,
           fixed: false
@@ -91,6 +86,9 @@ export default {
 .ghost {
   opacity: .5;
   background: #C8EBFB;
+  -ms-transform: scale(0.8, 0.8); /* IE 9 */
+  -webkit-transform: scale(0.8, 0.8); /* Safari */
+  transform: scale(0.8, 0.8);
 }
 
 .list-group {

@@ -1,15 +1,11 @@
 <template>
-    <div class="col-md-12 bookmarks-list">
-      <spinner :loading="loading" :color="'#3091B2'"></spinner>
-      <div v-infinite-scroll="loadmore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
-      <div class="row" v-if="!loading">
-        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="(bookmark, index) in bookmarks" :key="bookmark.id">
-          <bookmark-card
-            :bookmark="bookmark"
-            v-on:update="updateBookmark"
-            v-on:delete="deleteBookmark">
-          </bookmark-card>
-        </div>
+<div class="col-md-12 bookmarks-list">
+  <spinner :loading="loading" :color="'#3091B2'"></spinner>
+  <div v-infinite-scroll="loadmore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+    <div class="row" v-if="!loading">
+      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" v-for="(bookmark, index) in bookmarks" :key="bookmark.id">
+        <bookmark-card :bookmark="bookmark" v-on:update="updateBookmark" v-on:delete="deleteBookmark">
+        </bookmark-card>
       </div>
     </div>
   </div>
@@ -88,14 +84,14 @@ export default {
 .toggle-bk-view {
     padding: 7px 18px;
     height: 40px;
-    font-size:24px;
+    font-size: 24px;
 }
 .bookmarks-list {
-  text-align: center;
+    text-align: center;
 }
 
 .v-spinner {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 @include media(large) {
@@ -107,5 +103,4 @@ export default {
     }
   }
 }
-
 </style>

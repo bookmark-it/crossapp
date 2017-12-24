@@ -10,8 +10,8 @@ const mutations = {
     state.all = results
     state.loading = false
   },
-  UPDATEFOLDERS(state, {results}) {
-    state.all = results
+  UPDATEFOLDERS(state, all) {
+    state.all = all
   },
   UPDATEFOLDER(state, {folder, result}) {
     folder = result
