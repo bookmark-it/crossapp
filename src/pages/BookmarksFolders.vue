@@ -2,7 +2,7 @@
   <div class="row">
     <draggable element="div" class="col-md-12" :options="dragOptions" :move="onMove" @start="isDragging=true" @end="isDragging=false">
       <transition-group class="list-group" tag="ul">
-        <draggable class="list-group-item" element="li" :options="dragOptions" :move="onMove" @start="isDragging=true" @end="isDragging=false" v-for="folder in folders" :key="folder.order">
+        <draggable class="list-group-item" element="li" :options="dragOptions" @start="isDragging=true" @end="isDragging=false" v-for="folder in folders" :key="folder.order">
           {{folder.name}}
         </draggable>
       </transition-group>
@@ -12,18 +12,14 @@
 
 <script>
 import draggable from 'vuedraggable'
-import FolderCard from '../components/FolderCard.vue'
 
 export default {
   name: 'folders',
   components: {
-    draggable,
-    FolderCard
+    draggable
   },
   data() {
     return {
-      list2: [],
-      editable: true,
       isDragging: false,
       delayedDragging: false
     }
@@ -35,15 +31,14 @@ export default {
     }) {
       const relatedElement = relatedContext.element
       const draggedElement = draggedContext.element
-      return (!relatedElement || !relatedElement.fixed) && !draggedElement.fixed
+      return true
     }
   },
   computed: {
     dragOptions() {
       return {
         animation: 0,
-        group: 'description',
-        disabled: !this.editable,
+        group: 'folder',
         ghostClass: 'ghost'
       }
     },
@@ -56,19 +51,20 @@ export default {
         }))
       },
       set(value) {
+        console.log('yo ?', value)
         this.$store.commit('UPDATEFOLDERS', value)
       }
     }
   },
   watch: {
     isDragging(newValue) {
-      if (newValue) {
-        this.delayedDragging = true
-        return
-      }
-      this.$nextTick(() => {
-        this.delayedDragging = false
-      })
+      // if (newValue) {
+      //   this.delayedDragging = true
+      //   return
+      // }
+      // this.$nextTick(() => {
+      //   this.delayedDragging = false
+      // })
     }
   }
 }
@@ -86,9 +82,6 @@ export default {
 .ghost {
   opacity: .5;
   background: #C8EBFB;
-  -ms-transform: scale(0.8, 0.8); /* IE 9 */
-  -webkit-transform: scale(0.8, 0.8); /* Safari */
-  transform: scale(0.8, 0.8);
 }
 
 .list-group {
