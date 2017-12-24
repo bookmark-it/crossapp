@@ -113,8 +113,9 @@
     methods: {
       registerForBookmarks () {
         if (this.registerForm.username !== '' && this.registerForm.username !== '') {
-          this.$http.post('auth/register/', this.registerForm).then(res => {
-            this.$router.push('/')
+          this.$http.post('auth/users/create/', this.registerForm).then(res => {
+            console.log(res)
+            // this.$router.push('/')
           })
         }
       }
