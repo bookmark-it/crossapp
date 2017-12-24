@@ -14,7 +14,6 @@ import App from './App'
 import Chartist from 'chartist'
 import 'bootstrap/dist/css/bootstrap.css'
 import './styles/paper-dashboard.scss'
-import 'es6-promise/auto'
 
 import router from './router'
 import store from './store'
