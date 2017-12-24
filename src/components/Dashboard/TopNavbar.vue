@@ -22,6 +22,8 @@
           <li class="topnav-searchbar-container">
             <input v-model="query" class="form-control topnav-searchbar" type="text" name="" v-on:keyup.enter="submit">
           </li>
+          <li><a class="ti-plus" @click="addBookmark"></a>
+          </li>
           <li>
             <a class="btn-rotate" @click="logout">
               Logout<i class="ti-power-off"></i>

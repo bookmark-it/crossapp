@@ -39,9 +39,9 @@
           <p>Folders</p>
         </router-link>
         <ul class="nav">
-          <li v-for="folder in folders" :key="folder.id">
-            <router-link :to="'/app/folders/' + folder.id" ref="Table List">
-              <p>{{ folder.name }}</p>
+          <li v-for="folder in folders" :key="folder.id" style="margin:0;">
+            <router-link :to="'/app/folders/' + folder.id" ref="Table List" style="margin:0;padding:7px 25px;">
+              <p class="sidebar-folder-list-item">{{ folder.name }}</p>
             </router-link>
           </li>
         </ul>
@@ -81,7 +81,7 @@ export default {
     }
   },
   components: {
-    MovingArrow
+    // MovingArrow
   },
   computed: {
     folders() {
@@ -116,6 +116,10 @@ export default {
 }
 </script>
 <style lang="scss">
+.sidebar-folder-list-item {
+  padding:0px 0px 0px 25px;
+
+}
 .logo {
     text-align: center;
 
