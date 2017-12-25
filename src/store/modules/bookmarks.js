@@ -22,10 +22,10 @@ const mutations = {
       return (bk.id === bookmark.id) ? bookmark : bk
     })
     state.favorite = _.compact(state.favorite.map((bk) => {
-      return (bk.id === bookmark.id) ? null : bk
+      return (bk.id === bookmark.id && !bookmark.favorite) ? null : bk
     }))
     state.toread = _.compact(state.toread.map((bk) => {
-      return (bk.id === bookmark.id) ? null : bk
+      return (bk.id === bookmark.id && !bookmark.toread) ? null : bk
     }))
   },
   DELETEBOOKMARK(state, {bookmark}) {

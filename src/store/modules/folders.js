@@ -1,22 +1,20 @@
 import folders from '../../api/folders'
 
 const initialState = {
-  all: [],
+  root: [],
+  currentFolder: null,
   loading: false
 }
 
 const mutations = {
   FETCHFOLDERS(state, {results}) {
-    state.all = results
+    state.root = results
     state.loading = false
   },
-  UPDATEFOLDERS(state, all) {
-    state.all = all
-  },
-  UPDATEFOLDER(state, {folder, result}) {
-    folder = result
-    folder['children_directories'] = ''
-    folder.children_directories = result.children_directories
+  UPDATEFOLDER(state, folder) {
+    state.root = state.root.map((fd) => {
+      return (fd.id === folder.id) ? folder : fd
+    })
   }
 }
 
@@ -28,8 +26,17 @@ const actions = {
       })
     })
   },
+  updateFolder({commit}, {oldVal, newVal}) {
+    commit('UPDATEFOLDER', newVal)
+
+    folders.editFolder(oldVal).then(res => {
+      res.json().then(() => {}, () => {
+        commit('UPDATEFOLDER', oldVal)
+      })
+    })
+  },
   updateCurrentFolder({commit}, {folder, result}) {
-    commit('UPDATEFOLDER', {folder, result})
+    // commit('UPDATEFOLDER', {folder, result})
   }
 }
 

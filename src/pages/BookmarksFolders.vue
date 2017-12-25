@@ -1,13 +1,18 @@
 <template>
-  <div class="row">
-    <draggable element="div" class="col-md-12" :options="dragOptions" :move="onMove" @start="isDragging=true" @end="isDragging=false">
-      <transition-group class="list-group" tag="ul">
-        <draggable class="list-group-item" element="li" :options="dragOptions" @start="isDragging=true" @end="isDragging=false" v-for="folder in folders" :key="folder.order">
+  <div class="col-md-12">
+    <div class="row">
+      <div
+        class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item"
+        draggable="true"
+        v-for="folder in folders"
+        :key="folder.order"
+        v-on:dragstart="onDragStart($event, folder)"
+        v-on:dragover="onDragOver($event)"
+        v-on:drop="onDrop($event, folder)">
           {{folder.name}}
-        </draggable>
-      </transition-group>
-    </draggable>
-</div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -18,82 +23,56 @@ export default {
   components: {
     draggable
   },
-  data() {
-    return {
-      isDragging: false,
-      delayedDragging: false
-    }
-  },
   methods: {
-    onMove({
-      relatedContext,
-      draggedContext
-    }) {
-      const relatedElement = relatedContext.element
-      const draggedElement = draggedContext.element
-      return true
+    onDragStart(event, folderFrom) {
+      event.dataTransfer.setData('folder', JSON.stringify(folderFrom))
+    },
+    onDragOver(event) {
+      event.preventDefault()
+    },
+    onDrop(event, folderTo) {
+      const folderFrom = JSON.parse(event.dataTransfer.getData('folder'))
+      event.preventDefault()
+      this.$store.dispatch('updateFolder', {
+        ...folderFrom,
+        parent: folderTo.id
+      })
     }
   },
   computed: {
-    dragOptions() {
+    dragOptions1() {
       return {
         animation: 0,
-        group: 'folder',
-        ghostClass: 'ghost'
+        group: {
+          name: 'folder',
+          pull: 'clone'
+        },
+        ghostClass: 'ghost',
+        sort: false
       }
     },
-    folders: {
-      get() {
-        return this.$store.state.folders.all.map(({name}, index) => ({
-          name,
-          order: index + 1,
-          fixed: false
-        }))
-      },
-      set(value) {
-        console.log('yo ?', value)
-        this.$store.commit('UPDATEFOLDERS', value)
+    dragOptions2() {
+      return {
+        animation: 0,
+        group: {
+          name: 'folder'
+        },
+        ghostClass: 'ghost',
+        sort: false
       }
-    }
-  },
-  watch: {
-    isDragging(newValue) {
-      if (newValue) {
-        this.delayedDragging = true
-        return
-      }
-      this.$nextTick(() => {
-        this.delayedDragging = false
-      })
+    },
+    folders() {
+      return this.$store.state.folders.root
     }
   }
 }
 </script>
 
 <style>
-.flip-list-move {
-  transition: transform 0.5s;
-}
-
-.no-move {
-  transition: transform 0s;
-}
-
-.ghost {
-  opacity: .5;
-  background: #C8EBFB;
-}
-
-.list-group {
-  min-height: 20px;
-}
-
-.list-group-item {
-  cursor: move;
-  max-width: 200px;
-}
-
-.list-group-item i {
-  cursor: pointer;
+.item {
+  height: 100px;
+  background-color: green;
+  margin: 10px;
+  color: white;
 }
 </style>
