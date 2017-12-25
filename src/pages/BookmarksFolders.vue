@@ -16,13 +16,8 @@
 </template>
 
 <script>
-import draggable from 'vuedraggable'
-
 export default {
   name: 'folders',
-  components: {
-    draggable
-  },
   methods: {
     onDragStart(event, folderFrom) {
       event.dataTransfer.setData('folder', JSON.stringify(folderFrom))
