@@ -9,7 +9,7 @@ import Login from '../pages/Login.vue'
 
 import BookmarksRegister from 'src/pages/BookmarksRegister.vue'
 import BookmarksList from 'src/pages/BookmarksList.vue'
-import BookmarksFolders from 'src/pages/BookmarksFolders.vue'
+import FoldersList from 'src/pages/FoldersList.vue'
 import BookmarksFolderPage from 'src/pages/BookmarksFolderPage.vue'
 
 Vue.use(Router)
@@ -72,7 +72,7 @@ export default new Router({
         }, {
           path: 'folders',
           name: 'folders',
-          component: BookmarksFolders
+          component: FoldersList
         }, {
           path: 'folders/:id',
           name: 'folder',
