@@ -4,7 +4,6 @@ import folders from '../../api/folders'
 
 const initialState = {
   root: [],
-  currentFolder: null,
   loading: false
 }
 
@@ -18,6 +17,9 @@ const mutations = {
   },
   DELETEFOLDER(state, folder) {
     state.root = _.compact(state.root.map((fd) => ((fd.id === folder.id) ? null : fd)))
+  },
+  ROLLBACKFOLDERS(state, oldState) {
+    state.root = oldState.root
   }
 }
 
@@ -29,11 +31,13 @@ const actions = {
       })
     })
   },
-  moveFolder({commit}, {oldVal, newVal}) {
+  moveFolder({commit, state}, {oldVal, newVal}) {
+    const oldState = {...state}
+
     commit('DELETEFOLDER', newVal)
 
     folders.editFolder(newVal).then(() => {}, () => {
-      commit('ADDFOLDER', oldVal)
+      commit('ROLLBACKFOLDERS', oldState)
     })
   },
   updateCurrentFolder({commit}, {folder, result}) {

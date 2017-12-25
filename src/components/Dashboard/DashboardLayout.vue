@@ -8,7 +8,7 @@
     <content-footer></content-footer>
   </div>
   <validate-action></validate-action>
-  <bookmark-share ref="bkshare"></bookmark-share>
+  <add-folder></add-folder>
 </div>
 </template>
 
@@ -16,7 +16,7 @@
 import TopNavbar from './TopNavbar.vue'
 import ContentFooter from './ContentFooter.vue'
 import DashboardContent from './Content.vue'
-import BookmarkShare from '../BookmarkShare.vue'
+import AddFolder from '../modals/addFolder.vue'
 import validateAction from '../Inputs/validateAction.vue'
 
 export default {
@@ -24,7 +24,7 @@ export default {
     TopNavbar,
     ContentFooter,
     DashboardContent,
-    BookmarkShare,
+    AddFolder,
     validateAction
   },
   data() {

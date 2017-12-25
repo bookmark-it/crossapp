@@ -31,6 +31,11 @@ const mutations = {
   DELETEBOOKMARK(state, {bookmark}) {
     state.loading = false
   },
+  ROLLBACKBOOKMARKS(state, oldState) {
+    state.all = oldState.all
+    state.favorite = oldState.favorite
+    state.toread = oldState.toread
+  },
   LOGOUT(state) {
     state = initialState
   }
@@ -54,10 +59,13 @@ const actions = {
       })
     })
   },
-  updateBookmark({commit}, {oldVal, newVal}) {
+  updateBookmark({commit, state}, {oldVal, newVal}) {
+    const oldState = {...state}
     commit('UPDATEBOOKMARK', newVal)
 
-    bookmarks.editBookmark(newVal).then(() => {})
+    bookmarks.editBookmark(newVal).then(() => {}, () => {
+      commit('ROLLBACKBOOKMARKS', oldState)
+    })
   },
   deleteBookmark({commit}, {bookmark}) {
     bookmarks.deleteBk(bookmark).then(res => {
