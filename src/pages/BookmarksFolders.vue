@@ -29,8 +29,11 @@ export default {
       const folderFrom = JSON.parse(event.dataTransfer.getData('folder'))
       event.preventDefault()
       this.$store.dispatch('updateFolder', {
-        ...folderFrom,
-        parent: folderTo.id
+        newVal: {
+          ...folderFrom,
+          parent: folderTo.id
+        },
+        oldVal: folderFrom
       })
     }
   },

@@ -81,7 +81,7 @@ export default {
   },
   computed: {
     folders() {
-      return this.$store.state.folders.all
+      return this.$store.state.folders.root
     },
     sidebarClasses() {
       if (this.type === 'sidebar') {
