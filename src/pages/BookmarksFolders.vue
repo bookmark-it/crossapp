@@ -28,7 +28,11 @@ export default {
     onDrop(event, folderTo) {
       const folderFrom = JSON.parse(event.dataTransfer.getData('folder'))
       event.preventDefault()
-      this.$store.dispatch('updateFolder', {
+      console.log('folderTo', {
+        ...folderFrom,
+        parent: folderTo.id
+      })
+      this.$store.dispatch('moveFolder', {
         newVal: {
           ...folderFrom,
           parent: folderTo.id

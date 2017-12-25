@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 import folders from '../../api/folders'
 
 const initialState = {
@@ -11,10 +13,11 @@ const mutations = {
     state.root = results
     state.loading = false
   },
-  UPDATEFOLDER(state, folder) {
-    state.root = state.root.map((fd) => {
-      return (fd.id === folder.id) ? folder : fd
-    })
+  ADDFOLDER(state, folder) {
+    state.root.push(folder)
+  },
+  DELETEFOLDER(state, folder) {
+    state.root = _.compact(state.root.map((fd) => ((fd.id === folder.id) ? null : fd)))
   }
 }
 
@@ -26,13 +29,11 @@ const actions = {
       })
     })
   },
-  updateFolder({commit}, {oldVal, newVal}) {
-    commit('UPDATEFOLDER', newVal)
+  moveFolder({commit}, {oldVal, newVal}) {
+    commit('DELETEFOLDER', newVal)
 
-    folders.editFolder(oldVal).then(res => {
-      res.json().then(() => {}, () => {
-        commit('UPDATEFOLDER', oldVal)
-      })
+    folders.editFolder(newVal).then(() => {}, () => {
+      commit('ADDFOLDER', oldVal)
     })
   },
   updateCurrentFolder({commit}, {folder, result}) {

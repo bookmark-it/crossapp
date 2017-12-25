@@ -57,11 +57,7 @@ const actions = {
   updateBookmark({commit}, {oldVal, newVal}) {
     commit('UPDATEBOOKMARK', newVal)
 
-    bookmarks.editBookmark(newVal).then(res => {
-      res.json().then(() => {}, () => {
-        commit('UPDATEBOOKMARK', oldVal)
-      })
-    })
+    bookmarks.editBookmark(newVal).then(() => {})
   },
   deleteBookmark({commit}, {bookmark}) {
     bookmarks.deleteBk(bookmark).then(res => {
