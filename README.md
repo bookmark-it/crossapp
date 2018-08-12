@@ -2,7 +2,7 @@
   <a href="https://bk-it.herokuapp.com/app/bookmarks" target="_blank"><img src="https://github.com/bookmark-it/crossapp/blob/master/static/img/logo.png?raw=true" alt="Bookmark-it" height="160"></a>
   <br>
   Bookmark It - VueJs App
-  <br>
+  <br><br>
 </h1>
 
 <h4 align="center">Manage your bookmarks from everywhere ! <a href="https://bk-it.herokuapp.com/app/bookmarks" target="_blank">Bookmark It</a></h4>
